@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EntityRelationships xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <EntityRelationship Name="business_unit_mwcp26_sessionspeaker" />
+  <EntityRelationship Name="contact_mwcp26_sessionspeaker_mwcp26_SpeakerId" />
+  <EntityRelationship Name="lk_mwcp26_sessionspeaker_createdby" />
+  <EntityRelationship Name="lk_mwcp26_sessionspeaker_modifiedby" />
+  <EntityRelationship Name="mwcp26_conference_mwcp26_salle_mwcp26_ConferenceId" />
+  <EntityRelationship Name="mwcp26_conference_mwcp26_session_mwcp26_ConferenceId" />
+  <EntityRelationship Name="mwcp26_salle_mwcp26_session_mwcp26_SalleId" />
+  <EntityRelationship Name="mwcp26_session_mwcp26_sessionspeaker_mwcp26_SessionId" />
+  <EntityRelationship Name="owner_mwcp26_sessionspeaker" />
+  <EntityRelationship Name="team_mwcp26_sessionspeaker" />
+  <EntityRelationship Name="user_mwcp26_sessionspeaker" />
+</EntityRelationships>
