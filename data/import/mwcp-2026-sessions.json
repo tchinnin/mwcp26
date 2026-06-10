@@ -1,0 +1,1288 @@
+{
+  "event": "MWCP 2026",
+  "days": [
+    {
+      "date": "Mardi 23 juin 2026",
+      "sessions": [
+        {
+          "id": "7320eb5d-f375-40c9-9d5a-0f6fc1e0fa84",
+          "title": "Accueil et café jour 1",
+          "description": null,
+          "day": "Mardi 23 juin 2026",
+          "startTime": "09:00",
+          "endTime": "09:40",
+          "duration": "40 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": true,
+          "speakers": [],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "2b62ac41-cc6e-4a0a-847c-04feea5c0779",
+          "title": "Lancement de la MWCP",
+          "description": null,
+          "day": "Mardi 23 juin 2026",
+          "startTime": "09:40",
+          "endTime": "10:00",
+          "duration": "20 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": true,
+          "speakers": [],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1203794",
+          "title": "Table ronde - Préparer son tenant à l'arrivée de Microsoft 365 Copilot",
+          "description": "L'arrivée de Copilot est aussi un challenge coté gestion du tenant M365. Assurer les prérequis, assurer la qualité des données, aider les équipes adoption. Dans cette table ronde, une sélection d'experts vous donnerons leur retour d'expérience sur les actions les plus importantes à mener pour faire de votre déploiement M365 Copilot une réussite.",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "10:00",
+          "endTime": "11:00",
+          "duration": "60 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Sébastien Paulet",
+              "tagLine": "MVP fond of Content Processing / Digital Workplace / Compliance / Agile ",
+              "bio": "20 years as consultant, dev, tech lead, project manager, trainer, team leader, speaker around SharePoint and M365 technologies and fond of topics around #compliance, #GDPR, #ITSec, #AI, #documentManagement, #recordsManagement, #lean, #scrum, #roi.\r\nVarious aMS events around the world + MWCP Paris organizer."
+            },
+            {
+              "name": "Romain Dalle",
+              "tagLine": "Data Security Technical Officer, MCT, MVP Security @ Cellenza",
+              "bio": "My mantra? Collaborative working and the productivity of organisations should constantly be facilitated and improved, without compromising the confidentiality and integrity of data.\r\n\r\nAs a Security MVP and Microsoft Certified Trainer, I'm passionate about sharing my advice and experience with you to build a solution that meets your needs."
+            },
+            {
+              "name": "Jean-Sébastien Duchêne",
+              "tagLine": "Microsoft MVP & Regional Chief Technology Officer EXAKIS NELITE",
+              "bio": "Enterprise Solution Architect on Microsoft technologies, Jean-Sébastien Duchêne has been an expert on user environments, Modern Desktop, Mobility, Security and Cloud topics for several years. He regularly participates in strategic consulting missions, architectures implementation, deployment strategy, migration, etc. He has written several books on these topics. He is a Microsoft MVP (Most Valuable Professional) Enterprise Mobility certified since 2010.  "
+            },
+            {
+              "name": "Alban Piel",
+              "tagLine": "CEO - Modern Work Lead",
+              "bio": "Architecte Microsoft 365, j'accompagne tous types d'entreprises dans leur transformation digitale à l'aide de Microsoft 365."
+            },
+            {
+              "name": "Alexandre Piatetsky",
+              "tagLine": "Responsable Technologie M365 | Microsoft MVP",
+              "bio": "Alexandre est un expert reconnu de l’écosystème Microsoft, spécialisé dans Microsoft 365, Copilot et la gouvernance numérique. En tant que Microsoft MVP, il intervient régulièrement dans les conférences et événements communautaires pour partager son expérience terrain, ses bonnes pratiques et ses retours concrets sur l’adoption des technologies Microsoft.\r\nAvec plus de 15 ans d’expérience en architecture, gestion de projet, avant-vente et accompagnement client, Alexandre est passionné par la transmission de savoir et l’innovation collaborative. Il s’engage activement dans les communautés pour aider les organisations à tirer le meilleur parti des outils Microsoft, tout en favorisant la sécurité, la conformité et l’efficacité opérationnelle.\r\nAlexandre fait partie de la société française Bleu, qui détient et opère le premier National Partner Cloud de Microsoft. Il y occupe le rôle de Responsable Technologie Microsoft 365 et aide les organisations à exploiter tout le potentiel de Microsoft 365 dans un environnement cloud sécurisé, conforme et souverain."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "5c6bdea8-d8f7-4b08-a029-ad0f55a02c9c",
+          "title": "Pause Café",
+          "description": null,
+          "day": "Mardi 23 juin 2026",
+          "startTime": "11:00",
+          "endTime": "11:15",
+          "duration": "15 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": true,
+          "speakers": [],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1243312",
+          "title": "UNI5 | Soldez votre dette technique avec l'IA : REX avec le DSI Fedd (Groupe AGON)",
+          "description": "Un legacy 4D massif, des années d’évolution continue, presque aucune documentation : un terrain où la dette technique devient vite ingérable.\r\nPlutôt que de lancer un chantier impossible à maintenir manuellement, Fedd (Groupe AGON) a fait un pari différent : utiliser un agent IA capable de documenter automatiquement le code et de maintenir la documentation à jour à chaque commit.\r\nLors de cette session, le DSI partage le contexte, les choix techniques, les défis d’adoption et les premiers résultats concrets de cette approche. Un retour d’expérience sur l’IA appliquée à un vrai système legacy, vivant et critique.",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "11:15",
+          "endTime": "12:00",
+          "duration": "45 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Imad Bensisaid",
+              "tagLine": "Uni5, architecte cloud, Agent IA, ",
+              "bio": "Architecte Cloud Azure avec plus de 14 ans d'expérience, Imad Bensisaid conçoit des architectures cloud scalables et sécurisées sur Microsoft Azure. Il intègre aujourd'hui l'intelligence artificielle au cœur de ses solutions pour accélérer la transformation digitale de ses clients."
+            },
+            {
+              "name": "Sylvain Laquiche",
+              "tagLine": "Director, Information Systems | Electronic Manufacturing Services",
+              "bio": "Dirigeant SI avec plus de 30 ans d’expérience dans l’industrie et les environnements réglementés, il intervient à l’intersection des systèmes d’information de gestion, des SI industriels, de la qualité, du réglementaire et de la transformation opérationnelle.\r\nSon parcours couvre des contextes pharma, medtech, aéronautique, spatial, nucléaire et électronique, en France et en Europe.\r\nSa conviction est que l’IA ne créera de valeur durable dans les industries critiques que si elle s’intègre dans une gouvernance robuste, des processus maîtrisés, une architecture claire et une culture opérationnelle capable de passer du POC à l’industrialisation."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1213935",
+          "title": "REX – Agent aRHiane, la collègue IA de 1200 collaborateurs",
+          "description": "Comment déployer un agent IA RH à l'échelle d'un groupe de 1200 personnes ? Corentin (Sergic) et Nada reviennent sur le projet aRHiane, agent RAG développé sur Copilot Studio pour répondre aux questions RH, organisation et formation. Au programme : choix techniques, structuration du projet, gestion de l'équipe pilote, puis accompagnement et formation des collaborateurs pour accueillir leur nouvelle \"collègue\". Un retour terrain sans filtre sur ce qui a fonctionné, les arbitrages réels et les clés pour embarquer les équipes.",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "11:15",
+          "endTime": "12:00",
+          "duration": "45 min",
+          "room": "Room 2 (19p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Nada Brisville",
+              "tagLine": "Power Platform Solution Architect & M365 Copilot Ambassador",
+              "bio": "I am a huge fan of low-code and AI! With nearly eight years of experience at Microsoft France as a Solution Architect and as a Technical Specialist on the Power Platform, I am now a freelancer, and more determined than ever to evangelize these tools to clients and the public."
+            },
+            {
+              "name": "Corentin Brabant",
+              "tagLine": "Head of innovation",
+              "bio": "Head of Innovation at Groupe SERGIC, a national real estate services company operating across property management, rental, commercial real estate, and student residences. He leads AI adoption and digital transformation initiatives. He is also Director of Maille'Immo, an innovation association driving the real estate tech ecosystem in the Hauts-de-France region."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1202122",
+          "title": "IA hybride en entreprise : orchestrer cloud et local pour maximiser les usages métier",
+          "description": "Cloud ou local ? Avec l’écosystème Microsoft, la réponse est hybride.\r\nDécouvrez comment combiner Azure AI, Azure Arc et les capacités d’IA locale pour concilier performance, coûts et souveraineté, tout en accélérant les usages métier. À travers des cas concrets, cette session vous donnera les clés pour exécuter la bonne IA, au bon endroit.\r\nDe la stratégie à l’architecture, repartez avec des repères clairs pour industrialiser vos projets d’IA du POC à l’échelle.",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "11:15",
+          "endTime": "12:00",
+          "duration": "45 min",
+          "room": "Room 3 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Mohamed Ait Salah",
+              "tagLine": "CEO Emazis",
+              "bio": "CEO EMAZIS, IT Consulting Firm in France AI, Cloud, Cybersecurity & Modern Workplace,  with 20+ years of IT experience, including 14 years at Dell Technologies.\r\nExpert in Modern Workplace transformation, Microsoft 365, Endpoint Management, and Windows 11 • Modern Management adoption.\r\nExperienced in leading large-scale international projects, with a high level of professional English.\r\nStrong experience in both delivery and pre-sales, bridging business needs with robust and scalable technical architecture.\r\nDeveloper at heart with 20+ years of hands-on software development experience.\r\n\r\nPassionate about modern IT, cloud innovation, and digital transformation, I enjoy working on challenging environments where technology delivers measurable business value.\r\n\r\nI love also to share knowledge, as part of aMS Community (Sharing passion and knowledge on Azure, Microsoft 365 and SharePoint global community) I animated sessions, events in order to share my passions and experiences about Microsoft Cloud Solutions (Microsoft 365, Azure and AI).\r\n\r\nOutside of my day-to-day job I'm just as much of a geek (Gaming, Domotics, Programming, Anime…)\r\nI love Music (Mixing, MAO) and spend my free time right now researching and learning more about new technologies.\r\n\r\nIf you wish to exchange and share with me about technical subjects, do not hesitate to add me."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1215314",
+          "title": "Power BI à l’ère de l’IA : Copilot et Data Analysts AI-Ready",
+          "description": "Le rôle du Data Analyst évolue rapidement avec l’arrivée de l’IA dans Power BI et Fabric. Copilot, Data Agents et le catalogue OneLake ouvrent de nouvelles perspectives : analyses augmentée, création de mesures DAX assistée, conception de rapports accélérée, recherche de données par langage naturel et gouvernance renforcée.\r\nDans cette session, nous explorerons ensemble :\r\n• Comment Copilot dans Fabric et Power BI change concrètement le quotidien des analystes, métiers ou data.\r\n• Les nouveaux usages permis par les Data Agents pour interroger et automatiser.\r\n• L’importance de la gouvernance pour retrouver, comprendre et fiabiliser vos données.\r\n\r\nUne session pragmatique, interactive et sans langue de bois, pour vous aider à préparer vos pratiques d'analyse à l’ère de l’IA.",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "11:15",
+          "endTime": "12:00",
+          "duration": "45 min",
+          "room": "Room 4 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Jean-Pierre Riehl",
+              "tagLine": "CTO Data at Cellenza",
+              "bio": "Obsessed by Data, Power BI Fan, Innovation-driven, Business-oriented, Artificially-Intelligent, Community leader, I manage all data-related topics with my team at Cellenza, a consultancy firm in France.\r\nI work for more than 20 years on challenging projects, from web to IoT including a lots of Data and AI.\r\nI am awarded as Data Platform MVP since 2008 and I’m intensively involved in French Communities."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1218150",
+          "title": "Vos secrets sont partout — Microsoft Purview peut tous les trouver",
+          "description": "Un token Azure hardcodé dans un fichier Teams. Une clé API dans un OneDrive partagé. Un mot de passe dans un script stocké sur un File Share. Combien de secrets dormant dans vos dépôts Microsoft 365 attendent d'être découverts — par vous, ou par un attaquant ?\r\nLes secrets exposés dans des fichiers constituent l'un des vecteurs d'attaque les plus redoutables et les plus sous-estimés. Pourtant, la surface à couvrir n'a jamais été aussi large : SharePoint Online, OneDrive for Business, Teams, Azure File Shares, Blob Storage… chaque dépôt est un terrain fertile pour des credentials oubliés.\r\nDans cette session, nous vous montrons comment Microsoft Purview peut devenir le radar unifié de votre patrimoine de secrets, quelle que soit la source. En s'appuyant sur les Sensitive Information Types (SIT) natifs — plus de 300 patterns couvrant Storage Account Keys, SAS tokens, GitHub Personal Access Tokens, connection strings SQL, clés AWS, Slack tokens et bien d'autres — ainsi que sur des règles personnalisées pour vos propres formats, Purview inspecte l'ensemble de vos dépôts et remonte à la surface ce qui ne devrait jamais s'y trouver.\r\nAu programme :\r\n\r\n- Cartographie des sources supportées : SharePoint, OneDrive, Teams, Azure Files, Blob Storage — un seul moteur pour tout couvrir\r\n- Architecture d'un scan Purview adapté à chaque dépôt (Azure IR, Self-Hosted IR, réseau privé)\r\nConfiguration des Scan Rule Sets orientés détection de credentials\r\n- Exploitation des résultats dans le Unified Catalog et Content Explorer\r\n- Stratégie de remédiation : de la détection à l'action, comment traiter les secrets identifiés ?\r\n- Licences et coûts : ce que vous avez peut-être déjà, ce qu'il vous manque\r\n\r\nUne session orientée retour d'expérience et démo live, pour repartir avec une méthode applicable dès le lendemain — sur l'ensemble de votre patrimoine, pas seulement sur un silo.",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "11:15",
+          "endTime": "12:00",
+          "duration": "45 min",
+          "room": "Room 5 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Hicham Gondouin",
+              "tagLine": "Deepdef, CEO",
+              "bio": "CEO de Deepdef, architecte cybersécurité avec 20 ans d'expérience sur les environnements cloud et hybrides. Fondateur d'un pure-player toulousain spécialisé en sécurité Microsoft, il intervient sur des programmes pluriannuels dans les secteurs aéronautique, industriel et bancaire. Auditeur ISO 27001, ancien conférencier TechNet Microsoft. Cette session est née d'un vrai projet client — et d'une vraie attaque."
+            },
+            {
+              "name": "Abdel Tarnagda",
+              "tagLine": "Deepdef - Cyber security Architect",
+              "bio": "Abdel is a cybersecurity professional at Deepdef, a cybersecurity integrator, where he works at the intersection of technical implementation, security governance, and pre-sales/proposal development. His expertise spans Azure, Microsoft 365 administration and security (Entra ID, Intune, Purview DLP), identity and access management (Keycloak, BeyondTrust PAM), public key infrastructure (Keyfactor, EJBCA), and Active Directory hardening."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1202033",
+          "title": "Quand les IA génératives deviennent une surface d'attaque",
+          "description": "Panorama de la menace sur les attaques qui ciblent les IA génératives ou qui les utilisent.\r\nPrincipes et stratégies de défense",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "12:05",
+          "endTime": "12:50",
+          "duration": "45 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Jean-Philippe Lesage",
+              "tagLine": "CTO - Devensys Cybersecurity",
+              "bio": "Je suis CTO pour Devensys Cybersecurity et je travaille principalement sur les solutions de sécurité de Microsoft. Je suis CISSP, MVP SIEM & XDR et MCT. J'ai aussi passé 25 ans chez Microsoft.  "
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1201445",
+          "title": "L'ordinateur n'est plus un simple objet : bienvenue dans l'ère de Windows 365",
+          "description": "Windows 365 transforme le poste de travail traditionnel en un PC dans le cloud, accessible en toute sécurité depuis n'importe quel appareil.\r\nAu cours de cette conférence, nous examinerons le fonctionnement de Windows 365, les différents modes de connexion (Azure AD/Entra ID, hybride), les modèles de licence, ainsi que les critères clés permettant de déterminer quand et pourquoi le mettre en œuvre.\r\nÀ travers des cas d'utilisation concrets, l'objectif est de comprendre dans quels contextes Windows 365 est pertinent — et dans lesquels il ne l'est pas.",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "12:05",
+          "endTime": "12:50",
+          "duration": "45 min",
+          "room": "Room 2 (19p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Nicolas Bonnet",
+              "tagLine": "IT Architect Cloud and Onprem",
+              "bio": "Cloud and Onprem architect in the Microsoft world, I work in various areas (MS security, Identity, MS server infrastructure, etc.). I'm also an author with Editions ENI and a trainer with Linkedin Learning."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1201705",
+          "title": "From Prompt to PC: How Agents Take Over the Keyboard",
+          "description": "Imagine delegating entire computer tasks—like onboarding, compliance audits, or multi-step workflows—to an AI agent that works just like a human user, but faster, safer, and smarter.\r\nIn this session, we’ll explore Microsoft’s agentic AI ecosystem, focusing on Copilot Studio and Project Opal, which bring Computer Use capabilities to life.\r\nThese agents can click, type, and navigate across apps and browsers—even when no API exists—while maintaining enterprise-grade security and governance.\r\nWe’ll see how to combine Copilot Studio agent flows, Power Automate, and Windows 365 for Agents to orchestrate complex tasks end-to-end.\r\nExpect live demos of Opal executing real jobs in a secure Cloud PC, plus insights into advanced reasoning, observability, and steerability features.\r\nWalk away with patterns, governance tips, and a roadmap for building agents that transform repetitive work into autonomous workflows—without sacrificing control.",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "12:05",
+          "endTime": "12:50",
+          "duration": "45 min",
+          "room": "Room 3 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Alaa Bitar",
+              "tagLine": "AI Business Solutions Engineer @ Microsoft Switzerland",
+              "bio": "SharePoint Addict since 2007\r\naMP community member"
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1201696",
+          "title": "Et si on notre agent obtiennait la capacité de faire le café ☕ ?",
+          "description": "Aujourd'hui, les Agent peuvent presque tout faire, mais peuvent-ils vraiment répondre aux besoins ultimes! \r\n\r\nFaire du café ☕\r\n\r\nLe Model Context Protocol (MCP) permet d’exposer de manière standard des tools et resources à un Agent.\r\n\r\nDans cette session 100% pratique, nous créons en C#/.NET un serveur MCP minimal, puis nous y ajoutons pas à pas des tools, des prompts, des MCPs app (ex. appel d’une API publique) et des resources (ex. fichiers locaux/JSON).\r\n\r\nNous verrons comment structurer les échanges MCP, gérer les prompts côté serveur, et brancher un LLM (ex. Azure OpenAI, Copilot Studio) pour obtenir une démo fonctionnelle. \r\n\r\nNous discuterons de sécurité pour protéger notre MCP.\r\n\r\nVous repartez avec un squelette de serveur .NET, un exemple de tools, et un guide de démarrage pour étendre votre propre MCP.",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "12:05",
+          "endTime": "12:50",
+          "duration": "45 min",
+          "room": "Room 4 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Adrien Clerbois",
+              "tagLine": "Software Craftsman @ Sense of Tech",
+              "bio": "I have been passionate about computers since I was 12 years old, I wrote my first website with a lot of nested tables at 13 years old and that's when I discovered that computers are within everyone's reach. Since then I have evolved well and I am now Microsoft MVP. \r\n\r\nI was interested in what is really interesting: \"Programming\"!\r\n\r\nI was a consultant at Trasys (now called NRB) where I had fun in the industrial field with renowned companies such as Audi, myShopi, etc... \r\n\r\nI was an Enterprise Lead Designer at Ingenico and I customize the ePayment platform for international customers requirements such as Carrefour.\r\n\r\nI'm now at my own and built up my company named Sense of Tech.\r\n\r\nI love to share, so if you see me, don't hesitate to discuss, as they say: \"we learn something new every day\"."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1202058",
+          "title": "From Use Case to Business Case: Why 5,000 Copilot Licenses Are Not an AI Strategy",
+          "description": "Everyone thinks they need AI. Everyone is buying AI.\r\nVery few are getting real value from it.\r\n\r\nWhy? Because companies are adapting their business to AI instead of making AI work for their business. They roll out 5,000 Copilot licenses or slap a chat interface on their intranet and call it a strategy. But AI is a tool, and like any tool, you need the right use case first, not the other way around.\r\n\r\nIn this session, I'll walk you through the three AI archetypes: Embedded AI, GenAI and Agentic AI. Drawing from years leading AI projects at VC-backed startups and DAX40 corporates, I'll show you real-life use cases, what worked for each archetype, what failed and why.\r\n\r\nInstead of another high-level overview of models, we break AI initiatives down by business-case types and tie each one to concrete examples from more than 20 client projects.\r\n\r\nYou'll see that not every business needs AI. But every AI initiative needs a solid business case and a real problem to solve. By the end, you'll know where AI genuinely helps and which factors determine whether an idea even qualifies as a use case.\r\n\r\nWe'll close with a step-by-step method to identify and validate AI opportunities in your organization so they come with a clear business case from day one.",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "12:05",
+          "endTime": "12:50",
+          "duration": "45 min",
+          "room": "Room 5 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Marin Niehues",
+              "tagLine": "Founder & Principal Consultant",
+              "bio": "Marin Niehues is an independent consultant at the intersection of organizational design and delivery, helping companies build and operate structures that actually deliver. Across 20+ client projects with organizations from VC-backed scaleups to DAX40 companies, Marin works either embedded in line functions as a Delivery Lead or Business Analyst or strategically on organizational design, governance and process architecture.\r\n\r\nIn the past three years, Marin has spoken at conferences in more than twenty countries across six continents, including repeated invitations from Google and Microsoft."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "cb99b982-79a6-40b5-9b3a-842fc7e95713",
+          "title": "Pause Repas jour 1",
+          "description": null,
+          "day": "Mardi 23 juin 2026",
+          "startTime": "12:50",
+          "endTime": "14:15",
+          "duration": "85 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": true,
+          "speakers": [],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1232002",
+          "title": "AVEPOINT | DSI : Piloter, mesurer l'ère de l'IA pour éviter le chaos",
+          "description": "L'IA ne crée de la valeur que si elle est utilisée dans un cadre sécurisé. \r\n\r\nL'IA agentique représente la prochaines révolutions digital. Des outils qui planifient, décident, agissent de manière autonome. \r\n\r\nPour évoluer de manière responsable, il est essentiel de disposer de cadres de gouvernance solides.\r\n\r\nEn suivant cette session vous comprendrez :\r\n- Comment piloter vos initiatives par la donnée en suivant l'adoption réelle de vos outils ? \r\n- Qui utilise l'IA dans votre plateforme ?\r\n- Comment gouverner, sécuriser les initiatives des employés de manière efficace ?\r\n\r\nNous décrypterons les mécanismes de gouvernance et les préparations indispensables pour Copilot Studio & Copilot Premium afin de minimiser les risques, via la Confidence Platform d'AvePoint.",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "14:15",
+          "endTime": "15:00",
+          "duration": "45 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Jeff Angama",
+              "tagLine": "Solution Engineer @AvePoint | M365 Architect | MVP",
+              "bio": "Jeff Angama is a Microsoft MVP and Solution Engineer at AvePoint with a proven track record of delivering pragmatic, high-impact solutions.\r\n\r\nSince 2011, he has helped hundreds of organizations—including Airbus, Bolloré, GSF, and GovTech Singapore—optimize their digital workspaces through Microsoft 365 and the Power Platform. Whether spearheading a 40,000-user digital transformation or advising on automation, Jeff combines deep technical expertise with an agile mindset (Scrum) to deliver measurable value.\r\n\r\nA dedicated educator and community player, he empowers others to harness the full potential of Microsoft 365, Teams, the Power Platform and Copilot.\r\n\r\nConnect with Jeff on LinkedIn for daily tips, expert analysis, and unique insights into the modern work."
+            },
+            {
+              "name": "Fleur Bidault",
+              "tagLine": "Customer Success Manager",
+              "bio": "Customer Success Manager with 8 years of experience in tech across multiple countries, territories, and industries. Focused on customer success, renewals, and strategic client relationships for accounts in France and Luxembourg."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1204110",
+          "title": "L’ère du “Copilot qui fait” : découvrir Cowork pour orchestrer du travail multi‑étapes",
+          "description": "Copilot Cowork est conçu pour transformer l’intention en actions au sein de Microsoft 365 : au lieu de “me donner une réponse”, Cowork vous aide à déléguer un résultat. Il s’appuie sur votre contexte de travail (emails, réunions, messages, fichiers, données), convertit la demande en plan, puis avance avec des points de contrôle qui vous permettent de confirmer, corriger ou arrêter l’exécution à tout moment. \r\n\r\nCôté entreprise, Cowork s’inscrit dans les limites de sécurité et de gouvernance Microsoft 365 (identité, permissions, politiques de conformité, auditabilité) et s’exécute dans un environnement cloud protégé. \r\n\r\nPendant la session, nous couvrirons :\r\n-Proposition de valeur : pourquoi Cowork change la façon de travailler (multi‑étapes, multi‑apps, durable). \r\nPrérequis & gouvernance : bases pour gérer/activer des agents, rôles d’administration, bonnes pratiques de contrôle. \r\nModèles Anthropic : comment Microsoft encadre l’usage des modèles Anthropic (sous‑traitant Microsoft, activation/opt‑in selon région, incluant EU/UK souvent “off” par défaut). \r\nDémo action‑oriented : cas d’usage concrets (tri et replanification du calendrier, préparation d’un meeting pack avec livrables, recherche avec sources/citations, plan de lancement et assets).",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "14:15",
+          "endTime": "15:00",
+          "duration": "45 min",
+          "room": "Room 2 (19p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Antoine Galland",
+              "tagLine": "AI solution architect",
+              "bio": "I am a Cloud Solution Architect at Microsoft focused on Microsoft 365 Copilot, Power Platform, and enterprise AI agents. I support organizations in designing secure, scalable copilots that enhance productivity and modern collaboration.\r\nPreviously a Microsoft 365 consultant specializing in SharePoint, Teams, and the Power Platform, I am passionate about emerging digital experiences at the crossroads of AI, automation, Digital Twins, and immersive collaboration."
+            },
+            {
+              "name": "Clément Serafin",
+              "tagLine": "Global Solution Architect AI",
+              "bio": "I am Clément SERAFIN, Global Solution Architect AI.\r\nSpecialized in tenant 365 migrations during merge & acquisitions, I advised multiple companies on several areas of Microsoft 365:\r\n– Entra ID (Security, IAM)\r\n– Teams (Call center, Teams Premium, Mesh)\r\n– Exchange Online / Hybrid (Migration, Security)\r\n– Copilot 365\r\n– Defender for Office 365\r\n– PowerShell advanced automation (Graph, Xaml Gui)\r\n\r\nNow as part of Microsoft, I help companies to get the best of last AI Solution like Agent 365 or Copilot Cowork."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1202038",
+          "title": "Ces choses dans Power BI peu ou mal utilisées!",
+          "description": "Parfois, par\r\n- \"j'ai toujours fait comme ca\"\r\n- \"ca marche, mais je ne sais pas pourquoi...\"\r\n- \"🤷‍♂️c'est l'IA qui m'a donné la réponse!\"\r\n\r\nVoire, des fonctionnalités jamais utilisées.\r\n\r\nAu menu :\r\n1. La gestion des erreurs et quelles erreurs elle peut elle même en provoquer? (Les troublants effets de bord)\r\n\r\n2. Renommer dynamiquement des colonnes, que le nombre soit fixe ou variable, dynamiquement, SIMPLEMENT! 😁\r\n\r\n3. Avec des sources SQL par exemple, faire bosser SQL et non Power Query... savoir qui prend le relai et quand? (le fameux Query Folding)\r\n\r\n4. Justement, que faire avec le Query Folding et les requêtes natives?\r\n\r\n5. Et on parle des requête M dynamiques pour piloter une vue SQL, genre 1 milliard de lignes?\r\n\r\nUne session pleine d'exemples vécus, d'astuces et d'anecdotes...",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "14:15",
+          "endTime": "15:00",
+          "duration": "45 min",
+          "room": "Room 3 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Guillaume Gaudfroy",
+              "tagLine": "MVP Alumni Data Platform, Fabric & Power BI",
+              "bio": "MVP Alumni Data Platform depuis 5 ans, je suis activement engagé dans la communauté Française autour des métiers de la data et la business Intelligence, notamment avec le Club Power BI, le Power 365, DataWelsh\r\n\r\nCréateur et organisateur du Power 365. \r\nCréateur de DataWelsh\r\n\r\nMa ligne de conduite: être simple, efficace et toujours dans la bonne humeur"
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1217138",
+          "title": "Choose your favorite (Information Protection) label",
+          "description": "Today's modern organizations face the challenge of protecting their data and address compliance regulations. How to answer the question on where is our data and where do we store sensitive information? How to automatically protect our sensitive data so it never leaves the company, and is always accessed by employees with correct permissions?\r\nSensitivity labels in Microsoft Purview Information Protection allow you to classify and protect data in your organization and allow employees to securely communicate and collaborate.\r\nIn this session we will explain the sensitivity labels lifecycle, from planning to designing and implementing sensitivity labels, describe user experience, and show how to use auditing and monitoring tools to explore sensitive content and user activity.\r\nWe will also discuss best practices on implementing sensitivity labels in Microsoft Purview.",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "14:15",
+          "endTime": "15:00",
+          "duration": "45 min",
+          "room": "Room 4 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Vladimir Meloski",
+              "tagLine": "MCT, MVP, Modern Workplace Engineer at AO Foundation",
+              "bio": "Vladimir Meloski is a Microsoft Most Valuable Professional - MVP on M365 Apps and Services, Microsoft Certified Trainer and consultant, providing unified communications and infrastructure solutions based on Microsoft 365, Exchange Server and Microsoft Azure.\r\n\r\nWith a bachelor degree in computer sciences, Vladimir has devoted more than 25 years of professional experience in information technology. Vladimir has been involved in Microsoft conferences in Europe and in the United States as a speaker, moderator, and technical expert. He has been also involved as an author and technical reviewer for Microsoft official courses, including all Exchange Server versions from 2007 to 2019, Office 365, Windows Server, and one of the book authors of \"Mastering Microsoft Exchange Server 2016\", \"Mastering Windows Server 2016\", and \"Troubleshooting Microsoft Exchange Server 2016\".\r\n\r\nAs a skilled IT professional and trainer, Vladimir shares his best practices, real-world experiences, and knowledge with his students and colleagues, and is devoted to IT community development by collaborating with user groups worldwide.\r\n\r\nHe enjoys his spare time in country with his son and wife."
+            },
+            {
+              "name": "Gorana  Konevska Jankoska",
+              "tagLine": "Microsoft 365 Specialist",
+              "bio": "Gorana Konevska Jankoska is MVP, MCT and Business productivity Consultant, working with Microsoft brand for more than 19 years. Her area of expertise are: business productivity solutions, pre-sales support and marketing. Gorana is MSc in marketing, having Master degree in Marketing on Thesis: “Promotional campaigns for Microsoft licenses”. She has delivered many trainings and workshops for Microsoft partners and customers, providing support during the pre-sales processes on following topics: M365, SharePoint Online, Teams, adoption trainings and workshops. She has been invited as a speaker and expert on multiple conferences and IT events in Europe and US, including Microsoft Ignite.\r\nGorana is a blogger sharing her tips on many Microsoft services topics including Mffice 365, Word 2016, Microsoft Teams, SPO and other technologies on blogs: runningoncloud.wordpress.com and ituziast.com.\r\n"
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1216605",
+          "title": "Développer sur Power Platform avec des Skills, des Agents et des MCP : le nouveau standard ?",
+          "description": "Le repository Github open source Power Platform Skills de Microsoft propose une nouvelle façon de développer sur la Power Platform en s’appuyant sur des skills, des agents et les Model Context Protocol (MCP).\r\nDans cette session, nous nous concentrerons sur l’intérêt concret et les usages réellement utiles de ce dépôt : pourquoi il existe, à qui il s’adresse et comment il peut être exploité dès aujourd’hui pour améliorer la vitesse et la qualité des développements.\r\nLes concepts clés (skills, agents, MCP) seront rappelés et replacés dans leur contexte, afin de mieux comprendre comment ces mécanismes s’intègrent nativement avec des assistants comme GitHub Copilot ou Claude, et permettent d’industrialiser, guider et accélérer le développement dans le quotidien des développeurs Power Platform.",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "14:15",
+          "endTime": "15:00",
+          "duration": "45 min",
+          "room": "Room 5 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Jeremy Veque",
+              "tagLine": "Developer consultant at Abalon",
+              "bio": "Developer with an electronics engineering background. A jack-of-all-trades on the Power Platform, I'm curious to discover new things every day and to present my discoveries. "
+            },
+            {
+              "name": "Franck Catinot",
+              "tagLine": "Abalon, Architecte Microsoft 365",
+              "bio": "Franck Catinot, Architecte Microsoft 365 / Power Platform / SharePoint | Alumni MVP Business Application"
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1216422",
+          "title": "Comprendre le Cloud Souverain Microsoft : Public, Privé et National expliqués",
+          "description": "La stratégie Sovereign Cloud de Microsoft redéfinit la manière dont les nations et les organisations atteignent la souveraineté numérique tout en tirant parti de la puissance du cloud hyperscale.\r\nDans cette session, nous explorerons les trois piliers fondamentaux annoncés par Microsoft : Sovereign Public Cloud, Sovereign Private Cloud et National Partner Clouds. Vous comprendrez clairement ce que signifie chaque pilier, en quoi ils diffèrent et pourquoi ils sont essentiels pour les gouvernements, les secteurs réglementés et les partenaires.\r\nEn m'appuyant sur une expérience concrète acquise en travaillant sur le National Partner Cloud pour la France, je partagerai des perspectives uniques sur les opportunités, les défis et les considérations architecturales liées à la création de solutions souveraines à grande échelle.",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "15:05",
+          "endTime": "15:50",
+          "duration": "45 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Alexandre Piatetsky",
+              "tagLine": "Responsable Technologie M365 | Microsoft MVP",
+              "bio": "Alexandre est un expert reconnu de l’écosystème Microsoft, spécialisé dans Microsoft 365, Copilot et la gouvernance numérique. En tant que Microsoft MVP, il intervient régulièrement dans les conférences et événements communautaires pour partager son expérience terrain, ses bonnes pratiques et ses retours concrets sur l’adoption des technologies Microsoft.\r\nAvec plus de 15 ans d’expérience en architecture, gestion de projet, avant-vente et accompagnement client, Alexandre est passionné par la transmission de savoir et l’innovation collaborative. Il s’engage activement dans les communautés pour aider les organisations à tirer le meilleur parti des outils Microsoft, tout en favorisant la sécurité, la conformité et l’efficacité opérationnelle.\r\nAlexandre fait partie de la société française Bleu, qui détient et opère le premier National Partner Cloud de Microsoft. Il y occupe le rôle de Responsable Technologie Microsoft 365 et aide les organisations à exploiter tout le potentiel de Microsoft 365 dans un environnement cloud sécurisé, conforme et souverain."
+            },
+            {
+              "name": "Xuan Ahehehinnou",
+              "tagLine": "BLEU, Customer Success Manager, Cloud Solution architect",
+              "bio": " Microsoft 365 advisor"
+            },
+            {
+              "name": "Jonathan Jehanno",
+              "tagLine": "Orange Business - Hybrid Cloud Solution Architect",
+              "bio": "Depuis 2010, j’évolue dans les domaines du Réseau, de la Virtualisation, du Stockage et des écosystèmes Microsoft au sein de Cloud privés, d’abord en tant d'ingénieur infrastructure avant de devenir architecte technique. En 2020, j’ai orienté ma carrière vers le Cloud Public et Hybride avec Microsoft Azure. Je me suis spécialisé dans les environnements hybrides — Azure Local, Azure Virtual Desktop, Azure VMware Solution et Nutanix Cloud Cluster — ainsi que dans les aspects stratégiques du réseau, de la sécurité, du DevOps et de la souveraineté des données."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1206978",
+          "title": "Créer des Declarative Agents pour rendre Microsoft 365 Copilot spécialiste de votre métier",
+          "description": "Avec l'arrivée de Microsoft 365 Copilot Chat, Microsoft avance dans son ambition de fournir à chaque employé son propre assistant personnel.\r\nLes agents Copilot permettent d'améliorer les capacités de Copilot en créant des assistants personnalisés façonnés pour des métiers et des scénarios spécifiques.\r\nCes agents répondent à des instructions dédiées, ont accès à des capacités avancés ou sont connectés à des sources de données et actions spécifiques.\r\nL'un des moyens de créer et de mettre à disposition de tels agents est de développer des Declarative Agents, permettant de s'appuyer un maximum sur les différentes briques de Microsoft 365 Copilot (LLM, orchestrateur, interface utilisateur, ...).\r\nGrâce à leur expérience du sujet depuis les premières versions de cette technologie, Alexis et Benjamin vous présenteront en détail les tenants et aboutissants et les bonnes pratiques à adopter pour des agents réussis.",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "15:05",
+          "endTime": "15:50",
+          "duration": "45 min",
+          "room": "Room 2 (19p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Benjamin Talmard",
+              "tagLine": "Microsoft Cloud Platforms Consultant",
+              "bio": "Après une quinzaine d'années chez Microsoft France pour accompagner les développeurs, startups et éditeurs de logiciels français, je mets aujourd'hui mon expérience technique et produit à disposition d'éditeurs de logiciels et startups B2B souhaitant adopter les plateformes Cloud de Microsoft dont particulièrement Microsoft Teams, Microsoft Copilot et la Microsoft Commercial Marketplace."
+            },
+            {
+              "name": "Alexis Conia",
+              "tagLine": "Microsoft Teams App Developer - MVP M365 Apps and Services",
+              "bio": "I’m a software developer and entrepreneur. I consider myself a technology enthusiast: I love to discover and learn about new technologies. I buy more books and devices than I have time to use.\r\n\r\nI started my career as an IT guy on Microsoft UC technologies (OCS, Lync and Exchange). I switched to development some years after. I founded my company four years ago to build software using these technologies.\r\n\r\nI’m really passionate about building real-time applications to help people communicate and collaborate better. I’m always impressed by what we can build around audio and video!\r\n\r\nI’m also a Microsoft MVP. Community is very important to me. The sharing of knowledge and experiences helps me on a daily basis. I’m trying to be involved in the community as much as I can!"
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1211220",
+          "title": "REX de nos bonnes pratiques pour gérer le cycle de vie de vos documents sur vos tenants M365",
+          "description": "A travers cette session, Bastien et moi explorons des solutions pour définir, implémenter et faire vivre le cycle de vie de vos documents dans vos tenants M365.\r\nEntre bonnes pratiques et réalité terrain il y a souvent fossé qu'on vous proposera de constater, et peut être combler :-)",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "15:05",
+          "endTime": "15:50",
+          "duration": "45 min",
+          "room": "Room 3 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Amélie Plockyn",
+              "tagLine": "Freelance| Co-fondatrice du Power 365 | MVP",
+              "bio": "Copilote de vos projets IT | J’aide à comprendre, utiliser et adopter les outils | Cadrage, pilotage & change management (PROSCI – ADKAR)"
+            },
+            {
+              "name": "Bastien Guimonet",
+              "tagLine": "M365 collaborativ platform Abalon ",
+              "bio": "I'm a Collaborative Platforms Administrator responsible for the administration, configuration, and operational support of Microsoft 365 collaborative services, including EntraID, Exchange Online, Teams, SharePoint, and related tools. He ensures platform reliability, security, and consistency while supporting users globally and automating administrative processes to improve efficiency and service quality."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1206052",
+          "title": "Power Pages : et si c'était le retour gagnant ?",
+          "description": "Fin des licences Power Apps par application, essor du vibe coding : Power Pages revient en force — et personne ne l'a vu venir.\r\n\r\nMoins cher que Canvas, accès natif à Dataverse, UX totalement libre. Ajoutez Claude + VS Code et vous obtenez un environnement de développement redoutablement efficace. \r\n\r\nMais attention : certains paramétrages restent hors de portée de l'IA — et c'est là que l'expertise humaine fait toute la différence\r\n\r\nSession à deux voix : retours terrain, démos, et comment industrialiser le vibe coding avec des Claude.md et des skills qui s'enrichissent à chaque projet.\r\n\r\nRetour d'expérience, astuces concrètes et pièges à éviter : on vous partage tout ce qu'on a appris en production",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "15:05",
+          "endTime": "15:50",
+          "duration": "45 min",
+          "room": "Room 4 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Jeremy Laplaine",
+              "tagLine": "MVP alumni | Fabric & Power BI Consultant | Agile | 🤖 AI-Augmented",
+              "bio": "Freelance Microsoft Fabric and Power BI consultant with 12+ years of experience, Microsoft MVP alumni, trainer and speaker. I help organizations deliver data projects by combining technical expertise, agile methods and AI. Convinced that AI is transforming our profession, I integrate Claude Code into my daily Fabric workflows — what I call AI-Augmented Delivery. Delivering fast, well… and with a smile."
+            },
+            {
+              "name": "Gilles Pommier",
+              "tagLine": "Business Application MVP",
+              "bio": "Gilles Pommier is a senior SharePoint Consultant and Office 365 MVP.  During the last 15 years, he has helped numerous companies in their implementation for SharePoint architecture and development. Since 2005, he has also participated in several events such as SharePoint Saturday, SQL Saturday, Microsoft TechEd U.S., TechEd Australia, TechEd EMEA TechEd Dubai TechDays France as a speaker on Office 365, SharePoint, .Net and VSTO technologies."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1217130",
+          "title": "BYOAI – Votre IA perso est-elle votre meilleur collègue… ou votre pire fuite ?",
+          "description": "Présentation générale:\r\nChatGPT, Claude, Gemini, Copilot personnel, agents spécialisés… Les salariés utilisent déjà massivement leurs propres outils d’IA générative dans un cadre professionnel, souvent sans validation ni visibilité managériale.\r\nCe phénomène, appelé BYOAI (Bring Your Own AI), prolonge le BYOD mais introduit une rupture majeure : on n’apporte plus un appareil, mais une capacité cognitive qui rédige, analyse, code et influence les décisions.\r\nCette session propose une lecture claire et pragmatique du BYOAI : pourquoi il émerge, pourquoi il est illusoire de l’interdire, quels risques il fait réellement peser, et comment les organisations peuvent reprendre la main sans brider l’innovation.\r\n\r\nAu Programme:\r\n• Introduction et sondage\r\n• Le constat chiffré: Données clés, comparaison BYOD / BYOAI, spécificités du contexte français.\r\n• Pourquoi les salariés contournent: Les 3 moteurs principaux (efficacité, délai, manque d’alternatives internes), illustrés par des témoignages.\r\n• Les risques concrets: Cas réels de fuite de données, responsabilité juridique, premiers repères autour de la jurisprudence et de l’AI Act.\r\n• Les 4 postures organisationnelles: Interdire, ignorer, encadrer ou industrialiser : bénéfices, limites et impacts concrets.\r\n• Ce que font les entreprises qui s’en sortent: IA privées, chartes d’usage pragmatiques, communautés internes, enclaves de confiance.\r\n\r\nCe avec quoi vous repartirez:\r\n- Une grille de décision BYOAI  pour qualifier un outil ou un cas d’usage\r\n- Un canevas de politique d’usage IA (principes, règles, gouvernance)\r\n- Un kit “contrôles minimum viables”: liste de garde-fous techniques et organisationnels\r\n- Des repères actionnables pour choisir la bonne posture organisationnelle\r\n- Une vision réaliste du Modern Workplace à l’ère des IA personnelles",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "15:05",
+          "endTime": "15:50",
+          "duration": "45 min",
+          "room": "Room 5 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Louis Cacaret",
+              "tagLine": "Senior Manager Usage Innovation & IA at Rhapsodies Conseil, passionate about  Digital workplace and Microsoft 365",
+              "bio": "Passionate about social collaboration solutions, Louis is leading product team Usage, Innvation & IA at rhapsodies conseil. Louis has a unique combination of technical and functional expertise. Over the past ten years, he has designed and implemented social collaboration solutions (intranets, business applications) for customers. Today, he still leads digital transformation projects for clients and manages a team of technical experts. \r\n"
+            },
+            {
+              "name": "Rali Hakam",
+              "tagLine": "Rhapsodies",
+              "bio": "Chez Rhapsodies Conseil, je pilote depuis plus d'un mois la Plateforme ITSM et Digital Excellence, après avoir dirigé la transformation du Digital Workplace pendant deux ans. \r\n\r\nMon expertise s'est affinée dans le conseil autour des plateforme ITSM, où je contribue activement à élaborer des réponses aux appels d'offres et à conseiller sur les stratégies ESM/ITSM."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "990723a4-88f8-434a-9f7a-3bae26979f0d",
+          "title": "Pause Café",
+          "description": null,
+          "day": "Mardi 23 juin 2026",
+          "startTime": "15:50",
+          "endTime": "16:10",
+          "duration": "20 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": true,
+          "speakers": [],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "5a49e587-ca31-40f5-8537-5a54cf8582ed",
+          "title": "Session ORANGE BUSINESS",
+          "description": null,
+          "day": "Mardi 23 juin 2026",
+          "startTime": "16:10",
+          "endTime": "16:55",
+          "duration": "45 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": true,
+          "speakers": [],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1210662",
+          "title": "Carve-in/out Microsoft 365 : maîtriser la transition sans rupture pour vos métiers",
+          "description": "Opérer un carve-in ou un carve-out Microsoft 365 sans rupture de services ni perte de collaboration nécessite des choix structurants, une architecture maîtrisée et une préparation utilisateur millimétrée. Cette session présente une méthode terrain, éprouvée sur des projets complexes, pour sécuriser l’opération de bout en bout, en préservant l’expérience utilisateur et en alignant identité, collaboration et conformité.",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "16:10",
+          "endTime": "16:55",
+          "duration": "45 min",
+          "room": "Room 2 (19p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Julien Besnard",
+              "tagLine": "Lead Architect - MOCA",
+              "bio": "Avec plus de 15 ans d'expérience dans le domaine des technologies Microsoft, je suis actuellement Lead Architecte M365 chez MOCA, un acteur majeur de la transformation numérique des entreprises. J'interviens auprès des clients pour concevoir, déployer et optimiser des solutions innovantes basées sur M365, notamment Exchange, SharePoint, Teams, Azure et la sécurité autour de ses solutions. Je maîtrise les compétences techniques et fonctionnelles nécessaires pour accompagner les projets de migration, d'intégration, de sécurité et de gouvernance. "
+            },
+            {
+              "name": "Anne Coutant",
+              "tagLine": "Lead Change - MOCA ",
+              "bio": "Je suis consultante Senior spécialisée dans la conduite du changement et l’adoption des solutions collaboratives Microsoft 365 au sein de MOCA. J'accompagne les organisations dans leur transformation digitale en déployant des stratégies d’appropriation autour de Teams, SharePoint, OneDrive, Outlook, et tous les outils collaboratifs Microsoft 365. Mon approche repose sur la comprehénsion des usages de tous les métiers, la communication ciblée, la formation des utilisateurs et la mise en place de réseaux d’ambassadeurs, afin de favoriser l’engagement et la pérennité des usages. J'interviens également sur la gouvernance et la gestion des evergreen, pour garantir une adoption durable et alignée avec les évolutions de la suite M365."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1203177",
+          "title": "REX Méthodologie & facteurs clés de réussite de la création d'agent avec Copilot Studio",
+          "description": "L'IA n'est pas magique. Beaucoup d'initiative de création d'agent n'arrive jamais en production. Analyse, cadrage, paramétrages essentiels, évaluations, multiples itérations et suivi des usages sont les facteurs clés de réussite d'un agent. Cette session propose de multi retours d'expérience sur la méthodologie employée pour créer un agent personnalisé avec Copilot Studio : efficace et durable !\r\n",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "16:10",
+          "endTime": "16:55",
+          "duration": "45 min",
+          "room": "Room 3 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "David Vachala",
+              "tagLine": "Wakers - Practices Leader Cloud Architect Solutions",
+              "bio": "Power Platform & Cloud solutions architecte, j’accompagne tout type d’organisation dans leur transition vers le cloud à l'aide Microsoft 365 et la Power Platform."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1209840",
+          "title": "Copilot l'IA qui rend idiot ?",
+          "description": "De la productivité immédiate à la dette cognitive invisible\r\nEt si le vrai risque de l’IA générative n’était ni la sécurité, ni la confidentialité, mais ce qu’elle fait à notre cerveau quand on l’utilise en première intention ?\r\nUne étude récente du MIT Media Lab, basée sur des mesures EEG, montre un phénomène troublant :\r\nplus l’utilisateur délègue tôt sa réflexion à un LLM (comme ChatGPT ou Copilot), plus certaines fonctions cognitives clés — mémoire, raisonnement, structuration des idées — sous‑activent progressivement.\r\nLes participants aidés par l’IA écrivent “mieux”… mais pensent moins, se souviennent moins de ce qu’ils ont produit et revendiquent moins la paternité de leurs idées.\r\nDans cette session, nous allons déconstruire un mythe largement répandu :\r\n\r\n“L’IA nous rend plus intelligents automatiquement.”\r\n\r\nEn nous appuyant sur les résultats scientifiques de l’étude du MIT, mais aussi sur des cas concrets en entreprise, nous verrons :\r\n\r\nCe que l’IA allège réellement (charge cognitive, effort, temps)\r\nCe qu’elle affaiblit si elle est mal utilisée (mémoire, esprit critique, créativité, appropriation)\r\nPourquoi l’usage “IA first” peut créer une dette cognitive comparable à une dépendance au GPS pour l’orientation\r\nEt surtout comment utiliser Copilot intelligemment, sans dégrader les compétences humaines que nous essayons justement de développer chez nos collaborateurs\r\n\r\nCette session n’est ni un procès de l’IA, ni un plaidoyer naïf.\r\nC’est une invitation à passer de “Copilot qui pense à ma place” à “Copilot qui m’augmente sans m’atrophier”.\r\n👉 Vous repartirez avec :\r\n\r\ndes bonnes pratiques d’usage IA / humain\r\ndes patterns concrets pour éviter la dépendance cognitive\r\net une grille de lecture claire pour décider quand utiliser l’IA… et quand surtout s’en passer",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "16:10",
+          "endTime": "16:55",
+          "duration": "45 min",
+          "room": "Room 4 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Kevin Trelohan",
+              "tagLine": "Modernize, Consultant Freelance SharePoint and Office 365",
+              "bio": "Since 2007, I have been working on Microsoft collaborative solutions and I became passionate about SharePoint, then Teams. I support my clients in the deployment of Microsoft 365, including those who are on Lotus Notes and want to switch to Microsoft."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1205275",
+          "title": "From Single Agent to Agent Orchestrator: A Stage-Based Architecture with Azure AI Foundry",
+          "description": "Many AI agent architectures fail not because of model quality, but because they start too complex too early. In this session, we take a stage-based approach to building AI agents using Azure AI Foundry, focusing on maximum efficiency in design and implementation.\r\n\r\nWe’ll start with a single, task-focused agent and evolve it step by step into a central orchestrator agent that owns the UI and coordination logic, while delegating specialized work to backend agents. You’ll learn when a single agent is enough, when orchestration becomes necessary, and how to introduce additional agents without rewriting your system.\r\n\r\nThe session emphasizes practical architecture evolution, showing how to minimize cognitive load, reduce prompt complexity, and improve maintainability — all while staying fully aligned with the Microsoft AI stack",
+          "day": "Mardi 23 juin 2026",
+          "startTime": "16:10",
+          "endTime": "16:55",
+          "duration": "45 min",
+          "room": "Room 5 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Mihail Mateev",
+              "tagLine": "Senior Solution Architect at EPAM Systems, Soft Project, Owner",
+              "bio": "Mihail Mateev is an owner,  Solution Architect, Senior Technical Evangelist at SoftProject, responsible for .Net, IoT and cloud solutions. Mihail currently works as a Senior Solution Architect at EPAM Systems. He also worked many years  like a Technical evangelist in the Infragistics. Last years Mihail was focused on various areas related to technology Microsoft:  Visual Studio , ASP.Net, Windows client apps, MS SQL Server and Microsoft Azure."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "d61539b4-1d86-4703-88e7-0ab4d77abda4",
+          "title": "Clôture Jour 1",
+          "description": null,
+          "day": "Mardi 23 juin 2026",
+          "startTime": "17:00",
+          "endTime": "17:15",
+          "duration": "15 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": true,
+          "speakers": [],
+          "liveUrl": null,
+          "recordingUrl": null
+        }
+      ]
+    },
+    {
+      "date": "Mercredi 24 juin 2026",
+      "sessions": [
+        {
+          "id": "fcdc6ac0-7185-493f-b7fa-ee0cf3c13382",
+          "title": "Accueil et café jour 2",
+          "description": null,
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "09:15",
+          "endTime": "09:55",
+          "duration": "40 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": true,
+          "speakers": [],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1207015",
+          "title": "Welcome to agentic's Copilot",
+          "description": "Copilot ne se contente plus de vous assister, il agit. Dans cette session, découvrez comment Microsoft fait entrer Copilot dans l'ère des agents avec des démonstrations complètes de ses nouvelles capacités : orchestration autonome avec Cowork, Agent Mode, ouverture aux modèles Anthropic, et création d'agents personnalisés grâce à Copilot Studio intégré nativement dans Copilot. ",
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "10:00",
+          "endTime": "11:00",
+          "duration": "60 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Elliott Pierret",
+              "tagLine": "GTM Microsoft 365 Copilot & Agents",
+              "bio": "GTM for Microsoft 365 Copilot & 100K Youtube channel"
+            },
+            {
+              "name": "Alexis Kinzelin",
+              "tagLine": "CTO Microsoft 365 Copilot & Agents",
+              "bio": "AI & Agent strategist at Microsoft, guiding enterprises in their AI transformation journey through the Microsoft 365 platform. Passionate about GenAI, I bridge the gap between cutting-edge technology and real-world business outcomes for large enterprise customers. Hands-on leader who combines deep technical expertise with strategic vision to drive digital transformation at scale."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "0c795847-0fb7-45b1-839c-938b406ef8e3",
+          "title": "Pause Café",
+          "description": null,
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "11:00",
+          "endTime": "11:15",
+          "duration": "15 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": true,
+          "speakers": [],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1244599",
+          "title": "POWERSYNCPRO | Game Changer pour vos transformations IT vers Entra ID",
+          "description": "Les projets de transformation IT, qu’il s’agisse de Carve-In, Carve-Out ou de migration vers un environnement Full Cloud, imposent de relever des défis majeurs en matière de délais, de budget et de continuité de service.\r\n\r\nLa migration des postes Windows vers Microsoft Entra ID est aujourd’hui un levier essentiel pour moderniser les environnements utilisateurs et renforcer la sécurité.  Elle implique cependant une transformation profonde des méthodes de gestion, d’administration, ce qui peut complexifier les projets à grande échelle.\r\n\r\nÀ travers des retours d’expérience et des cas concrets, cette session présentera les approches permettant d’accélérer et de sécuriser la transition vers le Cloud.  Nous verrons comment moderniser efficacement les postes Windows tout en améliorant l’efficacité opérationnelle et l’expérience utilisateur grâce à PowerSyncPro.",
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "11:15",
+          "endTime": "12:00",
+          "duration": "45 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Fabrice (PSP)",
+              "tagLine": "PowerSyncPro Partner & Sales Manager France ",
+              "bio": "Fort de plus de 25 ans d'expérience dans les réseaux de partenaires à travers la région EMEA et d'une solide expertise dans la vente de solutions cloud et SaaS, j'apporte une vaste expertise et un grand enthousiasme aux équipes de développement commercial PowerSyncPro France.\r\n\r\nJe veilles à la collaboration harmonieuse entre les partenaires et les principales parties prenantes pour une parfaite  coordination de la mise en œuvre et la livraison de projets de migration complexes."
+            },
+            {
+              "name": "Alexis Charrière",
+              "tagLine": "PulsivIT - CEO - Expert Modern Workplace",
+              "bio": "CEO & co-fondateur de Pulsiv’IT, je suis passionné des technologies Microsoft. J'accompagne mes clients pour leurs choix d'intégration des solutions Microsoft, analyse et cadrage des besoins, définition de l'architecture d'intégration au sein de leur système d'information.\r\n\r\n🎯 Expert Microsoft 365, Intune, Entra ID, et sécurité\r\n💡 Ma vision : mettre la technologie au service des collaborateurs pour maximiser l’impact business.\r\n"
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1208930",
+          "title": "CMDB is dead ? Ce que l’IA changent vraiment dans la gestion des machines ?",
+          "description": "Si vous travaillez dans le monde du workplace et de la gestion des actifs, vous avez très probablement déjà croisé le terme CAASM (Cyber Asset Attack Surface Management) — et, bien sûr, entendu parler de l’IA.\r\n\r\nMais au-delà des buzzwords, qu’est-ce que cela change réellement ?\r\n\r\nDans cette session, nous explorerons les nouvelles approches de gestion des actifs, en nous appuyant sur des sources de données dynamiques telles que Microsoft Intune, mais aussi sur des référentiels plus traditionnels, qu’ils soient dynamiques ou statiques.\r\n\r\nNous décrypterons les différences fondamentales entre les solutions de CAASM, orientées sécurité et vision en temps réel, et les référentiels historiques de type CMDB, souvent plus rigides et moins exploitables opérationnellement.\r\n\r\nEnfin, nous apporterons une perspective concrète sur l’IA, en montrant comment l’émergence de l’Agentic AI, notamment via MCP, commence déjà à transformer le quotidien des gestionnaires de parc IT : automatisation, corrélation des données, aide à la décision.\r\n\r\nObjectif : comprendre comment faire évoluer votre gestion des actifs vers une approche plus dynamique, plus fiable et réellement utile pour la sécurité.\r\n\r\nSi vous gérez des actifs et souhaitez intégrer efficacement la sécurité dans vos opérations quotidiennes, cette session est faite pour vous.",
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "11:15",
+          "endTime": "12:00",
+          "duration": "45 min",
+          "room": "Room 2 (19p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Sylvain Cortes",
+              "tagLine": "MVP - Identity & CyberSecurity",
+              "bio": "🎯 VP Strategy @ Hackuity: Definition and management of the global strategy with a focus on GoTo Market, Product Marketing & Product roadmap strategy. Evangelism on topics related to Vulnerability Management in large organizations and competitive analysis. Research work on threat and vulnerability management.\r\n\r\n📊 Security Strategist @ Tenable: GTM definition, PM and PMM relationship, Roadmap presentation to C-Level, new solutions positioning, live speech during IT events.\r\n \r\n💡 Security Evangelist @ Alsid: Documents creation for marketing team, speaker during IT & Security events, specific pre-sales meeting, research & development about Active Directory security control paths, etc.\r\n\r\n💎 Microsoft MVP: 9 years as a GPO MVP, 1 year as an Active Directory MVP, 2 years as a Microsoft Identity Manager (MIM) MVP ➡️ now Enterprise Mobility MVP, speciality is Identity and Access\r\nMy Microsoft MVP profil: http://mvp.microsoft.com/en-us/mvp/Sylvain%20Cortes-37994\r\n\r\n👑 IAM & CyberSecurity Market Expert: Presentations during CyberSecurity & Identity focused events, IT fairs or other various Microsoft events around Identity Management or CyberSecurity. Arrticles or webinars creation for IT newspapers or tech-blogs. Consulting services to large companies which need to have a clear vision about CyberSecurity or Identity Management roadmap strategy.\r\nDeep expertise about Active Directory Hardening concepts, Privilege Management on Windows & Linux, Kerberos, AD bridging, Identity as a Service, Directory as a Service, etc. \r\n\r\n🩻 I manage the French blog on Identity Management: www.identitycosmos.com.\r\n🩻 I am the organizer of the only French event dedicated to Identity Management & Digital Identity Security: https://identitydays.com\r\n🩻 From 2007, I am the president of the French association of Identity Management Solutions Users: https://www.linkedin.com/groups/12110038\r\n\r\n💀 Business hacker @ Cerberis: My main role is to aggressively develop the global business around IAM & Security technologies on South Europe area - working for ISVs which need to detect business and catch market shares. My contacts in the global IT ecosystem, including system integrators, VARs, ISVs or intermediary business provides an ideal gate to the South European market. My technical expertise allows me the ability to manage both complex technical pre-sales meeting and business closing.\r\n\r\n📖 IT & CyberSecurity teacher: Teacher for Université de Grenoble Alpes (https://www-info.iut2.univ-grenoble-alpes.fr/licence-pro-mi/lp-mi-assir/) - ESGI (https://www.esgi.fr/) - CNAM (https://www.cnam.fr/)"
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1217589",
+          "title": "Comment l'intranet a contribué à créer une culture de groupe en pleine période de fusion ?",
+          "description": "Découvre les facteurs clés de succès du projet intranet du groupe Forêt d'ici, lancé en pleine période de fusion de 3 coopératives, dans un contexte multi-sites avec des collaborateurs terrain",
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "11:15",
+          "endTime": "12:00",
+          "duration": "45 min",
+          "room": "Room 3 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Soumaya Toumi",
+              "tagLine": "Facilitatrice de la communication interne avec Microsoft 365",
+              "bio": "Passionnée de la communication interne et de l'écosystème Microsoft 365, cela fait +13 ans que j'accompagne les responsables de la communication à créer leur espace d'échange et de partage interne qui leur ressemble en tirant profit du meilleur dans l'écosystème Microsoft 365."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1202052",
+          "title": "Trust the Agent: How I Built a Hallucination-Proof RAG Tool for Copilot Studio",
+          "description": "When professionals rely on AI for critical decisions, \"close enough\" isn't good enough. This session reveals how a custom .NET API turns Copilot Studio into a trusted advisory assistant — using cascading Azure AI Search across multiple knowledge indexes, confidence scoring to know when not to answer, and strict grounding rules that keep Azure OpenAI follow. See the full architecture from question to cited answer, learn the prompt engineering patterns that prevent fabrication, and discover how OpenAPI makes your API a first-class Copilot Studio tool. A real-world blueprint for building agents that earn professional trust.",
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "11:15",
+          "endTime": "12:00",
+          "duration": "45 min",
+          "room": "Room 4 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Nikos Delis",
+              "tagLine": "Senior Cloud & Software Engineer | Microsoft MVP for Azure & IoT",
+              "bio": "Microsoft Certified x6, MVP for Azure & IoT, Senior Cloud Architect and tech enthusiast. Passionate about software architecture and solution design.\r\n\r\nDuring my 10+ years of hands-on experience in Software Engineering, I have primarily focused on .NET-based solutions and Azure as a cloud-services provider. I have worked with pretty much all kinds of applications, from small Windows Forms tools to large-scale enterprise web-based solutions. The more I code, the more I realize that my true passion is solution design and software architecture, regardless of tech-stack and platform.\r\n\r\nSharing knowledge and insights is the finest thing I know and the one thing I love the most in the IT community."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1202950",
+          "title": "Frontier Firm : Transformation des entreprises à l'ère agentique",
+          "description": "L’IA Générative et la révolution agentique qui l’accompagne est le quatrième grand changement de paradigme de l’informatique moderne auquel nous assistons. \r\nComme tout changement de paradigme, il s’accompagne d’opportunités qu’il appartient aux entreprises de saisir.\r\n \r\nFace à ces innovations, les entreprises doivent évoluer en Frontier Firms : des entreprises de nouvelle génération qui fusionne l’expertise humaine avec les agents IA pour se développer plus rapidement, travailler plus intelligemment et débloquer de nouvelles valeurs – une organisation hybride entre humains et agents IA.\r\n \r\nQuels sont les enjeux ? Quelles sont les opportunités ? Comment anticiper et réussir cette transformation ? Quels sont les pièges à éviter ?\r\n \r\nC'est ce que nous souhaitons vous partager à travers cette session.",
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "11:15",
+          "endTime": "12:00",
+          "duration": "45 min",
+          "room": "Room 5 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Chloé Marché",
+              "tagLine": "Expertime, Consultante Modern Workplace",
+              "bio": "J'accompagne les entreprises dans l’intégration et d’adoption des technologies Microsoft 365 afin de les engager dans une transformation digitale et durable.\r\n\r\n"
+            },
+            {
+              "name": "Kevin Anandout",
+              "tagLine": "Practice Manager chez Expertime",
+              "bio": "Je suis Practice Manager chez Expertime et nominé par Microsoft en tant que Microsoft MVP pour Microsoft 365 et Microsoft 365 Copilot.\r\n\r\nMon travail repose sur une conviction centrale : la valeur de l’IA ne se mesure pas au temps gagné, mais à ce que les organisations choisissent de faire avec ce temps.\r\nFort de mon expérience dans l’accompagnement des entreprises et des partenaires sur Microsoft 365 Copilot et l’adoption de l’IA, je défends une approche pragmatique et profondément human‑centric. Pour moi, Copilot ne remplace pas l’expertise : c’est un catalyseur qui permet de rééquilibrer excellence opérationnelle et valeur humaine — en améliorant la prise de décision, la qualité du travail, l’engagement des collaborateurs et l’impact du leadership.\r\nAlors que Copilot évolue d’un simple assistant vers un système collaboratif et proactif, j’accompagne les organisations dans l’étape suivante : celle des AI Agents. De l’onboarding et de l’accès à la connaissance à la qualification commerciale et à l’automatisation des processus, je montre comment les agents transforment l’IA d’un outil qui répond en un système qui agit — et pourquoi ce changement transforme en profondeur la différenciation des partenaires et les modèles de services.\r\nAu‑delà du conseil, je partage régulièrement ma vision de l’IA, de Copilot et du futur du travail en tant que speaker dans l’émission YouTube Les Têtes dans le Cloud, contribuant ainsi plus largement à l’écosystème Microsoft et IA."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1203174",
+          "title": "REX : Gouvernance des agents avec ou sans Agent 365",
+          "description": "L'arrivée du portal Agent 365 permet de mieux gérer la prolifération d'agent IA dans l'organisation. Quelles sont ses fonctionnalités actuelles ? futures ? Quelles licences sont nécessaires ? Est-il possible de faire sans ? si oui comment ?\r\nBasé sur des REX multi clients, cette session aborde toutes les questions de gouvernance des agents avec des solutions antérieures à la sortie d'Agent 365 (encore valable aujourd'hui) et avec le complément d'Agent 365.",
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "12:05",
+          "endTime": "12:50",
+          "duration": "45 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "David Vachala",
+              "tagLine": "Wakers - Practices Leader Cloud Architect Solutions",
+              "bio": "Power Platform & Cloud solutions architecte, j’accompagne tout type d’organisation dans leur transition vers le cloud à l'aide Microsoft 365 et la Power Platform."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1216676",
+          "title": "Agents Copilot dans vos sites SharePoint : bonnes pratiques de publication et pièges à éviter",
+          "description": "Publier un agent Copilot dans SharePoint paraît simple… tant qu’on n’a pas essayé...\r\nDans cette session, nous verrons ce que signifie concrètement la publication d’un agent dans SharePoint : périmètre fonctionnel, expériences utilisateurs, limitations actuelles et impacts en termes de facturation et d’usages.\r\nL’objectif est de vous donner une vision claire et réaliste de ce que permet (et ne permet pas) SharePoint comme point d’entrée pour les agents Copilot, afin de faire les bons choix de canal dès les phases amont de conception de vos agents.",
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "12:05",
+          "endTime": "12:50",
+          "duration": "45 min",
+          "room": "Room 2 (19p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Fouziya Lahjiouj",
+              "tagLine": "M365 Architect at Sopra Steria",
+              "bio": "Solution Architect specialized on Microsoft technologies"
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1210671",
+          "title": "Anatomie d'un audit de sécurité et de gouvernance M365, le ReX de deux MVP",
+          "description": "Existe-t-il une manière unique de réaliser un audit de sécurité d'un environnement M365 ? Deux MVP, deux méthodes. Participez à cette battle et créez avec Jean-Sebastien et Romain le périmètre de votre prochain audit M365",
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "12:05",
+          "endTime": "12:50",
+          "duration": "45 min",
+          "room": "Room 3 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Romain Dalle",
+              "tagLine": "Data Security Technical Officer, MCT, MVP Security @ Cellenza",
+              "bio": "My mantra? Collaborative working and the productivity of organisations should constantly be facilitated and improved, without compromising the confidentiality and integrity of data.\r\n\r\nAs a Security MVP and Microsoft Certified Trainer, I'm passionate about sharing my advice and experience with you to build a solution that meets your needs."
+            },
+            {
+              "name": "Jean-Sébastien Duchêne",
+              "tagLine": "Microsoft MVP & Regional Chief Technology Officer EXAKIS NELITE",
+              "bio": "Enterprise Solution Architect on Microsoft technologies, Jean-Sébastien Duchêne has been an expert on user environments, Modern Desktop, Mobility, Security and Cloud topics for several years. He regularly participates in strategic consulting missions, architectures implementation, deployment strategy, migration, etc. He has written several books on these topics. He is a Microsoft MVP (Most Valuable Professional) Enterprise Mobility certified since 2010.  "
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1204442",
+          "title": "Vous avez Copilot. Vous n'avez pas de cockpit. Comment construire son AI productivity System",
+          "description": "Avant de laisser l'IA piloter, construisez le cockpit\r\nCréer son AI Productivity System avec Microsoft 365 et Copilot\r\n\r\nTout le monde veut utiliser Copilot. Peu comprennent pourquoi ça ne donne pas les résultats attendus.\r\n\r\nLa réalité : Copilot n'est pas un raccourci. C'est un amplificateur. Et un amplificateur branché sur du chaos produit… plus de chaos. \r\nDes réponses hors contexte. Des résumés inexploitables. Une adoption qui s'essouffle après 3 semaines.\r\n\r\nLa vraie question n'est pas \"comment prompter Copilot ?\". C'est : est-ce que mon environnement digital est prêt à recevoir l'IA ?\r\n\r\nCette keynote répond à cette question — avec une méthode concrète, testée en entreprise, applicable dès le lendemain.\r\n\r\nCe que vous allez apprendre\r\n1. Pourquoi votre Copilot est sous-exploité\r\nL'IA générative est contextuelle. Elle produit des outputs à la hauteur des inputs qu'on lui donne. Si vos fichiers sont éparpillés, vos canaux Teams anarchiques, vos emails sans structure — Copilot amplifie le chaos \r\n\r\n2. Le M365 Operating System — les 3 cockpits de votre environnement digital\r\nLe framework Digital Ninja structure l'environnement de travail autour de 3 cockpits complémentaires :\r\n\r\nCockpit Individuel — votre organisation personnelle : inbox, tâches, notes, priorités. C'est la base. Si ce cockpit est chaotique, aucun outil — Copilot inclus — ne peut compenser\r\n\r\nCockpit Équipe — la gouvernance de l'information collective : nommage, canaux, droits d'accès, sources de vérité. C'est ici que la majorité des entreprises perdent leurs données — et leur temps.\r\n\r\nCockpit Projet — le pilotage structuré : décisions tracées, livrables organisés, historique accessible. Ce cockpit est le carburant de Copilot en contexte projet.\r\n\r\nChaque cockpit sera illustré par des cas réels tirés de missions de terrain chez des grands comptes.\r\n\r\n3. Context is the New Prompt — comment l'IA lit votre environnement\r\n\r\nOn ira plus loin que le prompting. On parlera de context engineering : comment la façon dont vous organisez vos fichiers, nommez vos réunions, structurez vos canaux Teams et rédigez vos documents détermine directement la qualité des réponses de Copilot — sans changer un seul prompt.\r\n\r\nVous repartirez avec une grille d'audit de votre environnement \r\n\r\n4. L'AI Productivity Stack — de Copilot aux agents\r\n\r\nAu-delà de Copilot M365, on abordera la question de l'architecture globale d'un système de productivité IA : comment articuler SharePoint comme source de vérité unique, comment utiliser des instructions personnalisées (system prompts) pour que vos outils IA vous connaissent vraiment, et comment les premiers agents autonomes s'intègrent dans ce système — sans tout casser.\r\n\r\n5. Votre plan de transformation en 90 jours\r\nOn terminera sur un framework d'implémentation pragmatique : par où commencer, ce qu'on ne fait pas en premier, et comment mesurer que le système fonctionne. Pas de roadmap théorique — une séquence d'actions testée avec des équipes réelles.\r\n\r\nPour qui ?\r\nCette session s'adresse aux managers, responsables digital workplace, DSI, Chief of Staff et professionnels en charge de l'adoption Copilot qui veulent aller au-delà des cas d'usage isolés et construire un système durable.\r\nAucune expertise technique requise. Mais une vraie volonté de changer sa façon de travailler — oui.\r\n",
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "12:05",
+          "endTime": "12:50",
+          "duration": "45 min",
+          "room": "Room 4 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Thibaud Hollender",
+              "tagLine": "Digital Ninja",
+              "bio": "Thibaud Hollender est fondateur de Digital Ninja, agence spécialisée Microsoft 365 et IA, MVP Microsoft. Il accompagne des organisations de toutes tailles — de la PME au CAC 40 — dans la transformation de leur façon de travailler avec le M365 Operating System, son framework propriétaire. Il intervient également comme Change Manager sur le déploiement de Copilot dans les grandes organisations."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1217134",
+          "title": "Vibe coder les Power Apps : de Canvas aux Code Apps",
+          "description": "Le vibe coding et les MCP ont changé la façon dont on développe. Mais qu'en est-il sur la Power Platform ?\r\nDurant cette session, je vous propose de voir en pratique comment vibe coder dans l'ancien monde avec une Canvas App pilotée via MCP, puis dans le nouveau monde avec une Code App.\r\nDeux générations, une même question : jusqu'où peut-on vraiment déléguer à l'agent ?",
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "12:05",
+          "endTime": "12:50",
+          "duration": "45 min",
+          "room": "Room 5 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Loïc Cimon",
+              "tagLine": "Power Platform Expert | Microsoft MVP & MCT | Power Platform Addict | Speaker",
+              "bio": "J'ai découvert la Power Platform au détour d'une mission en 2019 et ne l'ai jamais quitté depuis !\r\n\r\nAujourd'hui, je met à disposition mes compétences pour accompagner nos clients sur la mise en place de la plateforme, du delivery jusqu'à la gouvernance.\r\n"
+            },
+            {
+              "name": "Théophile Chin-nin",
+              "tagLine": "Business Application MVP. Power Platform Solutions Architect. ",
+              "bio": "As a Microsoft Power Platform technical specialist, and Microsoft Business Application MVP, I help organization to get the most out of Microsoft Power Platform.\r\nWith 10+ years of experience in Microsoft ecosystem, most of them building business applications with low-code platforms and enhancing collaboration, I work today exclusively on Power Platform.\r\nI help my all kind of organizations, SMB as well as multinationals to:\r\n- Secure and Govern their Power Platform. With customized CoE StarterKit we collect and analyze Power Platform artifacts, define environments strategy and secure the platform by defining appropriate Data Loss Prevention Policies.\r\n- Design, develop and maintain their Power Platform solutions. Using Dataverse or SharePoint as a datasource, I develop Solutions with Canvas Apps, Model-driven apps, Cloud Flows and hybrid technical architecture with Azure PaaS products. \r\n- Train their IT Pros, developers or citizen-developers to build business solutions using Power Platform.\r\n\r\nSpeaker and Organizer @ aMS Community\r\nSpeaker and Organizer @ Biz Apps French Community\r\nSpeaker and Organizer @ MSNantesConnect"
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "eb0500fd-4f35-45b2-9041-790652920365",
+          "title": "Pause Repas jour 2",
+          "description": null,
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "12:50",
+          "endTime": "14:15",
+          "duration": "85 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": true,
+          "speakers": [],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1217082",
+          "title": "The Last World: Comment éviter un scénario \"Jurrasic Park\" lors de la mise en œuvre de l'IA",
+          "description": "\"Welcome .. To Jurrasic Park\". John Hammond avait une vision : créer la merveille technologique ultime. Il avait les moyens, les meilleurs ingénieurs, des clôtures de 3 mètres... et pourtant \"Life finds a way\". Déployer Copilot 365 dans un tenant non préparé, c'est exactement pareil : une technologie spectaculaire, des promesses grandioses, et des Vélociraptors silencieux : vos permissions héritées, vos sites Sharepoint oubliés, vos labels manquants, qui n'attendent qu'un simple prompt pour s'échapper de leur enclos..",
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "14:15",
+          "endTime": "15:00",
+          "duration": "45 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Jean-François Bérenguer",
+              "tagLine": "International Speaker - Microsoft MVP - Azure / Cyber Security / Cloud Governance",
+              "bio": "Senior consultant with 35 years of IT experience. I'm now CTO at Exakis Nelite for south and west regions. I also lead consulting missions with CIO and CDO in order to define roadmaps and coach digital transformation strategy, transition to Clouds, and Cyber Security,  I'm a speaker for many years on international events about these topics.\r\n \r\nAwarded as Microsoft MVP since October, 2008, now on Security solutions\r\n \r\nExpert on Microsoft Technologies around Azure, Cyber Security  and O365, I used to be a speaker for Microsoft and community events like : Microsoft Ignite, Technet Event, Technet tour, Techdays, MS Experience, MSCloud Summit, ... every years since 2009\r\n \r\nSkills : Microsoft Azure, Security, O365, ISO27001, Risk Manager, CISM\r\n\r\nI am a fan of rugby, (coach and player), also interested in cooking : recipes of south of France, and impassioned by Chocolate."
+            },
+            {
+              "name": "Jean-Sébastien Duchêne",
+              "tagLine": "Microsoft MVP & Regional Chief Technology Officer EXAKIS NELITE",
+              "bio": "Enterprise Solution Architect on Microsoft technologies, Jean-Sébastien Duchêne has been an expert on user environments, Modern Desktop, Mobility, Security and Cloud topics for several years. He regularly participates in strategic consulting missions, architectures implementation, deployment strategy, migration, etc. He has written several books on these topics. He is a Microsoft MVP (Most Valuable Professional) Enterprise Mobility certified since 2010.  "
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1201474",
+          "title": "Les 7 pêchés capitaux des déploiements Copilot.",
+          "description": "Dans cette session, on explore tout ce qu'il faut faire pour être sûr de planter le déploiement et tuer l'adoption de Copilot à travers la colère ; l'envie ; l'avarice ; la gourmandise ; la paresse ; la luxure et l'orgueil.",
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "14:15",
+          "endTime": "15:00",
+          "duration": "45 min",
+          "room": "Room 2 (19p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Amélie Plockyn",
+              "tagLine": "Freelance| Co-fondatrice du Power 365 | MVP",
+              "bio": "Copilote de vos projets IT | J’aide à comprendre, utiliser et adopter les outils | Cadrage, pilotage & change management (PROSCI – ADKAR)"
+            },
+            {
+              "name": "Fiona Fruhinsholz",
+              "tagLine": "Consultante Microsoft 365 & Adoption | Microsoft MVP",
+              "bio": "Passionnée par la collaboration, j'explore depuis une dizaine d'années les nouveautés proposées par Microsoft et leur impact sur les utilisateurs."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1217454",
+          "title": "Prochain arrêt La Défense : changez de ligne entre GRC et SOC",
+          "description": "Purview, Defender, Entra ID... Faisons un tour d'horizon des capacités Microsoft Security déjà disponibles et à venir, en rapprochant les métiers cyber encore très cloisonnés. D'un côté, la GRC (Gouvernance Risque Conformité) qui cadre, pilote la stratégie et suit la conformité. De l'autre, le SOC (Security Operations Center), qui détecte, analyse et répond aux menaces. Passons d'une sécurité sur le papier à une conformité utile et actionnable.",
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "14:15",
+          "endTime": "15:00",
+          "duration": "45 min",
+          "room": "Room 3 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Sandra Bousquet",
+              "tagLine": "Consultante cybersécurité GRC",
+              "bio": "Consultante cyber en GRC (Gouvernance, Risque, Conformité) et formatrice, j'aime garder un pied dans l'opérationnel pour relier les exigences de sécurité aux usages réels du terrain. J'ai commencé par la technique, avec Microsoft comme fil rouge depuis mes débuts. D'abord orientée Microsoft 365, SharePoint et Azure, j'ai progressivement évolué vers les solutions Microsoft Governance, Security and Compliance."
+            },
+            {
+              "name": "Jean-Philippe Lesage",
+              "tagLine": "CTO - Devensys Cybersecurity",
+              "bio": "Je suis CTO pour Devensys Cybersecurity et je travaille principalement sur les solutions de sécurité de Microsoft. Je suis CISSP, MVP SIEM & XDR et MCT. J'ai aussi passé 25 ans chez Microsoft.  "
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1202656",
+          "title": "5 suspects, 1 coupable : l'enquête réglementaire que votre IA n'a pas vu venir",
+          "description": "Un collaborateur a exfiltré des données sensibles via un outil IA. \r\nCinq réglementations auraient pu l'empêcher. Aucune n'était correctement appliquée.\r\nDans cette session-enquête, vous interrogez les 5 suspects :\r\nAI Act — le procureur : obligations de transparence et documentation (Article 13)\r\nRGPD — le témoin clé : DPIA, base légale, et ce que votre DPO attend vraiment\r\nCloud Act — l'infiltré : pourquoi la localisation de vos données ne vous protège pas\r\nEU Data Boundary — le douanier : ce que Microsoft a mis en place, et ce qui reste exposé\r\nEU Data Act (Ch.7) — le nouveau venu : portabilité, accès gouvernemental, et clauses contractuelles\r\nChaque interrogatoire révèle un risque concret pour vos déploiements Copilot et IA. Vous repartirez avec une grille actionnable : quels documents préparer, quelles questions poser à votre RSSI, et comment monter un dossier de gouvernance qui tient la route.\r\nZéro jargon. Une bonne enquête. Des réponses concrètes.",
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "14:15",
+          "endTime": "15:00",
+          "duration": "45 min",
+          "room": "Room 4 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Jeremy Laplaine",
+              "tagLine": "MVP alumni | Fabric & Power BI Consultant | Agile | 🤖 AI-Augmented",
+              "bio": "Freelance Microsoft Fabric and Power BI consultant with 12+ years of experience, Microsoft MVP alumni, trainer and speaker. I help organizations deliver data projects by combining technical expertise, agile methods and AI. Convinced that AI is transforming our profession, I integrate Claude Code into my daily Fabric workflows — what I call AI-Augmented Delivery. Delivering fast, well… and with a smile."
+            },
+            {
+              "name": "Florian Moinel",
+              "tagLine": "Data manager ",
+              "bio": "As a management controller in my early roles, I quickly understood the importance of data in transforming organizations. I've been a DPM for 2 years now, and I use the power of Microsoft tools daily, particularly in PowerBI environments. \r\n\r\nEngaged in climate issues, I also organize conferences through the facilitation of \"fresque du climat \"."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1209799",
+          "title": "Copilot arrive ? Purview d'abord ! Sécurisez avant d'accélérer",
+          "description": "Tout le monde parle d'IA, de Copilot ou encore de Cowork. Mais qui a verrouillé ses données avant de lui ouvrir la porte ?\r\n\r\nCopilot est un accélérateur de productivité, à condition d'avoir mis en place de la gouvernance, sinon vous accélérez les fuites.\r\n\r\nDans cette session 100% demo-driven, on part d'un constat simple : Copilot trouve tout ! Y compris ce qu'il ne devrait pas. \r\n\r\nEn live, on déroule la chaîne complète Microsoft Purview pour reprendre le contrôle :\r\n\r\n1 - Copilot sans filet  on lui demande des données sensibles, il les trouve. Wake-up call.\r\n2 - Sensitivity Labels & Auto-labeling — on classifie et chiffre, en quelques clics.\r\n3 - DLP en cascade — Exchange, Teams, puis le dernier kilomètre : DLP for Endpoint (USB, impression, copier-coller, upload perso… tout est couvert).\r\n4 - Copilot avec le filet — même requête, résultat radicalement différent.\r\n\r\n5 slides, 6 démos, 0 blabla. Vous repartirez avec une feuille de route claire pour sécuriser M365 avant d'activer Copilot.",
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "14:15",
+          "endTime": "15:00",
+          "duration": "45 min",
+          "room": "Room 5 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Alexis Charrière",
+              "tagLine": "PulsivIT - CEO - Expert Modern Workplace",
+              "bio": "CEO & co-fondateur de Pulsiv’IT, je suis passionné des technologies Microsoft. J'accompagne mes clients pour leurs choix d'intégration des solutions Microsoft, analyse et cadrage des besoins, définition de l'architecture d'intégration au sein de leur système d'information.\r\n\r\n🎯 Expert Microsoft 365, Intune, Entra ID, et sécurité\r\n💡 Ma vision : mettre la technologie au service des collaborateurs pour maximiser l’impact business.\r\n"
+            },
+            {
+              "name": "Romain Serre",
+              "tagLine": "CTO & Co-Founder",
+              "bio": "CTO et cofondateur de Pulsiv’IT, Romain Serre est MVP Azure & Hybridation ainsi que MVP Networking. Il est expert infrastructure Microsoft. Il accompagne les entreprises sur les sujets d’hybridation avec Azure ARC, Azure Local mais également Microsoft Azure."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1245295",
+          "title": "LUWARE | IA agentique dans Teams : comment passer à l'action dans un CCaaS Microsoft",
+          "description": "Alors que l'IA redéfinit les centres de contact, la question n'est plus « faut-il adopter l'IA ? » mais « comment l'introduire concrètement dans un environnement Microsoft, de manière gouvernée et mesurable ? »\r\n\r\nDans cette session, Luware partage son approche de l'IA agentique dans les environnements UCaaS Microsoft Teams, à travers une démonstration concrète de Luware Nimbus et une mise en perspective sur les enjeux opérationnels et réglementaires.\r\n\r\nPlan de la session :\r\n- Introduction à Luware et à la vision CXaaS nativement intégrée à Microsoft Teams \r\n- Comment intégrer l'IA en temps réel dans un environnement CCaaS Microsoft : IA agentique, Azure AI Foundry, Copilot\r\n  - IA temps réel et companion pour les agents\r\n  - Choix de l'outil IA dans Luware Nimbus\r\n  - Roadmap : ce que nous construisons dans les 3 prochains mois\r\n- Démonstration live\r\n- Gouvernance, protection des données et conformité dans un contexte Microsoft\r\n\r\nFORMAT : Retour d'expérience et démonstration live\r\nNIVEAU : Intermédiaire / Avancé\r\nLANGUE : Français\r\n\r\nINTERVENANTS\r\n- Martina Willig, Head of Pre-Sales\r\n- Albin Deplanck, Account Executive France",
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "15:05",
+          "endTime": "15:50",
+          "duration": "45 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Albin Deplanck",
+              "tagLine": "Account Executive - France @ Luware",
+              "bio": "I’m an experienced B2B SaaS Account Executive with a background in fintech sales, e-commerce and FMCG. \r\n\r\nAs an Account Executive at Luware, I focus on helping companies in France, Switzerland and Spain to simplify their CX into Microsoft Teams, improving agent and client experience. \r\n\r\nAt Revolut Business, I’ve spent three years leading the full SaaS sales cycle across 17 European markets. Working fully remote, I’ve learned to collaborate effectively with distributed teams, manage complex enterprise deals, and maintain strong client relationships online. For over five years, I’ve also worked daily in French, English, and Spanish, building partnerships with clients across different markets and cultures.\r\n\r\nI specialized in the yachting industry and worked with more than 100 companies in the sector: central agencies, charter brokers, sales, shipyards, etc."
+            },
+            {
+              "name": "Martina Willig",
+              "tagLine": "Head of Pre Sales",
+              "bio": "Martina Willig is a results-oriented IT leader passionate about driving innovative solutions. Drawing on a consulting background and deep expertise in test management, automation, Microsoft technologies, and Luware Nimbus, she helps organizations transform their customer journeys—turning every interaction into an opportunity to create value through strong partnerships and tailored guidance."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1206501",
+          "title": "Shadow AI, données exposées, chemins d'attaque cachés : ce que vous ne voyez pas vous compromet déjà",
+          "description": "DSPM & XSPM : voir ce que vous ne voyez pas — et agir.\r\nDerrière ces acronymes se cachent deux des outils les plus puissants pour transformer la posture de sécurité d'une organisation. Mais comment, concrètement ?\r\nDurant cette session, nous vous expliquerons comment le Data Security Posture Management (DSPM) et le Microsoft Security Exposure Management (XSPM) apportent la visibilité qui manque trop souvent lors d'un projet de transformation digitale — qu'il s'agisse de sécuriser vos données, de cartographier vos risques, ou de préparer votre environnement à accueillir Copilot for Microsoft 365.\r\nConnaître ses données : leur nature, leur sensibilité, leur criticité, qui y accède et comment. Identifier les chemins d'attaque présents dans votre environnement, les faiblesses exploitables, les portes d'entrée vers vos actifs les plus critiques. Mais aussi détecter les applications non référencées qui consomment silencieusement vos données — y compris les outils d'IA générative adoptés sans validation IT, ce que l'on appelle le Shadow AI : ChatGPT, Copilot tiers, outils no-code connectés à votre tenant sans que personne ne le sache.\r\nC'est précisément là qu'intervient Microsoft Defender for Cloud Apps : découverte automatique des applications cloud utilisées dans votre organisation, évaluation de leur niveau de risque, blocage ou restriction des apps non conformes, et remédiation guidée directement depuis le portail Microsoft Defender XDR. Une réponse concrète, pas seulement une alerte.\r\nL'objectif de cette session : vous offrir une vision \"single pane of glass\" — un tableau de bord unifié qui permet à chaque administrateur de comprendre son exposition réelle, de prioriser ses actions, et d'appliquer les remédiations nécessaires avec les bons outils, au bon moment.\r\nParce qu'on ne peut pas protéger ce qu'on ne voit pas.",
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "15:05",
+          "endTime": "15:50",
+          "duration": "45 min",
+          "room": "Room 2 (19p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Hakim Taoussi",
+              "tagLine": "Cybersecurity Practice Lead & MVP Security @ Wakers",
+              "bio": "Passionate about technology and Microsoft solutions, I began with MS Mail and Exchange 5.5, evolving through every version to Exchange Server 2019 and Exchange Online. Now focused on cybersecurity, I specialize in Microsoft Defender XDR and SIEM, helping organizations detect, respond, and recover from threats with agility and confidence."
+            },
+            {
+              "name": "Xuan Ahehehinnou",
+              "tagLine": "BLEU, Customer Success Manager, Cloud Solution architect",
+              "bio": " Microsoft 365 advisor"
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1204062",
+          "title": "Intégrer le nouveau rôle d'administrateur de l'IA dans la gouvernance Microsoft 365",
+          "description": "Cette session présente de manière concrète comment structurer, outiller et intégrer ce nouveau rôle dans le dispositif de gouvernance Microsoft 365 de votre organisation, de manière garantir l'usage performant, sécurisé et conforme de Copilot et des futurs agents Microsoft 365.",
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "15:05",
+          "endTime": "15:50",
+          "duration": "45 min",
+          "room": "Room 3 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Frank Poireau",
+              "tagLine": "Digital workplace architect",
+              "bio": "www.adopteunsharepoint.com, www.adopteM365.com\r\nBook on Demand : \"Adopter SharePoint sans développer\" ; \"De SharePoint à Teams\" ; \"SharePoint &  Teams : une gouvernance efficace\" ; \"SharePoint et la Power Platform\""
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1210587",
+          "title": "Agents partout, gouvernance nulle part : chronique d'un dérapage annoncé",
+          "description": "847 agents créés dans un tenant sans que la DSI le sache. Un chatbot qui consomme l'équivalent d'un salaire en un week-end. Une policy RH de 2019 que Copilot cite encore en 2026. Un agent qui signe les devis d'un commercial parti depuis 11 mois.\r\n \r\nCes histoires ne sont pas fictives, ce sont les dérapages annoncés de l'ère des agents M365.\r\n \r\nDans cette session, nous passerons en revue une série de scénarios crash autour des agents pré-conçus, Copilot Studio et des agents dans SharePoint et OneDrive. Pour chacun, nous remonterons à la cause racine et nous explorerons les bonnes pratiques de gouvernance qui auraient tout changé : contrôle des identités et des accès, protection des données, sécurité runtime, maîtrise des coûts et hygiène du socle documentaire.\r\n \r\nVous repartirez avec : une grille de lecture des risques, des paramétrages concrets à activer de suite et un discours prêt à l'emploi pour convaincre qui de droit dans votre organisation.",
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "15:05",
+          "endTime": "15:50",
+          "duration": "45 min",
+          "room": "Room 4 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Laurent Carlier",
+              "tagLine": "Lead Copilot & Modern Workplace",
+              "bio": "Laurent is a senior Microsoft 365 consultant and governance-oriented architect, focused on Modern Workplace, Microsoft 365 Copilot, Copilot agents at scale.\r\n\r\nHe works with organizations that want to move fast with Copilot and agents — without losing control. His daily work revolves around designing clear governance frameworks for Copilot usage, agent lifecycle management, data exposure control, licensing strategy, and tenant-wide Modern Workplace governance.\r\n\r\nWith a strong ability to bridge IT, security, and business teams, he specializes in turning innovation into structured, secure, and sustainable deployments — going far beyond demos and POCs.\r\n\r\nStrongly advocating a human-first but governance-driven approach, Laurent believes Modern workplace and AI success is not about features, but about decision clarity, guardrails, and shared responsibility across the organization.\r\n\r\nAs a Microsoft MVP, he regularly shares pragmatic, no‑nonsense insights on Copilot governance, agents strategy, and Modern Workplace governance at international conferences and user groups, speaking French, English, and Japanese."
+            },
+            {
+              "name": "Romain Gerard",
+              "tagLine": "MVP | Power Platform & AI Enthusiast | Practice Lead | Animateur \"Les têtes dans le cloud\"",
+              "bio": "Avec 20 ans d’expérience dans les technologies Microsoft, de .NET à Microsoft 365, de la technique au conseil, je partage mes expériences avec passion et agrémente mes présentations d’anecdote tirées de mes expériences projets."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1202105",
+          "title": "Immersion dans une journée de travail idéale avec Microsoft 365",
+          "description": "Et si votre journée commençait autrement ?\r\n\r\n7h30. Un jogging pour démarrer la journée.\r\nDans les oreilles, non pas de la musique… mais le résumé audio d’une réunion client tenue deux semaines plus tôt. Les points clés, les décisions, les engagements : tout est déjà clair, sans effort.\r\n\r\n9h30. Le rendez-vous client démarre.\r\nAucune prise de notes. Aucune distraction. Juste une discussion fluide, concentrée sur l’essentiel.\r\nÀ la fin de la réunion ? Le compte rendu est déjà prêt. Les actions sont identifiées, assignées, planifiées.\r\n\r\nQuelques minutes plus tard, une simple demande permet de retrouver instantanément les bons documents, les bons échanges, les bons devis. Plus besoin de chercher. Tout est accessible, structuré, exploitable.\r\n\r\nTout au long de la journée, les informations circulent, les tâches avancent, les réunions produisent réellement de la valeur.\r\nSans surcharge. Sans perte. Sans friction.\r\n\r\nDans cette conférence, nous vous proposons de vivre cette journée de l’intérieur.\r\nUne immersion concrète dans une organisation moderne où Microsoft 365 devient un véritable système de travail connecté.\r\n\r\nVous découvrirez comment orchestrer intelligemment Teams, Loop, Planner et Copilot pour :\r\n\r\npréparer vos réunions sans effort\r\nautomatiser vos comptes rendus et vos suivis\r\ncentraliser vos informations\r\net gagner en efficacité au quotidien\r\n\r\nObjectif : vous montrer qu’une autre façon de travailler est déjà possible… et qu’elle est à votre portée. 🚀",
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "15:05",
+          "endTime": "15:50",
+          "duration": "45 min",
+          "room": "Room 5 (14p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Sébastien Bouvier",
+              "tagLine": "SEB CONNECT - CEO",
+              "bio": "Expert des nouvelles méthodes de travail, Sébastien accompagne les entreprises dans leur transformation digitale en optimisant leurs process grâce à Microsoft 365.\r\nÀ travers SEB Connect, il aide les équipes à choisir les bons outils, à mettre en place les méthodes adaptées et à conduire le changement avec impact.\r\nPassionné par l’humain autant que par la technologie, il transforme les réunions, la collaboration et le quotidien professionnel en leviers de performance durable."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "2b027342-b16e-49fe-80db-158ef0a97c0e",
+          "title": "Pause Café",
+          "description": null,
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "15:50",
+          "endTime": "16:10",
+          "duration": "20 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": true,
+          "speakers": [],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "1217205",
+          "title": "Ask the Experts : Microsoft AI & Modern Workplace",
+          "description": "Cette session interactive réunit un panel d’experts Microsoft pour répondre en direct aux questions du public autour de l’IA et du Modern Workplace.\r\n\r\nLes participants pourront échanger directement avec des spécialistes couvrant un large spectre de technologies Microsoft : Copilot, Microsoft 365, Copilot Studio, SharePoint, solutions agentiques et plus largement l’écosystème IA de Microsoft.\r\n\r\nQue vous soyez en phase d’exploration, confronté à des défis d’implémentation ou en recherche de bonnes pratiques pour industrialiser et gouverner vos usages IA, cette session vise à apporter des réponses claires, basées sur des retours d’expérience terrain.\r\n\r\nPas de slides, pas de discours marketing : uniquement des échanges directs avec des experts qui conçoivent et déploient ces solutions au quotidien.",
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "16:10",
+          "endTime": "17:10",
+          "duration": "60 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": false,
+          "speakers": [
+            {
+              "name": "Romain Gerard",
+              "tagLine": "MVP | Power Platform & AI Enthusiast | Practice Lead | Animateur \"Les têtes dans le cloud\"",
+              "bio": "Avec 20 ans d’expérience dans les technologies Microsoft, de .NET à Microsoft 365, de la technique au conseil, je partage mes expériences avec passion et agrémente mes présentations d’anecdote tirées de mes expériences projets."
+            },
+            {
+              "name": "Alexandre Piatetsky",
+              "tagLine": "Responsable Technologie M365 | Microsoft MVP",
+              "bio": "Alexandre est un expert reconnu de l’écosystème Microsoft, spécialisé dans Microsoft 365, Copilot et la gouvernance numérique. En tant que Microsoft MVP, il intervient régulièrement dans les conférences et événements communautaires pour partager son expérience terrain, ses bonnes pratiques et ses retours concrets sur l’adoption des technologies Microsoft.\r\nAvec plus de 15 ans d’expérience en architecture, gestion de projet, avant-vente et accompagnement client, Alexandre est passionné par la transmission de savoir et l’innovation collaborative. Il s’engage activement dans les communautés pour aider les organisations à tirer le meilleur parti des outils Microsoft, tout en favorisant la sécurité, la conformité et l’efficacité opérationnelle.\r\nAlexandre fait partie de la société française Bleu, qui détient et opère le premier National Partner Cloud de Microsoft. Il y occupe le rôle de Responsable Technologie Microsoft 365 et aide les organisations à exploiter tout le potentiel de Microsoft 365 dans un environnement cloud sécurisé, conforme et souverain."
+            },
+            {
+              "name": "Fiona Fruhinsholz",
+              "tagLine": "Consultante Microsoft 365 & Adoption | Microsoft MVP",
+              "bio": "Passionnée par la collaboration, j'explore depuis une dizaine d'années les nouveautés proposées par Microsoft et leur impact sur les utilisateurs."
+            }
+          ],
+          "liveUrl": null,
+          "recordingUrl": null
+        },
+        {
+          "id": "3bb9e48c-a100-46aa-846b-18f8665f7d46",
+          "title": "Clôture et tirage au sort jour 2",
+          "description": null,
+          "day": "Mercredi 24 juin 2026",
+          "startTime": "17:10",
+          "endTime": "17:30",
+          "duration": "20 min",
+          "room": "Room 1 (35p)",
+          "isServiceSession": true,
+          "speakers": [],
+          "liveUrl": null,
+          "recordingUrl": null
+        }
+      ]
+    }
+  ]
+}
