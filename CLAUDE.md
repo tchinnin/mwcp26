@@ -29,3 +29,15 @@ Project context: see [README.md](./README.md).
 ## Out of scope
 
 <!-- What this repository does NOT manage. -->
+
+<!-- lite-sdd:start -->
+## Spec-Driven Development (lite-sdd)
+
+This project follows the lite-sdd methodology: specifications in `specs/` are the
+functional source of truth, kept in lockstep with the code.
+
+- Load the `lite-sdd-overview` skill at the start of every session for the project
+  layout, feature numbering, and global principles.
+- Use `lite-sdd-specify` to write or update a spec before coding.
+- Use `lite-sdd-implement` to plan the implementation and keep it in sync.
+<!-- lite-sdd:end -->
