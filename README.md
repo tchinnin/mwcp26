@@ -91,6 +91,14 @@ La première exécution de `auth.py` lance un device code flow (login navigateur
 
 Un redémarrage de l'éditeur / CLI est nécessaire pour activer le serveur MCP configuré par `dv-connect`.
 
+<!-- lite-sdd:start -->
+## Spec-Driven Development
+
+Specs live in [`specs/`](./specs), one folder per feature, numbered in blocks of a
+hundred (one block per application). Each `spec.md` is the functional source of
+truth: write or update it before changing the code, then implement against it.
+<!-- lite-sdd:end -->
+
 ## Repository map
 
 | Dossier | Contenu |
