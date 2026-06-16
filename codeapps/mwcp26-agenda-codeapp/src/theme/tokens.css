@@ -113,6 +113,11 @@
   --surface-sunken: var(--neutral-100);
   --surface-inverse: var(--ink-900);
 
+  /* Skeleton de chargement (placeholders shimmer, cf. feature 101 US-101-02) */
+  --skeleton-base: var(--neutral-100);
+  --skeleton-sheen: var(--neutral-200);
+  --skeleton-duration: 1.4s;
+
   --action-primary: var(--brand-blue);
   --action-primary-hover: var(--brand-blue-600);
   --action-primary-active: var(--brand-blue-700);

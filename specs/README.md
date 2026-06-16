@@ -16,6 +16,7 @@ _No spec yet — schema lives in [`data/model/`](../data/model/)._
 - [`100-mwcp26-agenda-codeapp`](./100-mwcp26-agenda-codeapp/spec.md) — cadre applicatif (vue responsive, header, footer)
   - [`101-agenda-grille`](./101-agenda-grille/spec.md)
     - [US-101-01 — Voir les sessions du jour en grille](./101-agenda-grille/spec.md#us-101-01--voir-les-sessions-du-jour-en-grille)
+    - [US-101-02 — Chargement de la grille (skeleton)](./101-agenda-grille/spec.md#us-101-02--chargement-de-la-grille-skeleton)
   - [`102-agenda-liste`](./102-agenda-liste/spec.md)
     - [US-102-01 — Parcourir les sessions du jour en liste](./102-agenda-liste/spec.md#us-102-01--parcourir-les-sessions-du-jour-en-liste)
   - [`103-selection-jour`](./103-selection-jour/spec.md)

@@ -68,9 +68,31 @@ embarqué dans le bundle, zéro résolution d'URL à l'exécution. Typé nativem
 Les polices restent dans `src/assets/fonts/` (le `url(./…)` CSS se résout contre la feuille de
 style — mécanisme distinct qui fonctionne).
 
+## Données Dataverse (branché)
+
+Data sources ajoutées via `/add-dataverse` (`pac code add-data-source -a dataverse -t <table>`) :
+`mwcp26_session`, `mwcp26_salle`, `mwcp26_sessionspeaker`, `mwcp26_conference`, `contact`.
+Génère `src/generated/{models,services}/*` + `power.config.json` (`databaseReferences`) +
+`.power/schemas/…`. **Ne jamais éditer `src/generated/`** (régénéré).
+
+Couche d'accès : `src/data/agenda.ts` (`getAgenda()` async) + `src/data/agenda-transform.ts`
+(helpers purs). Le SDK généré **n'expose pas `$expand`** → requêtes plates par table (services
+`Mwcp26_sessionsService`/`Mwcp26_sallesService`/…`.getAll({select,filter,orderBy,top})`) puis
+**jointure client** par GUID (`_mwcp26_salleid_value`, `_mwcp26_sessionid_value`,
+`_mwcp26_speakerid_value`). Datetime UTC → formatés Europe/Paris (`Intl`). Pas de fallback mock.
+
+⚠️ Écarts schéma consommés côté client : `isServiceSession` **n'existe pas** (→ `isService=false`,
+bandes reportées) ; **capacité** parsée du nom de salle (`"Room 1 (35p)"`) ; **couleur** de salle
+assignée par ordre (palette de 5 tokens). Auth : `pac auth select` sur le profil
+`CHINNIN.TECH - DEV` avant toute commande `pac`.
+
+⚠️ Dev : `npm run dev` (vite nu) **ne joint pas Dataverse** — tester via l'**URL Local Play** du
+player affichée au lancement.
+
 ## Périmètre restant (runs suivants)
 
-- `/add-dataverse` : Conference / Salle / Session / SessionSpeaker / Contact (read-only)
-- Features 101 (grille), 102 (liste), 103 (sélection jour), 104 (recherche), 105 (détail session)
+- Features 101 (grille) ✅ + 103 (sélection jour) ✅ **branchées Dataverse** ; restent 102
+  (liste), 104 (recherche), 105 (détail session), 106 (favoris) + traitement « bande » des
+  sessions de service.
 - `lite-sdd-implement` pour documenter l'implémentation en regard des specs
 - Redéploiement: `npm run build && pac code push` (depuis ce dossier), incrémenter `APP_VERSION`

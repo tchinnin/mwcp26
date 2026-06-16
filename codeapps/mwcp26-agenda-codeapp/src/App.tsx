@@ -1,4 +1,10 @@
+import { useEffect, useState } from 'react'
 import './App.css'
+import AgendaGrid from './components/AgendaGrid'
+import DayTabs from './components/DayTabs'
+import GridSkeleton from './components/GridSkeleton'
+import { defaultDayIndex, getAgenda, positionableSessions } from './data/agenda'
+import type { AgendaData } from './types/agenda'
 
 /*
  * Assets de marque inlinés en base64 (suffixe ?inline) : la donnée image est embarquée
@@ -9,15 +15,87 @@ import './App.css'
 import mwcpLogo from './assets/mwcp-logo.png?inline'
 import parisBg from './assets/paris-bg.jpg?inline'
 
-/** Tracks MWCP — couleur (token) + libellé. Jamais la couleur seule (a11y). */
-const TRACKS = [
-  { label: 'IA / Copilot', color: 'var(--track-ia)' },
-  { label: 'Modern Work', color: 'var(--track-modernwork)' },
-  { label: 'Cybersécurité', color: 'var(--track-security)' },
-  { label: 'Power Platform', color: 'var(--track-power)' },
-]
-
 function App() {
+  // Agenda chargé depuis Dataverse (data/agenda.ts). null = en cours de chargement.
+  const [agenda, setAgenda] = useState<AgendaData | null>(null)
+  const [error, setError] = useState<string | null>(null)
+  // Feature 103 — jour sélectionné, persistant pendant la session de navigation.
+  const [day, setDay] = useState(0)
+
+  // Chargement hors render (cf. ppbp-codeapps-connectors). Le SDK Power Apps ne joint
+  // Dataverse que dans le player (URL Local Play) — pas en vite nu.
+  useEffect(() => {
+    let alive = true
+    getAgenda()
+      .then((a) => {
+        if (!alive) return
+        setAgenda(a)
+        setDay(defaultDayIndex(a.days))
+      })
+      .catch((e) => alive && setError(String(e)))
+    return () => {
+      alive = false
+    }
+  }, [])
+
+  let body
+  if (error) {
+    body = (
+      <main className="app-main">
+        <div className="agenda-status agenda-status--error">
+          <h2>Agenda indisponible</h2>
+          <p>Impossible de charger les sessions depuis Dataverse.</p>
+        </div>
+      </main>
+    )
+  } else if (!agenda) {
+    // Chargement : on rend la même charpente que l'état chargé. Le gating responsive
+    // (cf. App.css) montre le skeleton grille en desktop et un message court sous 1024px,
+    // la vue grille n'ayant de sens qu'en desktop (skeleton réservé à la grille, cf. 101).
+    body = (
+      <>
+        <div className="app-controls">
+          <div className="sk-daytabs sk-shimmer" aria-hidden="true" />
+        </div>
+        <main className="app-main">
+          <div className="agenda-grid-wrap">
+            <GridSkeleton />
+          </div>
+          <div className="agenda-mobile-note">
+            <p>Chargement de l'agenda…</p>
+          </div>
+        </main>
+      </>
+    )
+  } else {
+    const gridSessions = positionableSessions(agenda.days[day] ?? agenda.days[0])
+    body = (
+      <>
+        {/* Barre de contrôles : non sticky en mobile (défile avec le hero), dans la zone
+            figée en desktop (cf. spec 100). Ne porte que le sélecteur de jour (103) ;
+            recherche/bascule de vue viendront avec les features 104/102. */}
+        <div className="app-controls">
+          <DayTabs days={agenda.days} selected={day} onSelect={setDay} />
+        </div>
+
+        <main className="app-main">
+          {/* Grille (101) — desktop-only ; affichée ≥1024px (gating CSS, cf. App.css). */}
+          <div className="agenda-grid-wrap">
+            <AgendaGrid sessions={gridSessions} rooms={agenda.rooms} />
+          </div>
+          {/* Sous 1024px : la vue grille n'a pas de sens ; la vue liste (102) viendra. */}
+          <div className="agenda-mobile-note">
+            <p>
+              La vue grille est disponible sur écran large (≥ 1024 px).
+              <br />
+              La vue liste arrivera dans une prochaine itération.
+            </p>
+          </div>
+        </main>
+      </>
+    )
+  }
+
   return (
     <div className="app-shell">
       <img className="app-bg" src={parisBg} alt="" aria-hidden="true" />
@@ -34,23 +112,7 @@ function App() {
           </div>
         </header>
 
-        <main className="app-main">
-          <div className="placeholder-card">
-            <h2>Squelette de l'application</h2>
-            <p>
-              L'agenda (vues grille et liste, sélection du jour, recherche et détail
-              de session) sera branché sur Dataverse dans les prochaines itérations.
-            </p>
-            <div className="track-legend">
-              {TRACKS.map((t) => (
-                <span className="track-chip" key={t.label}>
-                  <span className="track-chip__dot" style={{ background: t.color }} />
-                  {t.label}
-                </span>
-              ))}
-            </div>
-          </div>
-        </main>
+        {body}
       </div>
     </div>
   )

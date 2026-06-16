@@ -48,3 +48,41 @@ clic sur une session par la feature **105**.
 | Sessions qui se chevauchent dans une même salle | Affichées côte à côte (ou empilées) dans la colonne, toutes lisibles/cliquables. |
 | Capacité de salle | Affichée près du nom **si** la donnée existe ; sinon nom seul (capacité = question ouverte du modèle). |
 | Aucune session positionnable (jour vide ou recherche sans résultat) | État vide centré dans la zone grille. |
+
+---
+
+## US-101-02 — Chargement de la grille (skeleton)
+
+**En tant que** participant·e sur desktop, **je veux** un **squelette** de la grille
+pendant le chargement des données, **afin de** percevoir la structure à venir plutôt
+qu'un simple message « chargement en cours ».
+
+### Behaviour
+
+- Quand les données sont **en cours de chargement** **et** que la vue active est la
+  **grille**, la zone grille affiche un **skeleton** qui **reproduit la structure** de
+  la grille : en-têtes de salle (colonnes), colonne d'heures (lignes) et **blocs de
+  session** factices, rendus en **placeholders animés** (effet shimmer).
+- Le skeleton **remplace** le message textuel de chargement dans la zone grille ; le
+  **header de l'app reste fixe** (cf. 100).
+- Comme les salles réelles ne sont pas encore connues, le skeleton utilise un
+  **nombre fixe** de colonnes/lignes factices représentatif d'une grille type.
+- Dès que les données sont **disponibles**, le skeleton est remplacé par la grille
+  réelle (US-101-01) ou par l'**état vide** si rien n'est positionnable.
+- Le skeleton ne s'applique qu'à la **vue grille** ; le chargement de la vue Liste
+  est porté par la feature **102**.
+
+### Acceptance criteria
+
+- [ ] Pendant le chargement en vue grille, un skeleton mimant la structure (colonnes salles, lignes heures, blocs session) s'affiche à la place du message de chargement.
+- [ ] Les placeholders sont animés (shimmer) et le header de l'app reste fixe (100).
+- [ ] À la fin du chargement, le skeleton cède la place à la grille réelle (US-101-01) ou à l'état vide.
+- [ ] Le skeleton n'apparaît que lorsque la vue active est la grille.
+
+### Edge cases
+
+| Cas | Comportement attendu |
+|---|---|
+| Chargement très rapide | Le skeleton peut n'apparaître que brièvement ; aucune exigence de durée minimale. |
+| Erreur de chargement | Hors scope de cette US (le skeleton ne couvre que l'état « en cours ») — l'erreur relève de la gestion d'erreur de l'app (100). |
+| Vue active = Liste pendant le chargement | Pas de skeleton grille ; le chargement Liste relève de la feature 102. |
