@@ -1,0 +1,156 @@
+/*
+ * Feature 101 — styles de la vue grille. Port fidèle des règles `.tt-*` de la maquette,
+ * réécrites en tokens (var(--…)), sans hover/curseur/favori (cartes statiques cette itération).
+ * Les sticky (.tt-roomhead top / .tt-time left) s'ancrent dans le conteneur scrollable
+ * `main.app-main` (cf. App.css desktop). Aucun overflow:hidden parent ne doit les casser.
+ */
+
+.ttgrid {
+  display: grid;
+  position: relative;
+  min-width: fit-content;
+  padding-bottom: var(--space-12);
+  background: var(--surface-page);
+}
+
+/* coin haut-gauche */
+.tt-corner {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 6;
+  background: var(--surface-page);
+  border-right: 1px solid var(--border-default);
+  border-bottom: 1px solid var(--border-default);
+}
+
+/* en-têtes de salle (sticky en haut) */
+.tt-roomhead {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background: var(--surface-card);
+  border-bottom: 1px solid var(--border-default);
+  border-left: 1px solid var(--border-subtle);
+}
+.tt-roomdot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.tt-roomname {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  font-size: 13.5px;
+  color: var(--text-heading);
+}
+.tt-roomcap { font-size: 11.5px; color: var(--text-muted); font-weight: var(--weight-medium); }
+
+/* colonne d'heures (sticky à gauche) */
+.tt-time {
+  position: sticky;
+  left: 0;
+  z-index: 4;
+  background: var(--surface-page);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 1px 9px 0 0;
+  border-right: 1px solid var(--border-default);
+}
+
+/* lignes de grille horizontales */
+.tt-line {
+  border-top: 1px solid var(--border-subtle);
+  height: 1px;
+  align-self: start;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* carte de session (statique — pas de hover ni de clic cette itération) */
+.tt-card {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--rc, var(--brand-blue));
+  border-radius: var(--radius-sm);
+  margin: 2px 3px;
+  padding: 6px 9px;
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+}
+.tt-ctime {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: var(--weight-semibold);
+  color: var(--text-muted);
+}
+.tt-ctitle {
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  font-size: 12.5px;
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+  color: var(--text-heading);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.tt-cspk {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* bande de service (pause, accueil, plénière) — pleine largeur */
+.tt-band {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  text-align: center;
+  background: var(--surface-sunken);
+  border: 1px dashed var(--border-default);
+  border-radius: var(--radius-sm);
+  margin: 2px 3px;
+  padding: 0 var(--space-3);
+  color: var(--text-secondary);
+  font-family: var(--font-ui);
+  font-weight: var(--weight-semibold);
+  font-size: 12.5px;
+  overflow: hidden;
+}
+.tt-band__icon { width: 14px; height: 14px; flex: none; color: var(--ink-500); }
+.tt-band span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* état vide (jour sans session positionnable) */
+.tt-empty {
+  text-align: center;
+  padding: 52px 20px;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+.tt-empty p { font-size: var(--text-body-sm); max-width: 250px; line-height: 1.5; margin: 0; }

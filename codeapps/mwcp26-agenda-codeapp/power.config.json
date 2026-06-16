@@ -10,5 +10,31 @@
   "localAppUrl": "http://localhost:3000",
   "logoPath": "Default",
   "connectionReferences": {},
-  "databaseReferences": {}
+  "databaseReferences": {
+    "default.cds": {
+      "dataSources": {
+        "sessions": {
+          "entitySetName": "mwcp26_sessions",
+          "logicalName": "mwcp26_session"
+        },
+        "salles": {
+          "entitySetName": "mwcp26_salles",
+          "logicalName": "mwcp26_salle"
+        },
+        "intervenantsdesession": {
+          "entitySetName": "mwcp26_sessionspeakers",
+          "logicalName": "mwcp26_sessionspeaker"
+        },
+        "conf_rences": {
+          "entitySetName": "mwcp26_conferences",
+          "logicalName": "mwcp26_conference"
+        },
+        "contacts": {
+          "entitySetName": "contacts",
+          "logicalName": "contact"
+        }
+      },
+      "environmentVariableName": ""
+    }
+  }
 }

@@ -126,19 +126,67 @@
   white-space: nowrap;
 }
 
-/* ---------------------------- Main placeholder -------------------------- */
+/* ---------------------------- Barre de contrôles ------------------------ */
+/* Entre le header et le main. Mobile : dans le flux (défile avec le hero).
+   Desktop : flex:0 0 auto dans .app-col → hors du <main> scrollable, donc figée
+   sous le header (cf. spec 100). Ne porte que le sélecteur de jour (103). */
+.app-controls {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-5);
+  background: var(--glass-bg-bar);
+  backdrop-filter: blur(var(--glass-blur-bar));
+  -webkit-backdrop-filter: blur(var(--glass-blur-bar));
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* Placeholder de la barre de jour pendant le chargement (101 US-101-02) :
+   pill aux dimensions du segmented control (103), animée via .sk-shimmer. */
+.sk-daytabs {
+  width: 150px;
+  height: 46px;
+  border-radius: var(--radius-md);
+}
+
+/* ---------------------------- Zone agenda ------------------------------- */
 .app-main {
   flex: 1 1 auto;
+}
+
+/* Grille (101) : masquée sous 1024px (desktop-only) ; affichée ≥1024px. */
+.agenda-grid-wrap {
+  display: none;
+}
+
+/* Message sous 1024px (la vue liste 102 viendra plus tard). */
+.agenda-mobile-note {
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: var(--space-6);
+  min-height: 100%;
+  padding: var(--space-12) var(--space-6);
+  color: var(--text-secondary);
+}
+.agenda-mobile-note p {
+  max-width: 320px;
+  font-size: var(--text-body-sm);
+  line-height: 1.6;
+  margin: 0;
 }
 
-.placeholder-card {
-  max-width: 480px;
-  padding: var(--space-12);
+/* État chargement / erreur : carte glass centrée dans le main. */
+.app-main:has(> .agenda-status) {
+  display: flex;
+}
+.agenda-status {
+  margin: auto;
+  max-width: 420px;
+  text-align: center;
+  padding: var(--space-10);
+  color: var(--text-secondary);
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-xl);
@@ -146,42 +194,17 @@
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
 }
-
-.placeholder-card h2 {
+.agenda-status h2 {
   font-size: var(--text-h3);
-  margin-bottom: var(--space-3);
+  color: var(--text-heading);
+  margin-bottom: var(--space-2);
 }
-
-.placeholder-card p {
-  color: var(--text-secondary);
+.agenda-status p {
   margin: 0;
-}
-
-/* Aperçu des 4 tracks (couleur + libellé — jamais la couleur seule). */
-.track-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-  justify-content: center;
-  margin-top: var(--space-6);
-}
-.track-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
   font-size: var(--text-body-sm);
-  font-weight: var(--weight-medium);
-  color: var(--text-body);
-  background: var(--surface-card);
-  border: 1px solid var(--border-subtle);
-  padding: var(--space-1) var(--space-3);
-  border-radius: var(--radius-pill);
 }
-.track-chip__dot {
-  width: 10px;
-  height: 10px;
-  border-radius: var(--radius-pill);
-  flex: 0 0 auto;
+.agenda-status--error h2 {
+  color: var(--brand-red);
 }
 
 /* ---------------------------- Responsive -------------------------------- */
@@ -254,11 +277,25 @@
     line-height: 1;
     color: var(--text-on-brand);
   }
-  /* Conteneur de défilement desktop : le header reste figé au-dessus.
-     Les sticky internes des vues grille (101) et liste (102) s'ancreront ici. */
+  /* Conteneur de défilement desktop : header + barre de contrôles restent figés
+     au-dessus ; seul .app-main défile. Padding à 0 pour que les en-têtes sticky de la
+     grille (.tt-roomhead / .tt-time) collent au bord du conteneur. */
   .app-main {
     flex: 1 1 auto;
     overflow-y: auto;
     min-height: 0;
+    padding: 0;
+  }
+  /* Sélecteur de jour : largeur du contenu (aligné à gauche), pas pleine largeur. */
+  .daytabs {
+    grid-auto-columns: auto;
+    width: fit-content;
+  }
+  /* Bascule grille ↔ message selon le palier desktop. */
+  .agenda-grid-wrap {
+    display: block;
+  }
+  .agenda-mobile-note {
+    display: none;
   }
 }
