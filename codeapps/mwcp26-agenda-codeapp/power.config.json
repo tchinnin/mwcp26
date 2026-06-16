@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "appId": "eeb47756-a38f-4333-95d9-545780fba5e3",
+  "appDisplayName": "MWCP26 Agenda",
+  "region": "prod",
+  "environmentId": "d6b0b2cd-588d-4cb1-b657-6a8ad7951d40",
+  "description": "",
+  "buildPath": "./dist",
+  "buildEntryPoint": "index.html",
+  "localAppUrl": "http://localhost:3000",
+  "logoPath": "Default",
+  "connectionReferences": {},
+  "databaseReferences": {}
+}

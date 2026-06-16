@@ -20,6 +20,9 @@ clic sur une session par la feature **105**.
 - Grille du jour sélectionné (103) : **salles en colonnes**, **heures en lignes**.
 - **En-têtes de salle** sticky (nom de la salle) ; **colonne d'heures** (police mono)
   sticky.
+- **Défilement** : sous le **header sticky de l'app** (cf. 100), seule la **zone
+  grille** défile verticalement ; ses en-têtes de salle restent visibles en haut de la
+  grille et la colonne d'heures reste visible à gauche pendant le scroll.
 - Chaque session est **positionnée** dans la colonne de sa salle, sur son créneau
   (début → fin).
 - **Infos affichées sur chaque session** : **titre**, **intervenant·e(s)**, **heure**
@@ -31,6 +34,7 @@ clic sur une session par la feature **105**.
 ### Acceptance criteria
 
 - [ ] Salles en colonnes, heures en lignes ; en-têtes de salle et colonne d'heures sticky.
+- [ ] Au scroll, le header de l'app reste fixe (100) et seule la zone grille défile.
 - [ ] Chaque session occupe la colonne de sa salle sur son créneau.
 - [ ] Chaque session montre titre, intervenant·e(s) et heure.
 - [ ] La grille reflète le jour (103) et la recherche (104) en cours.
