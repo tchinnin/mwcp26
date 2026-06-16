@@ -19,6 +19,7 @@ _No spec yet — schema lives in [`data/model/`](../data/model/)._
     - [US-101-02 — Chargement de la grille (skeleton)](./101-agenda-grille/spec.md#us-101-02--chargement-de-la-grille-skeleton)
   - [`102-agenda-liste`](./102-agenda-liste/spec.md)
     - [US-102-01 — Parcourir les sessions du jour en liste](./102-agenda-liste/spec.md#us-102-01--parcourir-les-sessions-du-jour-en-liste)
+    - [US-102-02 — Chargement de la liste (skeleton, mobile)](./102-agenda-liste/spec.md#us-102-02--chargement-de-la-liste-skeleton-mobile)
   - [`103-selection-jour`](./103-selection-jour/spec.md)
     - [US-103-01 — Choisir le jour de l'agenda](./103-selection-jour/spec.md#us-103-01--choisir-le-jour-de-lagenda)
   - [`104-recherche-session`](./104-recherche-session/spec.md)

@@ -47,3 +47,46 @@ jour à la suite, **afin de** suivre le déroulé chronologique.
 | Session sans intervenant·e | Ligne intervenant·e masquée. |
 | Plusieurs intervenant·e·s | Tous listés, séparés par des virgules. |
 | Aucune session (jour vide ou recherche sans résultat) | État vide centré (icône + message, max ~250px). |
+
+---
+
+## US-102-02 — Chargement de la liste (skeleton, mobile)
+
+**En tant que** participant·e sur **mobile**, **je veux** un **squelette** de la liste
+pendant le chargement initial des données, **afin de** percevoir la structure à venir
+plutôt qu'un simple message « chargement en cours ».
+
+### Behaviour
+
+- Le skeleton s'applique **uniquement sur mobile** et uniquement lorsque la liste est
+  la **première expérience à charger les données** (chargement initial de l'app —
+  aucune donnée n'a encore été affichée).
+- Quand ces conditions sont réunies, la zone liste affiche un **skeleton** reproduisant
+  la structure d'une liste : **pastilles d'heure** factices (largeur fixe, police mono)
+  et **cartes de session** factices (titre, secondaire, heure/salle), rendus en
+  **placeholders animés** (effet shimmer).
+- Le skeleton **remplace** le message textuel de chargement ; le header de l'app se
+  comporte conformément à la règle mobile de US-102-01 (la page entière défile, le
+  header n'est pas sticky).
+- Comme les données réelles ne sont pas encore connues, le skeleton utilise un
+  **nombre fixe** de groupes horaires et de cartes factices représentatif d'une journée
+  type.
+- Dès que les données sont **disponibles**, le skeleton est remplacé par la liste
+  réelle (US-102-01) ou par l'**état vide** si aucune session n'est disponible.
+- Sur **desktop**, quel que soit le vue active, ce skeleton ne s'applique pas ; le
+  chargement de la vue Grille relève de la feature **101**.
+
+### Acceptance criteria
+
+- [ ] Sur mobile, lors du chargement initial, un skeleton mimant la structure (pastilles d'heure, cartes de session) s'affiche à la place du message de chargement.
+- [ ] Les placeholders sont animés (shimmer).
+- [ ] À la fin du chargement, le skeleton cède la place à la liste réelle (US-102-01) ou à l'état vide.
+- [ ] Le skeleton n'apparaît pas sur desktop, ni lors de recharges ultérieures (changement de jour, filtrage) où des données sont déjà affichées.
+
+### Edge cases
+
+| Cas | Comportement attendu |
+|---|---|
+| Chargement très rapide | Le skeleton peut n'apparaître que brièvement ; aucune exigence de durée minimale. |
+| Erreur de chargement | Hors scope de cette US (le skeleton ne couvre que l'état « en cours ») — l'erreur relève de la gestion d'erreur de l'app (100). |
+| Changement de jour après chargement initial | Des données sont déjà affichées → pas de skeleton (rechargement en place ou indicateur léger selon l'app, hors scope ici). |
