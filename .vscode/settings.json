@@ -1,0 +1,7 @@
+{
+  // Empêche l'extension Python de taper "source .venv/bin/activate" dans chaque
+  // nouveau terminal intégré (ça polluait l'input de Claude CLI au démarrage).
+  // Les scripts continuent de marcher via `.venv/bin/python ...` ou un `source` manuel.
+  "python.terminal.activateEnvironment": false,
+  "python-envs.terminal.autoActivationType": "off"
+}

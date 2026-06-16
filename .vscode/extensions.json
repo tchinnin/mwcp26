@@ -1,0 +1,7 @@
+{
+  // Extensions recommandées à l'ouverture du repo dans VS Code.
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.vscode-pylance"
+  ]
+}
