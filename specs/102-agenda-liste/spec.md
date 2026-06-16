@@ -24,6 +24,11 @@ jour à la suite, **afin de** suivre le déroulé chronologique.
   comportement → feature 106).
 - La liste est filtrée par la **recherche (104)**.
 - Clic / activation clavier sur une carte → **détail (105)**.
+- **Défilement** (cf. header, 100) :
+  - **Mobile** : **toute la page défile** ; le header n'est pas sticky et disparaît au
+    scroll pour laisser un maximum de place à la liste.
+  - **Desktop** : le **header reste fixe** (sticky) ; seule la liste défile sous
+    l'en-tête.
 
 ### Acceptance criteria
 
@@ -31,6 +36,7 @@ jour à la suite, **afin de** suivre le déroulé chronologique.
 - [ ] Chaque carte montre titre, intervenant·e(s), heure et salle quand l'info existe.
 - [ ] La liste reflète le jour (103) et la recherche (104) en cours.
 - [ ] Une carte est activable au clic **et** au clavier et ouvre le détail (105).
+- [ ] Mobile : la page entière défile (header non sticky) ; desktop : seule la liste défile sous le header sticky.
 
 ### Edge cases
 
