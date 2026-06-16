@@ -155,26 +155,50 @@
   flex: 1 1 auto;
 }
 
-/* Grille (101) : masquée sous 1024px (desktop-only) ; affichée ≥1024px. */
+/* Grille (101) / liste desktop (102) : masquées sous 1024px ; affichées ≥1024px. */
 .agenda-grid-wrap {
   display: none;
 }
 
-/* Message sous 1024px (la vue liste 102 viendra plus tard). */
-.agenda-mobile-note {
+/* Conteneur liste mobile (102) : visible sous 1024px, masqué ≥1024px. */
+.agenda-mobile-wrap {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  min-height: 100%;
-  padding: var(--space-12) var(--space-6);
-  color: var(--text-secondary);
+  flex-direction: column;
 }
-.agenda-mobile-note p {
-  max-width: 320px;
+
+/* Toggle de vue Grille / Liste (feature 102, desktop uniquement). */
+.view-toggle {
+  display: none; /* Masqué sur mobile (la liste y est toujours active). */
+  align-items: center;
+  gap: var(--space-1);
+  background: var(--surface-sunken);
+  padding: var(--space-1);
+  border-radius: var(--radius-md);
+  margin-left: auto;
+}
+
+.vt-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-4);
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
   font-size: var(--text-body-sm);
-  line-height: 1.6;
-  margin: 0;
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-standard),
+              color var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-fast) var(--ease-standard);
+  white-space: nowrap;
+}
+
+.vt-btn.is-active {
+  background: var(--surface-card);
+  color: var(--brand-blue-700);
+  box-shadow: var(--shadow-xs);
 }
 
 /* État chargement / erreur : carte glass centrée dans le main. */
@@ -291,11 +315,14 @@
     grid-auto-columns: auto;
     width: fit-content;
   }
-  /* Bascule grille ↔ message selon le palier desktop. */
+  /* Desktop : grille/liste desktop visible, liste mobile masquée, toggle visible. */
   .agenda-grid-wrap {
     display: block;
   }
-  .agenda-mobile-note {
+  .agenda-mobile-wrap {
     display: none;
+  }
+  .view-toggle {
+    display: flex;
   }
 }

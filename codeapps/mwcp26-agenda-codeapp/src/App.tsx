@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import AgendaGrid from './components/AgendaGrid'
+import AgendaList from './components/AgendaList'
 import DayTabs from './components/DayTabs'
 import GridSkeleton from './components/GridSkeleton'
+import ListSkeleton from './components/ListSkeleton'
 import { defaultDayIndex, getAgenda, positionableSessions } from './data/agenda'
 import type { AgendaData } from './types/agenda'
 
@@ -15,12 +17,16 @@ import type { AgendaData } from './types/agenda'
 import mwcpLogo from './assets/mwcp-logo.png?inline'
 import parisBg from './assets/paris-bg.jpg?inline'
 
+type View = 'grid' | 'list'
+
 function App() {
   // Agenda chargé depuis Dataverse (data/agenda.ts). null = en cours de chargement.
   const [agenda, setAgenda] = useState<AgendaData | null>(null)
   const [error, setError] = useState<string | null>(null)
   // Feature 103 — jour sélectionné, persistant pendant la session de navigation.
   const [day, setDay] = useState(0)
+  // Feature 102 — bascule grille / liste (desktop uniquement ; mobile = toujours liste).
+  const [view, setView] = useState<View>('grid')
 
   // Chargement hors render (cf. ppbp-codeapps-connectors). Le SDK Power Apps ne joint
   // Dataverse que dans le player (URL Local Play) — pas en vite nu.
@@ -49,9 +55,9 @@ function App() {
       </main>
     )
   } else if (!agenda) {
-    // Chargement : on rend la même charpente que l'état chargé. Le gating responsive
-    // (cf. App.css) montre le skeleton grille en desktop et un message court sous 1024px,
-    // la vue grille n'ayant de sens qu'en desktop (skeleton réservé à la grille, cf. 101).
+    // Chargement initial : skeleton grille sur desktop, skeleton liste sur mobile.
+    // US-102-02 : ListSkeleton remplace le message texte sur mobile (première expérience
+    // qui charge les données). GridSkeleton reste inchangé côté desktop (US-101-02).
     body = (
       <>
         <div className="app-controls">
@@ -61,35 +67,63 @@ function App() {
           <div className="agenda-grid-wrap">
             <GridSkeleton />
           </div>
-          <div className="agenda-mobile-note">
-            <p>Chargement de l'agenda…</p>
+          <div className="agenda-mobile-wrap">
+            <ListSkeleton />
           </div>
         </main>
       </>
     )
   } else {
     const gridSessions = positionableSessions(agenda.days[day] ?? agenda.days[0])
+    const allSessions = (agenda.days[day] ?? agenda.days[0]).sessions
+
     body = (
       <>
-        {/* Barre de contrôles : non sticky en mobile (défile avec le hero), dans la zone
-            figée en desktop (cf. spec 100). Ne porte que le sélecteur de jour (103) ;
-            recherche/bascule de vue viendront avec les features 104/102. */}
+        {/* Barre de contrôles : sélecteur de jour (103) + toggle de vue (102, desktop). */}
         <div className="app-controls">
           <DayTabs days={agenda.days} selected={day} onSelect={setDay} />
+
+          {/* Toggle Grille / Liste — visible uniquement en desktop (CSS gate).
+              Ordre : Grille en premier (vue par défaut), Liste en second. */}
+          <div className="view-toggle" role="group" aria-label="Vue de l'agenda">
+            <button
+              className={`vt-btn${view === 'grid' ? ' is-active' : ''}`}
+              onClick={() => setView('grid')}
+              aria-pressed={view === 'grid'}
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect width="7" height="7" x="3" y="3" rx="1" /><rect width="7" height="7" x="14" y="3" rx="1" />
+                <rect width="7" height="7" x="14" y="14" rx="1" /><rect width="7" height="7" x="3" y="14" rx="1" />
+              </svg>
+              Grille
+            </button>
+            <button
+              className={`vt-btn${view === 'list' ? ' is-active' : ''}`}
+              onClick={() => setView('list')}
+              aria-pressed={view === 'list'}
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" />
+                <line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" />
+              </svg>
+              Liste
+            </button>
+          </div>
         </div>
 
         <main className="app-main">
-          {/* Grille (101) — desktop-only ; affichée ≥1024px (gating CSS, cf. App.css). */}
+          {/* Grille (101) — desktop-only, sauf si bascule sur "Liste". */}
           <div className="agenda-grid-wrap">
-            <AgendaGrid sessions={gridSessions} rooms={agenda.rooms} />
+            {view === 'grid' ? (
+              <AgendaGrid sessions={gridSessions} rooms={agenda.rooms} />
+            ) : (
+              <AgendaList sessions={allSessions} />
+            )}
           </div>
-          {/* Sous 1024px : la vue grille n'a pas de sens ; la vue liste (102) viendra. */}
-          <div className="agenda-mobile-note">
-            <p>
-              La vue grille est disponible sur écran large (≥ 1024 px).
-              <br />
-              La vue liste arrivera dans une prochaine itération.
-            </p>
+
+          {/* Liste (102) — mobile-only (CSS gate ≥1024px → display:none). */}
+          <div className="agenda-mobile-wrap">
+            <AgendaList sessions={allSessions} />
           </div>
         </main>
       </>

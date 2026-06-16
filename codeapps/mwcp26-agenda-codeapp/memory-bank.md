@@ -10,7 +10,7 @@
   https://chinnin-tech-dev.crm4.dynamics.com/)
 - App ID: `eeb47756-a38f-4333-95d9-545780fba5e3`
 - App URL: https://apps.powerapps.com/play/e/d6b0b2cd-588d-4cb1-b657-6a8ad7951d40/app/eeb47756-a38f-4333-95d9-545780fba5e3
-- Version: **v1.1.0** (`src/version.ts`, affichée dans le footer)
+- Version: **v1.2.0** (`src/version.ts`, affichée dans le footer) — dernière poussée : 2026-06-16
 
 ## Spec / design
 
@@ -91,8 +91,7 @@ player affichée au lancement.
 
 ## Périmètre restant (runs suivants)
 
-- Features 101 (grille) ✅ + 103 (sélection jour) ✅ **branchées Dataverse** ; restent 102
-  (liste), 104 (recherche), 105 (détail session), 106 (favoris) + traitement « bande » des
-  sessions de service.
+- Features 101 (grille) ✅ + 102 (liste) ✅ + 103 (sélection jour) ✅ **branchées Dataverse** ; restent 104
+  (recherche), 105 (détail session), 106 (favoris) + traitement « bande » des sessions de service.
 - `lite-sdd-implement` pour documenter l'implémentation en regard des specs
 - Redéploiement: `npm run build && pac code push` (depuis ce dossier), incrémenter `APP_VERSION`

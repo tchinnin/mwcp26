@@ -143,8 +143,59 @@ export function defaultDayIndex(days: Day[]): number {
 
 /**
  * Sessions positionnables dans la grille (feature 101) : il faut une salle ET un horaire.
- * Les autres restent visibles en vue Liste (102, hors périmètre de cette itération).
+ * Les autres restent visibles en vue Liste (102).
  */
 export function positionableSessions(day: Day): Session[] {
   return day.sessions.filter((s) => !!s.room && !!s.startTime && !!s.endTime)
+}
+
+/** Groupe de sessions partageant la même heure de début (vue Liste, feature 102). */
+export interface TimeGroup {
+  /** Heure "HH:MM" ou null pour les sessions sans horaire. */
+  time: string | null
+  /** Libellé affiché dans l'en-tête de groupe. */
+  label: string
+  sessions: Session[]
+}
+
+/**
+ * Regroupe toutes les sessions d'un jour par heure de début (feature 102 — vue Liste).
+ * - Groupes ordonnés chronologiquement par heure.
+ * - Au sein d'un groupe, sessions triées par titre.
+ * - Sessions sans startTime regroupées en dernier sous "Horaire à confirmer".
+ */
+export function groupByStartTime(sessions: Session[]): TimeGroup[] {
+  const map = new Map<string, Session[]>()
+  const unscheduled: Session[] = []
+
+  for (const s of sessions) {
+    if (!s.startTime) {
+      unscheduled.push(s)
+    } else {
+      let bucket = map.get(s.startTime)
+      if (!bucket) {
+        bucket = []
+        map.set(s.startTime, bucket)
+      }
+      bucket.push(s)
+    }
+  }
+
+  const sorted: TimeGroup[] = [...map.entries()]
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([time, items]) => ({
+      time,
+      label: time,
+      sessions: items.slice().sort((a, b) => a.title.localeCompare(b.title, 'fr')),
+    }))
+
+  if (unscheduled.length > 0) {
+    sorted.push({
+      time: null,
+      label: 'Horaire à confirmer',
+      sessions: unscheduled.slice().sort((a, b) => a.title.localeCompare(b.title, 'fr')),
+    })
+  }
+
+  return sorted
 }

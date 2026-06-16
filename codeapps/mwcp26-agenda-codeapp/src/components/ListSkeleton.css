@@ -1,0 +1,87 @@
+/*
+ * Feature 102 — US-102-02 : styles du squelette de chargement de la vue liste.
+ * Miroir structurel d'AgendaList.css. .sk-shimmer est défini dans index.css (global).
+ * Tokens uniquement ; pas de couleurs littérales.
+ */
+
+.lsk-list {
+  padding: var(--space-4) var(--space-4) var(--space-10);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  pointer-events: none;
+}
+
+/* -------------------- Groupe horaire factice ---------------------------- */
+.lsk-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.lsk-group-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-1);
+}
+
+/* Badge heure factice : dimensions calquées sur .al-time. */
+.lsk-time {
+  width: 48px;
+  height: 22px;
+  border-radius: var(--radius-pill);
+  flex: none;
+}
+
+.lsk-divider {
+  flex: 1;
+  height: 1px;
+  background: var(--skeleton-base);
+}
+
+/* -------------------- Carte session factice ---------------------------- */
+.lsk-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--skeleton-base);
+  border-radius: var(--radius-md);
+  background: var(--surface-card);
+  box-shadow: var(--shadow-xs);
+}
+
+.lsk-card-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* Barres shimmer : hauteurs calquées sur les éléments réels. */
+.lsk-bar {
+  display: block;
+  border-radius: var(--radius-pill);
+}
+
+.lsk-bar--title   { height: 14px; }
+.lsk-bar--speakers { height: 11px; width: 55%; }
+.lsk-bar--meta    { height: 10px; width: 40%; }
+
+/* Largeurs variables du titre pour casser la monotonie (déterministe). */
+.lsk-w-0 { width: 85%; }
+.lsk-w-1 { width: 70%; }
+.lsk-w-2 { width: 78%; }
+
+/* Icône favori factice. */
+.lsk-fav {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-pill);
+  margin-top: var(--space-1);
+}
