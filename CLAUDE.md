@@ -12,6 +12,13 @@ Project context: see [README.md](./README.md).
 - `code-apps-preview:create-code-app` + `ppbp-codeapps-overview` + `ppbp-codeapps-setup` + `ppbp-codeapps-connectors` — Code Apps
 - `ppbp-codeapps-uxui` — UX/UI, design tokens & branding des Code Apps
 
+## Target environment (branch `demo/0-initapp`)
+
+- **Environnement cible :** TCH — `https://chinnin-tech-tch.crm4.dynamics.com`
+- **Environment ID :** `86021eb6-8c40-ea18-aba0-208524dc4d42`
+- **PAC auth profile :** `CHINNIN.TECH - TCH`
+- Toute opération `pac` (deploy, solution push, auth select) doit cibler cet environnement. Ne jamais pousser vers `chinnin-tech-dev` depuis cette branche.
+
 ## Conventions
 
 <!-- Project-specific rules that override or supplement the best-practice skills. -->

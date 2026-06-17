@@ -6,9 +6,12 @@ Projet de démo pour la Modern Workplace Conference 2026 (MWCP26). Solution Powe
 
 ## Environments
 
-| Environment | URL | Purpose |
-|---|---|---|
-| Dev | `https://chinnin-tech-dev.crm4.dynamics.com` | Active development |
+| Environment | URL | ID | Purpose |
+|---|---|---|---|
+| Dev | `https://chinnin-tech-dev.crm4.dynamics.com` | — | Active development (main branch) |
+| TCH | `https://chinnin-tech-tch.crm4.dynamics.com` | `86021eb6-8c40-ea18-aba0-208524dc4d42` | Demo branch (`demo/0-initapp`) — Code App agenda |
+
+> **Branch `demo/0-initapp`** : cet environnement cible **TCH** (`chinnin-tech-tch`). Le fichier `.env` local doit utiliser `PAC_AUTH_PROFILE=CHINNIN.TECH - TCH`. Créer le profil si absent : `pac auth create --url https://chinnin-tech-tch.crm4.dynamics.com`.
 
 ## Publisher and project code
 
