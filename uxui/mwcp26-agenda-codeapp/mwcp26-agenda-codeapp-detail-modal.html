@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Agenda · Détail de session (modal) · MWCP 2026</title>
+<link rel="stylesheet" href="../mwcp-tokens.css">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-ui);
+    color: var(--text-body);
+    background: var(--surface-page);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .bg {
+    position: fixed; inset: -50px; z-index: -2;
+    background: url("../assets/paris-bg.png") center 30%/cover no-repeat;
+    filter: blur(36px) saturate(1.12);
+    transform: scale(1.18);
+  }
+  .bg::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(47,116,222,0.30) 0%, rgba(246,248,251,0.62) 55%, rgba(246,248,251,0.78) 100%);
+  }
+
+  .app-col {
+    position: relative; z-index: 1;
+    max-width: 468px; margin: 0 auto; min-height: 100vh;
+    background: var(--surface-page);
+    box-shadow: 0 0 70px rgba(11,14,20,0.20);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative; padding: 18px 18px 20px; color: #fff;
+    background: linear-gradient(158deg, var(--sky-deep) 0%, var(--brand-blue) 62%, #59c4f3 128%);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: ""; position: absolute; right: -60px; top: -70px; width: 230px; height: 230px;
+    background: radial-gradient(circle, rgba(255,255,255,0.30), transparent 68%);
+  }
+  .hero-top { position: relative; display: flex; align-items: center; gap: 11px; }
+  .hero-logo {
+    width: 46px; height: 46px; border-radius: 50%; background: #fff; padding: 4px; object-fit: contain;
+    box-shadow: var(--shadow-sm); flex: none;
+  }
+  .hero-kicker { font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; opacity: 0.95; }
+  .hero-sub2 { font-size: 11.5px; opacity: 0.82; margin-top: 2px; font-weight: 500; }
+  .hero-ext {
+    margin-left: auto; width: 36px; height: 36px; border-radius: 50%; color: #fff;
+    background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.30);
+    display: grid; place-content: center; text-decoration: none; transition: background var(--dur-fast);
+  }
+  .hero-ext:hover { background: rgba(255,255,255,0.28); }
+  .hero-title {
+    position: relative; font-family: var(--font-display); font-weight: 800; font-size: 42px;
+    letter-spacing: -0.025em; line-height: 1; margin: 16px 0 14px;
+  }
+  .hero-pills { position: relative; display: flex; gap: 8px; flex-wrap: wrap; }
+  .hpill {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600;
+    padding: 7px 13px; border-radius: 999px; color: #fff;
+    background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.30);
+  }
+  .hpill-date { background: var(--brand-yellow); color: var(--ink-900); border-color: transparent; box-shadow: var(--shadow-sm); }
+
+  /* ---------- CONTROLS ---------- */
+  .controls {
+    position: sticky; top: 0; z-index: 30;
+    background: rgba(255,255,255,0.86); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 10px 14px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .daytabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; background: var(--surface-sunken); padding: 4px; border-radius: var(--radius-md); }
+  .daytab {
+    border: none; background: transparent; border-radius: 10px; padding: 7px 8px; cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; gap: 1px;
+    font-family: var(--font-ui); color: var(--text-secondary);
+    transition: background var(--dur-fast) var(--ease-standard), color var(--dur-fast);
+  }
+  .daytab.is-active { background: var(--surface-card); box-shadow: var(--shadow-sm); color: var(--text-heading); }
+  .dt-main { font-weight: 700; font-size: 14px; }
+  .dt-sub { font-size: 11px; color: var(--text-muted); }
+  .daytab.is-active .dt-sub { color: var(--brand-blue-700); }
+
+  .searchrow { display: flex; gap: 8px; }
+  .search {
+    flex: 1; display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 10px;
+    background: var(--surface-card); border: 1px solid var(--border-default); border-radius: var(--radius-md);
+    transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
+  }
+  .search:focus-within { border-color: var(--brand-blue); box-shadow: 0 0 0 3px var(--ring-color); }
+  .search-input { flex: 1; min-width: 0; border: none; outline: none; background: transparent; font-family: var(--font-ui); font-size: 14px; color: var(--text-body); }
+  .search-input::placeholder { color: var(--text-muted); }
+  .search-clear { border: none; background: none; color: var(--text-muted); cursor: pointer; padding: 2px; display: grid; place-content: center; }
+
+  .chips { display: flex; gap: 7px; overflow-x: auto; margin: 0 -14px; padding: 0 14px 2px; scrollbar-width: none; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip {
+    flex: none; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px;
+    border-radius: 999px; border: 1px solid var(--border-default); background: var(--surface-card);
+    font-family: var(--font-ui); font-weight: 600; font-size: 12.5px; color: var(--text-secondary);
+    cursor: pointer; white-space: nowrap; transition: all var(--dur-fast) var(--ease-standard);
+  }
+  .chip:hover { border-color: var(--border-strong); }
+  .chip.is-active { background: var(--brand-blue); border-color: var(--brand-blue); color: #fff; }
+  .chip-dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+  .chip.is-active .chip-dot { background: rgba(255,255,255,0.92) !important; }
+
+  /* ---------- LIST ---------- */
+  .list { padding: 16px 14px 0; }
+  .list-meta { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; }
+  .list-meta > span:first-child { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--text-heading); }
+  .list-meta-day { font-size: 12px; color: var(--text-muted); }
+
+  .tgroup { margin-bottom: 18px; }
+  .thead { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+  .ttime {
+    font-family: var(--font-mono); font-weight: 700; font-size: 13.5px; color: var(--ink-900);
+    background: var(--surface-card); border: 1px solid var(--border-subtle); padding: 3px 9px;
+    border-radius: 8px; box-shadow: var(--shadow-xs);
+  }
+  .tline { flex: 1; height: 1px; background: var(--border-subtle); }
+  .tend { font-family: var(--font-mono); font-size: 11.5px; color: var(--text-muted); }
+  .tcards { display: flex; flex-direction: column; gap: 9px; }
+
+  .empty { text-align: center; padding: 52px 20px; color: var(--text-muted); display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .empty p { font-size: 14px; max-width: 250px; line-height: 1.5; margin: 0; }
+
+  .foot { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 22px 0 30px; color: var(--text-muted); font-size: 11.5px; text-align: center; }
+
+  /* ---------- controls row layout ---------- */
+  .controls-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .daytabs { flex: 1 1 100%; }
+  .search { flex: 1 1 auto; }
+  .viewtoggle { display: inline-flex; background: var(--surface-sunken); border-radius: var(--radius-md); padding: 3px; gap: 2px; flex: none; }
+  .vt { display: inline-flex; align-items: center; gap: 6px; border: none; background: transparent; border-radius: 9px; padding: 8px 13px; font-family: var(--font-ui); font-weight: 600; font-size: 13px; color: var(--text-secondary); cursor: pointer; transition: all var(--dur-fast); }
+  .vt.is-active { background: var(--surface-card); box-shadow: var(--shadow-sm); color: var(--brand-blue-700); }
+
+  /* ---------- desktop header ---------- */
+  .dhead { display: flex; align-items: center; gap: 14px; padding: 14px 22px; color: #fff; background: linear-gradient(108deg, var(--sky-deep) 0%, var(--brand-blue) 78%); }
+  .dhead-logo { width: 44px; height: 44px; border-radius: 50%; background: #fff; padding: 4px; object-fit: contain; flex: none; box-shadow: var(--shadow-sm); }
+  .dhead-titles { margin-right: auto; }
+  .dhead-title { font-family: var(--font-display); font-weight: 800; font-size: 24px; letter-spacing: -0.02em; line-height: 1; }
+  .dhead-title span { font-weight: 600; opacity: 0.82; }
+  .dhead-sub { font-size: 12.5px; opacity: 0.86; margin-top: 3px; font-weight: 500; }
+  .hpill-d { background: rgba(255,255,255,0.18); }
+
+  /* ---------- body scroll regions ---------- */
+  .bodyscroll { position: relative; }
+  .tt-metawrap { padding: 14px 18px 2px; }
+
+  /* ---------- desktop wide shell ---------- */
+  .app-col.wide { max-width: 1340px; margin: 0 auto; height: 100vh; min-height: 0; display: flex; flex-direction: column; overflow: hidden; border-radius: 0; box-shadow: 0 0 80px rgba(11,14,20,0.24); }
+  .app-col.wide .controls { position: static; }
+  .app-col.wide .controls-row { flex-wrap: nowrap; }
+  .app-col.wide .daytabs { flex: 0 0 auto; grid-template-columns: auto auto; }
+  .app-col.wide .search { flex: 1 1 300px; max-width: 540px; }
+  .app-col.wide .bodyscroll { flex: 1; overflow: auto; }
+
+  /* ---------- timetable grid ---------- */
+  .ttgrid { display: grid; position: relative; min-width: fit-content; padding-bottom: 48px; background: var(--surface-page); }
+  .tt-corner { position: sticky; top: 0; left: 0; z-index: 6; background: var(--surface-page); border-right: 1px solid var(--border-default); border-bottom: 1px solid var(--border-default); }
+  .tt-roomhead { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; justify-content: center; gap: 7px; background: var(--surface-card); border-bottom: 1px solid var(--border-default); border-left: 1px solid var(--border-subtle); }
+  .tt-roomdot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+  .tt-roomname { font-family: var(--font-display); font-weight: 700; font-size: 13.5px; color: var(--text-heading); }
+  .tt-roomcap { font-size: 11.5px; color: var(--text-muted); font-weight: 500; }
+  .tt-time { position: sticky; left: 0; z-index: 4; background: var(--surface-page); font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--text-secondary); display: flex; align-items: flex-start; justify-content: flex-end; padding: 1px 9px 0 0; border-right: 1px solid var(--border-default); }
+  .tt-line { border-top: 1px solid var(--border-subtle); height: 1px; align-self: start; z-index: 1; pointer-events: none; }
+  .tt-card { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 1px; background: var(--surface-card); border: 1px solid var(--border-subtle); border-left: 4px solid var(--rc); border-radius: 10px; margin: 2px 3px; padding: 6px 9px; overflow: hidden; box-shadow: var(--shadow-xs); cursor: pointer; transition: box-shadow var(--dur-fast) var(--ease-standard), transform var(--dur-fast); }
+  .tt-card:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); z-index: 3; }
+  .tt-ctime { font-family: var(--font-mono); font-size: 10.5px; font-weight: 600; color: var(--text-muted); padding-right: 16px; }
+  .tt-ctitle { font-family: var(--font-display); font-weight: 600; font-size: 12.5px; line-height: 1.22; letter-spacing: -0.01em; color: var(--text-heading); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .tt-cspk { font-size: 11px; color: var(--text-secondary); margin-top: auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tt-band { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; gap: 8px; text-align: center; background: var(--surface-sunken); border: 1px dashed var(--border-default); border-radius: 8px; margin: 2px 3px; padding: 0 12px; color: var(--text-secondary); font-family: var(--font-ui); font-weight: 600; font-size: 12.5px; }
+  .tt-band i { color: var(--ink-500); }
+  .tt-dim { opacity: 0.3; filter: saturate(0.55); pointer-events: none; }
+
+  @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes sheetup { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+  @media (min-width: 520px) {
+    .app-col { margin: 24px auto; min-height: calc(100vh - 48px); border-radius: var(--radius-lg); overflow: hidden; }
+  }
+  @media (min-width: 1024px) {
+    .sheetov { justify-content: center !important; padding: 24px; }
+    .sheetbox { max-width: 580px !important; border-radius: var(--radius-xl) !important; max-height: 84vh !important; }
+  }
+</style>
+</head>
+<body class="amp-mwcp">
+<div class="bg"></div>
+<div class="app-col wide"><header class="dhead"><img src="../assets/mwcp-logo.png" alt="MWCP" class="dhead-logo"><div class="dhead-titles"><div class="dhead-title">Agenda <span>MWCP 2026</span></div><div class="dhead-sub">IA · Modern Work · Cybersécurité · 10ᵉ édition</div></div><span class="hpill hpill-date"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path><path d="M8 18h.01"></path><path d="M12 18h.01"></path><path d="M16 18h.01"></path></svg>23–24 Juin</span><span class="hpill hpill-d"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>Microsoft France</span><span class="hero-ext" aria-label="Site officiel"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg></span></header><div class="controls"><div class="controls-row"><div class="daytabs"><button class="daytab is-active"><span class="dt-main">Jour 1</span><span class="dt-sub">Mar. 23 juin</span></button><button class="daytab"><span class="dt-main">Jour 2</span><span class="dt-sub">Mer. 24 juin</span></button></div><div class="search"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-muted)"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg><span class="search-input" style="color:var(--text-muted)">Rechercher une session, un speaker…</span></div><div class="viewtoggle"><button class="vt"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h.01"></path><path d="M3 12h.01"></path><path d="M3 19h.01"></path><path d="M8 5h13"></path><path d="M8 12h13"></path><path d="M8 19h13"></path></svg>Liste</button><button class="vt is-active"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="14" rx="1"></rect><rect width="7" height="7" x="3" y="14" rx="1"></rect></svg>Grille</button></div></div></div><div class="bodyscroll grid-scroll"><div class="tt-metawrap"><div class="list-meta"><span>25 sessions</span><span class="list-meta-day">Mardi 23 juin 2026</span></div></div><div class="ttgrid" style="grid-template-columns:58px repeat(5, minmax(150px, 1fr));grid-template-rows:42px repeat(99, 13px)"><div class="tt-corner" style="grid-column:1;grid-row:1"></div><div class="tt-roomhead" style="grid-column:2;grid-row:1"><span class="tt-roomdot" style="background:#00AEF0"></span><span class="tt-roomname">Salle 1</span><span class="tt-roomcap">35p</span></div><div class="tt-roomhead" style="grid-column:3;grid-row:1"><span class="tt-roomdot" style="background:#80CD28"></span><span class="tt-roomname">Salle 2</span><span class="tt-roomcap">19p</span></div><div class="tt-roomhead" style="grid-column:4;grid-row:1"><span class="tt-roomdot" style="background:#FABC09"></span><span class="tt-roomname">Salle 3</span><span class="tt-roomcap">14p</span></div><div class="tt-roomhead" style="grid-column:5;grid-row:1"><span class="tt-roomdot" style="background:#F2521B"></span><span class="tt-roomname">Salle 4</span><span class="tt-roomcap">14p</span></div><div class="tt-roomhead" style="grid-column:6;grid-row:1"><span class="tt-roomdot" style="background:#2F74DE"></span><span class="tt-roomname">Salle 5</span><span class="tt-roomcap">14p</span></div><div class="tt-time" style="grid-column:1;grid-row:2">09:00</div><div class="tt-line" style="grid-column:1 / -1;grid-row:2 / span 1"></div><div class="tt-time" style="grid-column:1;grid-row:10">09:40</div><div class="tt-line" style="grid-column:1 / -1;grid-row:10 / span 1"></div><div class="tt-time" style="grid-column:1;grid-row:14">10:00</div><div class="tt-line" style="grid-column:1 / -1;grid-row:14 / span 1"></div><div class="tt-time" style="grid-column:1;grid-row:26">11:00</div><div class="tt-line" style="grid-column:1 / -1;grid-row:26 / span 1"></div><div class="tt-time" style="grid-column:1;grid-row:29">11:15</div><div class="tt-line" style="grid-column:1 / -1;grid-row:29 / span 1"></div><div class="tt-time" style="grid-column:1;grid-row:39">12:05</div><div class="tt-line" style="grid-column:1 / -1;grid-row:39 / span 1"></div><div class="tt-time" style="grid-column:1;grid-row:48">12:50</div><div class="tt-line" style="grid-column:1 / -1;grid-row:48 / span 1"></div><div class="tt-time" style="grid-column:1;grid-row:65">14:15</div><div class="tt-line" style="grid-column:1 / -1;grid-row:65 / span 1"></div><div class="tt-time" style="grid-column:1;grid-row:75">15:05</div><div class="tt-line" style="grid-column:1 / -1;grid-row:75 / span 1"></div><div class="tt-time" style="grid-column:1;grid-row:84">15:50</div><div class="tt-line" style="grid-column:1 / -1;grid-row:84 / span 1"></div><div class="tt-time" style="grid-column:1;grid-row:88">16:10</div><div class="tt-line" style="grid-column:1 / -1;grid-row:88 / span 1"></div><div class="tt-time" style="grid-column:1;grid-row:98">17:00</div><div class="tt-line" style="grid-column:1 / -1;grid-row:98 / span 1"></div><div class="tt-band" style="grid-column:2 / 7;grid-row:2 / 10"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v2"></path><path d="M14 2v2"></path><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"></path><path d="M6 2v2"></path></svg><span>Accueil et café jour 1</span></div><div class="tt-band" style="grid-column:2 / 7;grid-row:10 / 14"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528"></path></svg><span>Lancement de la MWCP</span></div><div class="tt-card" style="grid-column:2;grid-row:14 / 26;--rc:#00AEF0"><div class="tt-ctime">10:00–11:00</div><div class="tt-ctitle">Table ronde - Préparer son tenant à l'arrivée de Microsoft 365 Copilot</div><div class="tt-cspk">Sébastien Paulet +4</div></div><div class="tt-band" style="grid-column:2 / 7;grid-row:26 / 29"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v2"></path><path d="M14 2v2"></path><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"></path><path d="M6 2v2"></path></svg><span>Pause Café</span></div><div class="tt-card" style="grid-column:2;grid-row:29 / 38;--rc:#00AEF0"><div class="tt-ctime">11:15–12:00</div><div class="tt-ctitle">UNI5 | Soldez votre dette technique avec l'IA : REX avec le DSI Fedd (Groupe AGON)</div><div class="tt-cspk">Imad Bensisaid +1</div></div><div class="tt-card" style="grid-column:3;grid-row:29 / 38;--rc:#80CD28"><div class="tt-ctime">11:15–12:00</div><div class="tt-ctitle">REX – Agent aRHiane, la collègue IA de 1200 collaborateurs</div><div class="tt-cspk">Nada Brisville +1</div></div><div class="tt-card" style="grid-column:4;grid-row:29 / 38;--rc:#FABC09"><div class="tt-ctime">11:15–12:00</div><div class="tt-ctitle">IA hybride en entreprise : orchestrer cloud et local pour maximiser les usages métier</div><div class="tt-cspk">Mohamed Ait Salah</div></div><div class="tt-card" style="grid-column:5;grid-row:29 / 38;--rc:#F2521B"><div class="tt-ctime">11:15–12:00</div><div class="tt-ctitle">Power BI à l’ère de l’IA : Copilot et Data Analysts AI-Ready</div><div class="tt-cspk">Jean-Pierre Riehl</div></div><div class="tt-card" style="grid-column:6;grid-row:29 / 38;--rc:#2F74DE"><div class="tt-ctime">11:15–12:00</div><div class="tt-ctitle">Vos secrets sont partout — Microsoft Purview peut tous les trouver</div><div class="tt-cspk">Hicham Gondouin +1</div></div><div class="tt-card" style="grid-column:2;grid-row:39 / 48;--rc:#00AEF0"><div class="tt-ctime">12:05–12:50</div><div class="tt-ctitle">Quand les IA génératives deviennent une surface d'attaque</div><div class="tt-cspk">Jean-Philippe Lesage</div></div><div class="tt-card" style="grid-column:3;grid-row:39 / 48;--rc:#80CD28"><div class="tt-ctime">12:05–12:50</div><div class="tt-ctitle">L'ordinateur n'est plus un simple objet : bienvenue dans l'ère de Windows 365</div><div class="tt-cspk">Nicolas Bonnet</div></div><div class="tt-card" style="grid-column:4;grid-row:39 / 48;--rc:#FABC09"><div class="tt-ctime">12:05–12:50</div><div class="tt-ctitle">From Prompt to PC: How Agents Take Over the Keyboard</div><div class="tt-cspk">Alaa Bitar</div></div><div class="tt-card" style="grid-column:5;grid-row:39 / 48;--rc:#F2521B"><div class="tt-ctime">12:05–12:50</div><div class="tt-ctitle">Et si on notre agent obtiennait la capacité de faire le café ☕ ?</div><div class="tt-cspk">Adrien Clerbois</div></div><div class="tt-card" style="grid-column:6;grid-row:39 / 48;--rc:#2F74DE"><div class="tt-ctime">12:05–12:50</div><div class="tt-ctitle">From Use Case to Business Case: Why 5,000 Copilot Licenses Are Not an AI Strategy</div><div class="tt-cspk">Marin Niehues</div></div><div class="tt-band" style="grid-column:2 / 7;grid-row:48 / 65"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v2"></path><path d="M14 2v2"></path><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"></path><path d="M6 2v2"></path></svg><span>Pause Repas jour 1</span></div><div class="tt-card" style="grid-column:2;grid-row:65 / 74;--rc:#00AEF0"><div class="tt-ctime">14:15–15:00</div><div class="tt-ctitle">AVEPOINT | DSI : Piloter, mesurer l'ère de l'IA pour éviter le chaos</div><div class="tt-cspk">Jeff Angama +1</div></div><div class="tt-card" style="grid-column:3;grid-row:65 / 74;--rc:#80CD28"><div class="tt-ctime">14:15–15:00</div><div class="tt-ctitle">L’ère du “Copilot qui fait” : découvrir Cowork pour orchestrer du travail multi‑étapes</div><div class="tt-cspk">Antoine Galland +1</div></div><div class="tt-card" style="grid-column:4;grid-row:65 / 74;--rc:#FABC09"><div class="tt-ctime">14:15–15:00</div><div class="tt-ctitle">Ces choses dans Power BI peu ou mal utilisées!</div><div class="tt-cspk">Guillaume Gaudfroy</div></div><div class="tt-card" style="grid-column:5;grid-row:65 / 74;--rc:#F2521B"><div class="tt-ctime">14:15–15:00</div><div class="tt-ctitle">Choose your favorite (Information Protection) label</div><div class="tt-cspk">Vladimir Meloski +1</div></div><div class="tt-card" style="grid-column:6;grid-row:65 / 74;--rc:#2F74DE"><div class="tt-ctime">14:15–15:00</div><div class="tt-ctitle">Développer sur Power Platform avec des Skills, des Agents et des MCP : le nouveau standard ?</div><div class="tt-cspk">Jeremy Veque +1</div></div><div class="tt-card" style="grid-column:2;grid-row:75 / 84;--rc:#00AEF0"><div class="tt-ctime">15:05–15:50</div><div class="tt-ctitle">Comprendre le Cloud Souverain Microsoft : Public, Privé et National expliqués</div><div class="tt-cspk">Alexandre Piatetsky +2</div></div><div class="tt-card" style="grid-column:3;grid-row:75 / 84;--rc:#80CD28"><div class="tt-ctime">15:05–15:50</div><div class="tt-ctitle">Créer des Declarative Agents pour rendre Microsoft 365 Copilot spécialiste de votre métier</div><div class="tt-cspk">Benjamin Talmard +1</div></div><div class="tt-card" style="grid-column:4;grid-row:75 / 84;--rc:#FABC09"><div class="tt-ctime">15:05–15:50</div><div class="tt-ctitle">REX de nos bonnes pratiques pour gérer le cycle de vie de vos documents sur vos tenants M365</div><div class="tt-cspk">Amélie Plockyn +1</div></div><div class="tt-card" style="grid-column:5;grid-row:75 / 84;--rc:#F2521B"><div class="tt-ctime">15:05–15:50</div><div class="tt-ctitle">Power Pages : et si c'était le retour gagnant ?</div><div class="tt-cspk">Jeremy Laplaine +1</div></div><div class="tt-card" style="grid-column:6;grid-row:75 / 84;--rc:#2F74DE"><div class="tt-ctime">15:05–15:50</div><div class="tt-ctitle">BYOAI – Votre IA perso est-elle votre meilleur collègue… ou votre pire fuite ?</div><div class="tt-cspk">Louis Cacaret +1</div></div><div class="tt-band" style="grid-column:2 / 7;grid-row:84 / 88"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v2"></path><path d="M14 2v2"></path><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"></path><path d="M6 2v2"></path></svg><span>Pause Café</span></div><div class="tt-band" style="grid-column:2 / 7;grid-row:88 / 97"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 14v2.2l1.6 1"></path><path d="M16 2v4"></path><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5"></path><path d="M3 10h5"></path><path d="M8 2v4"></path><circle cx="16" cy="16" r="6"></circle></svg><span>Session ORANGE BUSINESS</span></div><div class="tt-card" style="grid-column:3;grid-row:88 / 97;--rc:#80CD28"><div class="tt-ctime">16:10–16:55</div><div class="tt-ctitle">Carve-in/out Microsoft 365 : maîtriser la transition sans rupture pour vos métiers</div><div class="tt-cspk">Julien Besnard +1</div></div><div class="tt-card" style="grid-column:4;grid-row:88 / 97;--rc:#FABC09"><div class="tt-ctime">16:10–16:55</div><div class="tt-ctitle">REX Méthodologie &amp; facteurs clés de réussite de la création d'agent avec Copilot Studio</div><div class="tt-cspk">David Vachala</div></div><div class="tt-card" style="grid-column:5;grid-row:88 / 97;--rc:#F2521B"><div class="tt-ctime">16:10–16:55</div><div class="tt-ctitle">Copilot l'IA qui rend idiot ?</div><div class="tt-cspk">Kevin Trelohan</div></div><div class="tt-card" style="grid-column:6;grid-row:88 / 97;--rc:#2F74DE"><div class="tt-ctime">16:10–16:55</div><div class="tt-ctitle">From Single Agent to Agent Orchestrator: A Stage-Based Architecture with Azure AI Foundry</div><div class="tt-cspk">Mihail Mateev</div></div><div class="tt-band" style="grid-column:2 / 7;grid-row:98 / 101"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.8 11.3 2 22l10.7-3.79"></path><path d="M4 3h.01"></path><path d="M22 8h.01"></path><path d="M15 2h.01"></path><path d="M22 20h.01"></path><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"></path><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17"></path><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"></path><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"></path></svg><span>Clôture Jour 1</span></div></div></div><div class="sheetov" style="position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;justify-content:flex-end;background:rgba(11,14,20,0.42);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)"><div class="sheetbox" style="background:var(--surface-card);margin:0 auto;width:100%;max-width:460px;max-height:90vh;display:flex;flex-direction:column;border-top-left-radius:var(--radius-xl);border-top-right-radius:var(--radius-xl);box-shadow:var(--shadow-xl);overflow:hidden"><div style="height:4px;background:#00AEF0"></div><div style="padding:12px 0 0;display:grid;place-items:center"><span style="width:38px;height:4px;border-radius:99px;background:var(--neutral-300)"></span></div><div style="overflow-y:auto;padding:14px 20px 24px"><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px"><span style="display:inline-flex;align-items:center;gap:5px;font-family:var(--font-ui);font-weight:600;font-size:11.5px;color:#00AEF0;background:rgba(0,174,240,0.1);padding:3px 9px 3px 7px;border-radius:var(--radius-pill);letter-spacing:0.01em;white-space:nowrap"><span style="width:7px;height:7px;border-radius:50%;background:#00AEF0;flex:none"></span>Salle 1<span style="opacity:0.65;font-weight:500"> · 35p</span></span><span style="display:inline-flex;align-items:center;gap:5px;font-family:var(--font-mono);font-size:12.5px;color:var(--text-secondary);font-weight:500"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>10:00–11:00 · 60 min</span></div><h2 style="font-family:var(--font-display);font-weight:700;font-size:20px;line-height:1.25;letter-spacing:-0.02em;color:var(--text-heading);margin:0 0 4px;text-wrap:pretty">Table ronde - Préparer son tenant à l'arrivée de Microsoft 365 Copilot</h2><p style="font-size:14px;line-height:1.6;color:var(--text-body);margin:10px 0 0;white-space:pre-wrap">L'arrivée de Copilot est aussi un challenge coté gestion du tenant M365. Assurer les prérequis, assurer la qualité des données, aider les équipes adoption. Dans cette table ronde, une sélection d'experts vous donnerons leur retour d'expérience sur les actions les plus importantes à mener pour faire de votre déploiement M365 Copilot une réussite.</p><div style="margin-top:18px"><div style="font-family:var(--font-ui);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px">Intervenants</div><div style="display:flex;gap:12px;padding:14px 0;border-top:1px solid var(--border-subtle)"><div style="flex:none;padding:2.5px;border-radius:50%;background:#00AEF0;height:fit-content"><div style="width:46px;height:46px;border-radius:50%;background:var(--neutral-100);border:2px solid var(--white);display:grid;place-content:center;font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--ink-600)">SP</div></div><div style="flex:1;min-width:0"><div style="font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--text-heading)">Sébastien Paulet</div><div style="font-size:12.5px;color:var(--brand-blue-700);font-weight:500;margin-top:1px">MVP fond of Content Processing / Digital Workplace / Compliance / Agile </div><div style="font-size:13px;line-height:1.55;color:var(--text-secondary);margin-top:6px;white-space:pre-wrap">20 years as consultant, dev, tech lead, project manager, trainer, team leader, speaker around SharePoint and M365 technologies and fond of topics around #compliance, #GDPR, #ITSec,…</div></div></div><div style="display:flex;gap:12px;padding:14px 0;border-top:1px solid var(--border-subtle)"><div style="flex:none;padding:2.5px;border-radius:50%;background:#00AEF0;height:fit-content"><div style="width:46px;height:46px;border-radius:50%;background:var(--neutral-100);border:2px solid var(--white);display:grid;place-content:center;font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--ink-600)">RD</div></div><div style="flex:1;min-width:0"><div style="font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--text-heading)">Romain Dalle</div><div style="font-size:12.5px;color:var(--brand-blue-700);font-weight:500;margin-top:1px">Data Security Technical Officer, MCT, MVP Security @ Cellenza</div><div style="font-size:13px;line-height:1.55;color:var(--text-secondary);margin-top:6px;white-space:pre-wrap">My mantra? Collaborative working and the productivity of organisations should constantly be facilitated and improved, without compromising the confidentiality and integrity of data…</div></div></div><div style="display:flex;gap:12px;padding:14px 0;border-top:1px solid var(--border-subtle)"><div style="flex:none;padding:2.5px;border-radius:50%;background:#00AEF0;height:fit-content"><div style="width:46px;height:46px;border-radius:50%;background:var(--neutral-100);border:2px solid var(--white);display:grid;place-content:center;font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--ink-600)">JD</div></div><div style="flex:1;min-width:0"><div style="font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--text-heading)">Jean-Sébastien Duchêne</div><div style="font-size:12.5px;color:var(--brand-blue-700);font-weight:500;margin-top:1px">Microsoft MVP &amp; Regional Chief Technology Officer EXAKIS NELITE</div><div style="font-size:13px;line-height:1.55;color:var(--text-secondary);margin-top:6px;white-space:pre-wrap">Enterprise Solution Architect on Microsoft technologies, Jean-Sébastien Duchêne has been an expert on user environments, Modern Desktop, Mobility, Security and Cloud topics for sev…</div></div></div><div style="display:flex;gap:12px;padding:14px 0;border-top:1px solid var(--border-subtle)"><div style="flex:none;padding:2.5px;border-radius:50%;background:#00AEF0;height:fit-content"><div style="width:46px;height:46px;border-radius:50%;background:var(--neutral-100);border:2px solid var(--white);display:grid;place-content:center;font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--ink-600)">AP</div></div><div style="flex:1;min-width:0"><div style="font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--text-heading)">Alban Piel</div><div style="font-size:12.5px;color:var(--brand-blue-700);font-weight:500;margin-top:1px">CEO - Modern Work Lead</div><div style="font-size:13px;line-height:1.55;color:var(--text-secondary);margin-top:6px;white-space:pre-wrap">Architecte Microsoft 365, j'accompagne tous types d'entreprises dans leur transformation digitale à l'aide de Microsoft 365.</div></div></div><div style="display:flex;gap:12px;padding:14px 0;border-top:1px solid var(--border-subtle)"><div style="flex:none;padding:2.5px;border-radius:50%;background:#00AEF0;height:fit-content"><div style="width:46px;height:46px;border-radius:50%;background:var(--neutral-100);border:2px solid var(--white);display:grid;place-content:center;font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--ink-600)">AP</div></div><div style="flex:1;min-width:0"><div style="font-family:var(--font-display);font-weight:600;font-size:15px;color:var(--text-heading)">Alexandre Piatetsky</div><div style="font-size:12.5px;color:var(--brand-blue-700);font-weight:500;margin-top:1px">Responsable Technologie M365 | Microsoft MVP</div><div style="font-size:13px;line-height:1.55;color:var(--text-secondary);margin-top:6px;white-space:pre-wrap">Alexandre est un expert reconnu de l’écosystème Microsoft, spécialisé dans Microsoft 365, Copilot et la gouvernance numérique. En tant que Microsoft MVP, il intervient régulièremen…</div></div></div></div></div><div style="flex:none;padding:10px 16px;border-top:1px solid var(--border-subtle);display:flex;gap:10px;background:var(--surface-card)"><button style="flex:1;padding:11px 18px;border-radius:var(--radius-md);font-family:var(--font-ui);font-weight:600;font-size:14px;border:none;background:var(--ink-900);color:#fff">Fermer</button></div></div></div></div>
+</body>
+</html>
