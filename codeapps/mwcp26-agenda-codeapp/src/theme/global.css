@@ -1,0 +1,38 @@
+/* Shell global — repris à l'identique de la maquette uxui/mwcp26-agenda-codeapp */
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+#root { min-height: 100vh; }
+
+body {
+  font-family: var(--font-ui);
+  color: var(--text-body);
+  background: var(--surface-page);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Fond Paris flou (background-image injecté en base64 via le composant AppShell) */
+.bg {
+  position: fixed; inset: -50px; z-index: -2;
+  background-position: center 30%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: blur(36px) saturate(1.12);
+  transform: scale(1.18);
+}
+.bg::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(47,116,222,0.30) 0%, rgba(246,248,251,0.62) 55%, rgba(246,248,251,0.78) 100%);
+}
+
+.app-col {
+  position: relative; z-index: 1;
+  max-width: 468px; margin: 0 auto; min-height: 100vh;
+  background: var(--surface-page);
+  box-shadow: 0 0 70px rgba(11,14,20,0.20);
+}
+
+@media (min-width: 520px) {
+  .app-col { margin: 24px auto; min-height: calc(100vh - 48px); border-radius: var(--radius-lg); overflow: hidden; }
+}
