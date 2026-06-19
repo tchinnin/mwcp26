@@ -1,0 +1,11 @@
+App:
+  Properties:
+    Theme: =PowerAppsTheme
+    StartScreen: =ScreenAgenda
+    Formulas: |-
+      =NormalizeText(t: Text): Text =
+          Lower(
+              Substitute(Substitute(Substitute(Substitute(Substitute(Substitute(Substitute(Substitute(Substitute(Substitute(
+                  t,
+                  "é", "e"), "è", "e"), "ê", "e"), "à", "a"), "â", "a"), "î", "i"), "ï", "i"), "ô", "o"), "ù", "u"), "ç", "c")
+          );

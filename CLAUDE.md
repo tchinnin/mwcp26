@@ -16,7 +16,8 @@ Project context: see [README.md](./README.md).
 
 - **Environnement cible :** TCH — `https://chinnin-tech-tch.crm4.dynamics.com`
 - **Environment ID :** `86021eb6-8c40-ea18-aba0-208524dc4d42`
-- **PAC auth profile :** `CHINNIN.TECH - TCH`
+- **Tenant ID :** `be91cf8c-1bdb-4e16-9c30-5276f42e7e8b`
+- **PAC auth profile :** `loic@chin-nin.tech`
 - Toute opération `pac` (deploy, solution push, auth select) doit cibler cet environnement. Ne jamais pousser vers `chinnin-tech-dev` depuis cette branche.
 
 ## Conventions
