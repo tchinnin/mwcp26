@@ -1,0 +1,4 @@
+description: Allowed fields for mwcp26_sessionspeaker Web API access
+id: 424cb8fb-e212-42eb-9ee9-abb8767b9793
+name: Webapi/mwcp26_sessionspeaker/fields
+value: "_mwcp26_sessionid_value,_mwcp26_speakerid_value,mwcp26_sessionspeakerid"

@@ -1,0 +1,4 @@
+description: Allowed fields for mwcp26_conference Web API access
+id: 900e4f8a-2859-4853-89fe-5ad566bc7fa9
+name: Webapi/mwcp26_conference/fields
+value: "mwcp26_conferenceid,mwcp26_name"

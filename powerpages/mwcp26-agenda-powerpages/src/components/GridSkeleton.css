@@ -1,0 +1,39 @@
+/*
+ * Feature 101 — US-101-02 : styles du squelette de chargement de la grille.
+ * Les coquilles structurelles (.ttgrid, .tt-corner, .tt-roomhead, .tt-time, .tt-line)
+ * proviennent d'AgendaGrid.css ; ce fichier n'ajoute que les formes shimmer (.sk-*)
+ * et l'animation. Couleurs en tokens uniquement (cf. tokens.css --skeleton-*).
+ */
+
+/* Variante grille en mode chargement : ses cellules ne sont pas interactives. */
+.ttgrid--skeleton {
+  pointer-events: none;
+}
+
+/* .sk-shimmer + @keyframes sk-shimmer déplacés dans index.css (utilitaire global). */
+
+/* Pastille de salle (à la place de .tt-roomdot). */
+.sk-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: none;
+}
+
+/* Barres de texte placeholder. */
+.sk-bar {
+  display: inline-block;
+  height: 9px;
+  border-radius: var(--radius-pill);
+}
+.sk-bar--name { width: 88px; height: 11px; }
+.sk-bar--time { width: 30px; height: 9px; }
+
+/* Bloc session factice (à la place de .tt-card). */
+.sk-card {
+  margin: 2px 3px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+/* prefers-reduced-motion géré dans index.css (avec .sk-shimmer). */

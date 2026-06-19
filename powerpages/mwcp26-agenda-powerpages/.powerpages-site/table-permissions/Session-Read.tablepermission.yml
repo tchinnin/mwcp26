@@ -1,0 +1,13 @@
+adx_entitypermission_webrole:
+- 686b5502-72c7-4bb5-be04-2b34ae486a7f
+- 66e16701-e234-40ce-942a-a00ddd4f82e5
+append: false
+appendto: false
+create: false
+delete: false
+entitylogicalname: mwcp26_session
+entityname: Session - Read
+id: 4e5e0f67-7dc6-450d-b61e-7c1f9f59756b
+read: true
+scope: 756150000
+write: false

@@ -1,0 +1,13 @@
+adx_entitypermission_webrole:
+- 686b5502-72c7-4bb5-be04-2b34ae486a7f
+- 66e16701-e234-40ce-942a-a00ddd4f82e5
+append: false
+appendto: false
+create: false
+delete: false
+entitylogicalname: mwcp26_sessionspeaker
+entityname: Session Speaker - Read
+id: 0b439dd5-d36f-4cc4-a010-e60992883e5f
+read: true
+scope: 756150000
+write: false

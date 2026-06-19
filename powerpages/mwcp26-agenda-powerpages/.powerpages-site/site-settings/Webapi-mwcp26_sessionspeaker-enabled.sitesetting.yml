@@ -1,0 +1,4 @@
+description: Enable Web API access for mwcp26_sessionspeaker table
+id: 8bdf693e-877f-4114-9494-7e1cf7a728cb
+name: Webapi/mwcp26_sessionspeaker/enabled
+value: true

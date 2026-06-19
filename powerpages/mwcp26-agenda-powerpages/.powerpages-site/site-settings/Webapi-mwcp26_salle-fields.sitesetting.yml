@@ -1,0 +1,4 @@
+description: Allowed fields for mwcp26_salle Web API access
+id: a48bb4b4-9be7-4c4a-a50b-27d5ae322a1e
+name: Webapi/mwcp26_salle/fields
+value: "mwcp26_salleid,mwcp26_name"

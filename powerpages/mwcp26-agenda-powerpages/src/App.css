@@ -1,0 +1,328 @@
+/*
+ * App shell (squelette) — MWCP 2026 Agenda Code App.
+ * Layout responsive (cf. spec 100) piloté par un seul breakpoint (1024px) :
+ *   < 1024px : mobile/tablette — app PLEINE LARGEUR, header (hero) collé en haut sans
+ *              rayon, AUCUN fond Paris, page scroll.
+ *   >= 1024px: desktop — colonne bornée centrée (panneau coins nets + ombre), fond Paris
+ *              visible dans les marges, en-tête .dhead figé, seul le <main> défile.
+ * N'utilise que des tokens var(--…) (cf. theme/tokens.css).
+ */
+
+.app-shell {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* Surface opaque par défaut : garantit l'absence de fond Paris sous 1024px. */
+  background: var(--surface-page);
+}
+
+/* Fond aérien Paris flouté, fixe, recouvert d'un voile clair pour le glass.
+   <img> (même mécanisme que les logos) plutôt qu'un background-image via variable
+   CSS : seul le src d'<img> en data URI se résout de façon fiable dans le player.
+   Masqué par défaut (mobile/tablette pleine largeur) ; affiché dès 1024px (cf. media query). */
+.app-bg {
+  display: none;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(8px) saturate(1.05);
+  transform: scale(1.06);
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Colonne applicative. Enfants à RAS BORD (pas de padding ni de gap) : le header
+   est collé au haut, le rayon est porté par la colonne (overflow:hidden) — pas par
+   le header. Le padding du contenu est sur .app-main. */
+.app-col {
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------------------------- Header ------------------------------------ */
+/* Base = HERO mobile : dégradé ciel, non sticky (défile avec la page pour
+   maximiser le contenu utile sur petit écran). Repasse en en-tête compact
+   horizontal >= 1024px (cf. media query desktop). */
+.app-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  background: var(--gradient-hero);
+  color: var(--text-on-brand);
+}
+
+.app-header__logo {
+  height: 64px;
+  width: 64px;
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  padding: var(--space-2);
+  box-shadow: var(--shadow-sm);
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.app-header__titles {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.app-header__kicker {
+  font-size: var(--text-overline);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-overline);
+  text-transform: uppercase;
+  color: var(--text-on-brand);
+  opacity: 0.85;
+}
+
+.app-header__title {
+  font-family: var(--font-display);
+  font-weight: var(--weight-extrabold);
+  font-size: var(--text-h1);
+  letter-spacing: var(--tracking-snug);
+  color: var(--text-on-brand);
+}
+
+.app-header__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+}
+
+/* Pill édition translucide : le header (hero mobile / dhead desktop) est un dégradé
+   bleu ; pastille blanche translucide (cf. maquette .hpill-d), pas d'aplat rouge. */
+.badge-edition {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-caption);
+  color: var(--text-on-brand);
+  background: rgba(255, 255, 255, 0.18);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+}
+
+.pill-dates {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-body-sm);
+  color: var(--ink-900);
+  background: var(--brand-yellow);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+/* ---------------------------- Barre de contrôles ------------------------ */
+/* Entre le header et le main. Mobile : dans le flux (défile avec le hero).
+   Desktop : flex:0 0 auto dans .app-col → hors du <main> scrollable, donc figée
+   sous le header (cf. spec 100). Ne porte que le sélecteur de jour (103). */
+.app-controls {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-5);
+  background: var(--glass-bg-bar);
+  backdrop-filter: blur(var(--glass-blur-bar));
+  -webkit-backdrop-filter: blur(var(--glass-blur-bar));
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* Placeholder de la barre de jour pendant le chargement (101 US-101-02) :
+   pill aux dimensions du segmented control (103), animée via .sk-shimmer. */
+.sk-daytabs {
+  width: 150px;
+  height: 46px;
+  border-radius: var(--radius-md);
+}
+
+/* ---------------------------- Zone agenda ------------------------------- */
+.app-main {
+  flex: 1 1 auto;
+}
+
+/* Grille (101) / liste desktop (102) : masquées sous 1024px ; affichées ≥1024px. */
+.agenda-grid-wrap {
+  display: none;
+}
+
+/* Conteneur liste mobile (102) : visible sous 1024px, masqué ≥1024px. */
+.agenda-mobile-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Toggle de vue Grille / Liste (feature 102, desktop uniquement). */
+.view-toggle {
+  display: none; /* Masqué sur mobile (la liste y est toujours active). */
+  align-items: center;
+  gap: var(--space-1);
+  background: var(--surface-sunken);
+  padding: var(--space-1);
+  border-radius: var(--radius-md);
+  margin-left: auto;
+}
+
+.vt-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-4);
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font-size: var(--text-body-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-standard),
+              color var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-fast) var(--ease-standard);
+  white-space: nowrap;
+}
+
+.vt-btn.is-active {
+  background: var(--surface-card);
+  color: var(--brand-blue-700);
+  box-shadow: var(--shadow-xs);
+}
+
+/* État chargement / erreur : carte glass centrée dans le main. */
+.app-main:has(> .agenda-status) {
+  display: flex;
+}
+.agenda-status {
+  margin: auto;
+  max-width: 420px;
+  text-align: center;
+  padding: var(--space-10);
+  color: var(--text-secondary);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--glass-shadow), var(--glass-highlight);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+}
+.agenda-status h2 {
+  font-size: var(--text-h3);
+  color: var(--text-heading);
+  margin-bottom: var(--space-2);
+}
+.agenda-status p {
+  margin: 0;
+  font-size: var(--text-body-sm);
+}
+.agenda-status--error h2 {
+  color: var(--brand-red);
+}
+
+/* ---------------------------- Responsive -------------------------------- */
+/* < 1024px : mobile / tablette — app PLEINE LARGEUR, header collé en haut sans rayon,
+   pas de fond Paris (cf. base). Aucune colonne flottante en deçà du desktop.
+   >= 1024px : seul palier — colonne bornée centrée (panneau plein écran), fond Paris
+   visible dans les marges, en-tête .dhead figé, corps scrollable. */
+@media (min-width: 1024px) {
+  .app-bg {
+    display: block;
+  }
+  .app-shell {
+    background: transparent;
+  }
+  .app-shell::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface-page) 35%, transparent),
+      color-mix(in srgb, var(--surface-page) 70%, transparent)
+    );
+    z-index: -1;
+  }
+  /* Panneau plein écran : colonne bornée centrée, coins nets, ombre ambiante qui le
+     fait flotter au-dessus du fond Paris (valeur maquette, pas de token ambiant). */
+  .app-col {
+    max-width: var(--app-col-wide);
+    height: 100vh;
+    min-height: 0;
+    margin: 0 auto;
+    border-radius: 0;
+    overflow: hidden;
+    background: var(--surface-page);
+    box-shadow: 0 0 80px rgba(11, 14, 20, 0.24);
+  }
+  /* En-tête compact = bandeau dégradé bleu (.dhead de la maquette) : texte blanc,
+     collé en haut (pas de rayon ni d'ombre propre), titre au-dessus / sous-titre
+     dessous, pills poussées à droite. */
+  .app-header {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--space-5);
+    background: linear-gradient(108deg, var(--sky-deep) 0%, var(--brand-blue) 78%);
+    color: var(--text-on-brand);
+    flex: 0 0 auto;
+  }
+  .app-header__logo {
+    height: 44px;
+    width: 44px;
+  }
+  /* Titre au-dessus, kicker→sous-titre en dessous (column-reverse) ; pousse les pills. */
+  .app-header__titles {
+    flex-direction: column-reverse;
+    gap: var(--space-1);
+    margin-right: auto;
+  }
+  .app-header__kicker {
+    text-transform: none;
+    letter-spacing: normal;
+    font-size: var(--text-body-sm);
+    font-weight: var(--weight-medium);
+    color: var(--text-on-brand);
+    opacity: 0.86;
+  }
+  .app-header__title {
+    font-size: var(--text-h3);
+    line-height: 1;
+    color: var(--text-on-brand);
+  }
+  /* Conteneur de défilement desktop : header + barre de contrôles restent figés
+     au-dessus ; seul .app-main défile. Padding à 0 pour que les en-têtes sticky de la
+     grille (.tt-roomhead / .tt-time) collent au bord du conteneur. */
+  .app-main {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    min-height: 0;
+    padding: 0;
+  }
+  /* Sélecteur de jour : largeur du contenu (aligné à gauche), pas pleine largeur. */
+  .daytabs {
+    grid-auto-columns: auto;
+    width: fit-content;
+  }
+  /* Desktop : grille/liste desktop visible, liste mobile masquée, toggle visible. */
+  .agenda-grid-wrap {
+    display: block;
+  }
+  .agenda-mobile-wrap {
+    display: none;
+  }
+  .view-toggle {
+    display: flex;
+  }
+}

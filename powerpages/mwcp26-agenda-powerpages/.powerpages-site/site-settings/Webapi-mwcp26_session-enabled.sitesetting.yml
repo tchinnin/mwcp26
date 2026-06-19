@@ -1,0 +1,4 @@
+description: Enable Web API access for mwcp26_session table
+id: 8dbdcf24-e4ba-439e-a6f6-70cb53c62502
+name: Webapi/mwcp26_session/enabled
+value: true

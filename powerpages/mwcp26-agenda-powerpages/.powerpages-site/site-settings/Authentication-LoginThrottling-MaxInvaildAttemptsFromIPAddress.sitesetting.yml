@@ -1,0 +1,4 @@
+description: 'The default number of unauthenticated login attempts from an IP address before the IP address is blocked for Authentication/LoginThrottling/IpAddressTimeoutTimeSpan if the attempts occur within Authentication/LoginThrottling/MaxAttemptsTimeLimitTimeSpan amount of time. Default: 1000'
+id: 7c3ef904-7911-4f5f-8ffc-e06cb41dd260
+name: Authentication/LoginThrottling/MaxInvaildAttemptsFromIPAddress
+value: 1000

@@ -1,0 +1,4 @@
+description: Enable Web API access for contact table
+id: 8c042861-f2cc-475a-94e1-eb5259720d64
+name: Webapi/contact/enabled
+value: true

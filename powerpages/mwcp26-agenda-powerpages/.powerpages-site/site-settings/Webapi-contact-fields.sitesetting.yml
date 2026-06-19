@@ -1,0 +1,4 @@
+description: Allowed fields for contact Web API access (speaker name/role/bio only)
+id: c5be1d54-6474-4a0e-bcb8-8be635fd3d97
+name: Webapi/contact/fields
+value: "contactid,description,firstname,jobtitle,lastname"

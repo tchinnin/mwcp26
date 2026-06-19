@@ -1,0 +1,4 @@
+description: Enable Web API access for mwcp26_conference table
+id: 910eb982-ad80-4888-82c2-7de8625e2b9b
+name: Webapi/mwcp26_conference/enabled
+value: true
