@@ -27,7 +27,7 @@ voir toutes ses informations.
 - **Fermeture** :
   - **Desktop** : bouton de fermeture, clic sur l'overlay, touche `Esc`.
   - **Mobile** : glissement vers le bas (voir seuil ci-dessous), tap sur l'overlay,
-    touche `Esc`, bouton de fermeture.
+    touche `Esc`. **Pas de bouton de fermeture** — l'expérience drawer suffit.
   - **Seuil de fermeture mobile** : le drawer se ferme si le glissement dépasse
     **30 % de sa hauteur ouverte** OU si la vitesse de glissement est rapide (flick) ;
     sinon il revient à sa position ouverte (**snap-back**).
@@ -43,8 +43,10 @@ voir toutes ses informations.
 - [ ] Mobile : le contenu est scrollable lorsqu'il dépasse 90 % de la hauteur d'écran.
 - [ ] Mobile : glissement > 30 % de hauteur OU flick → fermeture ; glissement relâché
       avant le seuil → snap-back vers la position ouverte.
-- [ ] Dialog / drawer accessible : piège de focus, fermeture au bouton / overlay / `Esc`,
-      focus rendu à l'élément d'origine.
+- [ ] Desktop accessible : piège de focus, fermeture au bouton de fermeture / overlay /
+      `Esc`, focus rendu à l'élément d'origine.
+- [ ] Mobile accessible : piège de focus, fermeture au glissement / overlay / `Esc`
+      (pas de bouton), focus rendu à l'élément d'origine.
 
 ### Edge cases
 
