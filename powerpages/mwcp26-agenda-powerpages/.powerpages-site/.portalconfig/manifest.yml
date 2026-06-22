@@ -1,4 +1,8 @@
 adx_webfile:
+- RecordId: 0e01a6bd-81a8-47be-9606-d4e05f884b0c
+  DisplayName: index-9s_CeW-Z.js
+  CheckSum: 
+  IsDeleted: true
 - RecordId: 15c8fdd9-e887-4840-a5d1-4e55da139854
   DisplayName: index-BWTqKF7n.js
   CheckSum: 
@@ -9,5 +13,14 @@ adx_webfile:
   IsDeleted: true
 - RecordId: 4c35e326-ac43-468b-8127-d5dc224c1358
   DisplayName: index-Di1wp-j4.js
+  CheckSum: 
+  IsDeleted: true
+- RecordId: 7afe4f79-fe29-4269-af90-3459fe46c9ee
+  DisplayName: index-BZeiQkc2.css
+  CheckSum: 
+  IsDeleted: true
+annotation:
+- RecordId: 7afe4f79-fe29-4269-af90-3459fe46c9ee
+  DisplayName: index-BZeiQkc2.css
   CheckSum: 
   IsDeleted: true

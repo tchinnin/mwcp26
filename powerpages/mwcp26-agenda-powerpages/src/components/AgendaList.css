@@ -175,6 +175,55 @@
   color: var(--brand-yellow);
 }
 
+/* ---------------------------- Bande de service -------------------------- */
+/* Pause / Repas / Evenement : non interactive, icône + titre + durée. */
+.al-band {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-sunken);
+  border: 1px dashed var(--border-default);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-family: var(--font-ui);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-body-sm);
+}
+
+.al-band__icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  flex: none;
+}
+
+.al-band__icon {
+  width: 14px;
+  height: 14px;
+  color: var(--ink-500);
+}
+
+.al-band__title {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.al-band__duration {
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  color: var(--text-muted);
+  flex: none;
+}
+
 /* ---------------------------- État vide --------------------------------- */
 .al-empty {
   display: flex;

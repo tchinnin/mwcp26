@@ -166,3 +166,19 @@ Rendu dans `.app-controls`, après `<DayTabs>` :
 | Shimmer global | `src/index.css` (`.sk-shimmer`, `@keyframes sk-shimmer`) |
 | Gating + toggle + state | `src/App.tsx` (`view`, `allSessions`, rendu conditionnel) |
 | CSS gate mobile/desktop | `src/App.css` (`.agenda-mobile-wrap`, `.agenda-grid-wrap`, `.view-toggle`) |
+
+---
+
+## Power Pages — Spécificités
+
+Différences d'implémentation par rapport à la Code App :
+
+- **Import d'icône** : la Code App importe le composant `ServiceIcon` depuis `AgendaGrid.tsx`
+  et l'utilise directement dans `.al-band`. Le Power Pages importe `ICONS` +
+  `serviceIconKey` (exports nommés) et définit un composant local `BandIcon`
+  (cercle blanc 28px, classe `.al-band__icon-wrap`) qui construit son propre SVG.
+
+- **Données liste vs grille** : identique — `allSessions = day.sessions` complet pour
+  la liste ; `positionableSessions(day)` pour la grille. La logique `positionableSessions`
+  utilise `s.sessionType === 'Session'` pour l'exigence de salle (Power Pages et Code App
+  partagent cette implémentation dans `agenda-transform.ts`).

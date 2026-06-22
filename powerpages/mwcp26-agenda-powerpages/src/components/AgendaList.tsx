@@ -2,11 +2,14 @@
  * Feature 102 — US-102-01 : vue liste de l'agenda.
  * Toutes les sessions du jour (y compris sans salle ou sans horaire), regroupées par
  * heure de début, ordonnées chronologiquement. Les sessions sans horaire apparaissent
- * en dernier sous "Horaire à confirmer". Chaque carte est activable au clic et au
- * clavier (feature 105 — détail — non encore implémentée).
+ * en dernier sous "Horaire à confirmer".
+ *
+ * Session / Keynote → carte .al-card cliquable (feature 105 — détail — à venir).
+ * Pause / Repas / Evenement → bande .al-band non interactive avec icône de service.
  */
 
 import './AgendaList.css'
+import { ICONS, serviceIconKey } from './AgendaGrid'
 import { groupByStartTime } from '../data/agenda-transform'
 import type { Session } from '../types/agenda'
 
@@ -55,6 +58,18 @@ function CalendarIcon() {
   )
 }
 
+/* Icône de service en cercle (28 px) pour les bandes de la vue liste. */
+function BandIcon({ sessionType, title }: { sessionType: string; title: string }) {
+  const paths = ICONS[serviceIconKey(sessionType, title)]
+  return (
+    <span className="al-band__icon-wrap">
+      <svg className="al-band__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        {paths.map((d, i) => <path key={i} d={d} />)}
+      </svg>
+    </span>
+  )
+}
+
 export default function AgendaList({ sessions }: AgendaListProps) {
   const groups = groupByStartTime(sessions)
 
@@ -79,6 +94,18 @@ export default function AgendaList({ sessions }: AgendaListProps) {
           </header>
 
           {group.sessions.map((s) => {
+            /* Pause / Repas / Evenement → bande non interactive */
+            if (s.sessionType === 'Pause' || s.sessionType === 'Repas' || s.sessionType === 'Evenement') {
+              return (
+                <div key={s.id} className="al-band">
+                  <BandIcon sessionType={s.sessionType} title={s.title} />
+                  <span className="al-band__title">{s.title}</span>
+                  {s.duration && <span className="al-band__duration">{s.duration}</span>}
+                </div>
+              )
+            }
+
+            /* Session / Keynote → carte cliquable */
             const speakers = s.speakers.map((sp) => sp.name).filter(Boolean)
             const timeRange =
               s.startTime && s.endTime ? `${s.startTime}–${s.endTime}` : s.startTime ?? ''

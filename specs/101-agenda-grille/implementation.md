@@ -106,3 +106,23 @@ US-101-02 — Chargement (skeleton) :
 - `src/types/agenda.ts` — `SessionType` union + interface `Session`.
 - `src/generated/services/*` — services Dataverse générés (ne pas éditer).
 - `src/App.tsx` / `src/App.css` — chargement async, gating responsive, ancrage sticky.
+
+---
+
+## Power Pages — Spécificités
+
+Différences d'implémentation par rapport à la Code App :
+
+- **Source de données** : Portal Web API OData (`/_api/mwcp26_sessions`) au lieu des
+  connecteurs générés. `SESSION_TYPE_MAP` et la logique de mapping sont dans
+  `src/data/agenda.ts` (Power Pages), sans `src/generated/services/`.
+
+- **Prérequis site setting** : `mwcp26_sessiontypecode` doit figurer dans
+  `Webapi/mwcp26_session/fields`
+  (`.powerpages-site/site-settings/Webapi-mwcp26_session-fields.sitesetting.yml`)
+  sinon la Portal Web API ne retourne pas le champ même s'il est dans le `$select`.
+
+- **Export icônes** : la Code App exporte le composant `ServiceIcon` directement ;
+  le Power Pages exporte `ICONS` (chemins SVG) + `serviceIconKey(sessionType, title)`
+  depuis `AgendaGrid.tsx`, et `AgendaList.tsx` crée son propre composant `BandIcon`
+  (cercle 28px) depuis ces exports.

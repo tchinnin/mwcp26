@@ -23,9 +23,8 @@ function toMin(t: string): number {
   return Number(h) * 60 + Number(m)
 }
 
-/* Icône d'une session de service, choisie par mot-clé du titre (cf. maquette `breakIcon`).
-   SVG inline léger (style Lucide) — pas de dépendance d'icônes ajoutée. */
-const ICONS: Record<string, string[]> = {
+/* Chemins SVG par type d'icône (style Lucide, inline) — pas de dépendance d'icônes. */
+export const ICONS: Record<string, string[]> = {
   coffee: ['M10 2v2', 'M14 2v2', 'M6 2v2', 'M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1'],
   utensils: ['M3 2v7c0 1.1.9 2 2 2a2 2 0 0 0 2-2V2', 'M7 2v20', 'M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7'],
   'door-open': ['M13 4h3a2 2 0 0 1 2 2v14', 'M2 20h3', 'M13 20h9', 'M10 12v.01', 'M13 4.6v16.2a1 1 0 0 1-1.2 1L5 20V5.6a2 2 0 0 1 1.5-2l4-1A2 2 0 0 1 13 4.6Z'],
@@ -36,10 +35,14 @@ const ICONS: Record<string, string[]> = {
   default: ['M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5', 'M16 2v4', 'M8 2v4', 'M3 10h5', 'M17.5 17.5 16 16.3V14'],
 }
 
-function breakIconKey(title: string): keyof typeof ICONS {
+/**
+ * Clé d'icône pour une session de service.
+ * — Pause → coffee, Repas → utensils, Evenement → matching par mot-clé du titre.
+ */
+export function serviceIconKey(sessionType: string, title: string): keyof typeof ICONS {
+  if (sessionType === 'Pause') return 'coffee'
+  if (sessionType === 'Repas') return 'utensils'
   const t = (title || '').toLowerCase()
-  if (t.includes('café') || t.includes('cafe') || t.includes('pause')) return 'coffee'
-  if (t.includes('déjeuner') || t.includes('dejeuner') || t.includes('repas') || t.includes('lunch') || t.includes('cocktail') || t.includes('apéro')) return 'utensils'
   if (t.includes('accueil')) return 'door-open'
   if (t.includes('lancement') || t.includes('ouverture')) return 'flag'
   if (t.includes('clôture') || t.includes('cloture') || t.includes('fin')) return 'party'
@@ -48,8 +51,8 @@ function breakIconKey(title: string): keyof typeof ICONS {
   return 'default'
 }
 
-function ServiceIcon({ title }: { title: string }) {
-  const paths = ICONS[breakIconKey(title)]
+function ServiceIcon({ sessionType, title }: { sessionType: string; title: string }) {
+  const paths = ICONS[serviceIconKey(sessionType, title)]
   return (
     <svg className="tt-band__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       {paths.map((d, i) => <path key={i} d={d} />)}
@@ -124,14 +127,42 @@ export default function AgendaGrid({ sessions, rooms }: AgendaGridProps) {
       {sessions.map((s) => {
         const r1 = rowFor(toMin(s.startTime))
         const r2 = rowFor(toMin(s.endTime))
-        if (s.isService) {
+
+        /* Pause / Repas / Evenement → bande pleine largeur */
+        if (s.sessionType === 'Pause' || s.sessionType === 'Repas' || s.sessionType === 'Evenement') {
           return (
             <div key={s.id} className="tt-band" style={{ gridColumn: `2 / ${rooms.length + 2}`, gridRow: `${r1} / ${r2}` }}>
-              <ServiceIcon title={s.title} />
+              <ServiceIcon sessionType={s.sessionType} title={s.title} />
               <span>{s.title}</span>
             </div>
           )
         }
+
+        /* Keynote → carte pleine largeur avec badge de salle */
+        if (s.sessionType === 'Keynote') {
+          const line = speakerLine(s)
+          return (
+            <div
+              key={s.id}
+              className="tt-card tt-keynote"
+              style={{ gridColumn: `2 / ${rooms.length + 2}`, gridRow: `${r1} / ${r2}`, ['--rc' as string]: s.roomColor } as CSSProperties}
+            >
+              {s.roomShort && (
+                <div className="tt-keynote__badge">
+                  <span className="tt-keynote__badge-dot" />
+                  {s.roomShort}
+                </div>
+              )}
+              <div className="tt-keynote__body">
+                <div className="tt-ctime">{s.startTime}–{s.endTime}</div>
+                <div className="tt-ctitle">{s.title}</div>
+                {line ? <div className="tt-cspk">{line}</div> : null}
+              </div>
+            </div>
+          )
+        }
+
+        /* Session → carte dans la colonne de salle */
         const col = (roomIndex[s.room ?? ''] ?? 0) + 2
         const line = speakerLine(s)
         return (

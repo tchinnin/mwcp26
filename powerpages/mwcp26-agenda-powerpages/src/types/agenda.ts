@@ -7,6 +7,8 @@
  * (cf. règle « tokens, never literals » du design system).
  */
 
+export type SessionType = 'Session' | 'Keynote' | 'Pause' | 'Repas' | 'Evenement'
+
 export interface Speaker {
   name: string;
   tagLine: string;
@@ -45,7 +47,9 @@ export interface Session {
   roomCap: number;
   /** Couleur de la salle — référence token. */
   roomColor: string;
-  /** Session de service (pause, accueil, plénière…) → rendue en bande pleine largeur. */
+  /** Type fonctionnel de la session (choix global Dataverse mwcp26_sessiontypecode). */
+  sessionType: SessionType;
+  /** Session de service (Pause/Repas/Evenement) → rendue en bande pleine largeur. */
   isService: boolean;
   speakers: Speaker[];
 }

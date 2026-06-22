@@ -1,4 +1,4 @@
 description: Allowed fields for mwcp26_session Web API access
 id: d7f22d0c-eb20-4c12-a47b-6f6ae194ed16
 name: Webapi/mwcp26_session/fields
-value: "_mwcp26_conferenceid_value,_mwcp26_salleid_value,mwcp26_description,mwcp26_enddatetime,mwcp26_name,mwcp26_sessionid,mwcp26_startdatetime"
+value: "_mwcp26_conferenceid_value,_mwcp26_salleid_value,mwcp26_description,mwcp26_enddatetime,mwcp26_name,mwcp26_sessionid,mwcp26_startdatetime,mwcp26_sessiontypecode"

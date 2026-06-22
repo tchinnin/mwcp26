@@ -116,6 +116,40 @@
   text-overflow: ellipsis;
 }
 
+/* keynote — pleine largeur avec badge de salle à gauche */
+.tt-keynote {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+.tt-keynote__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex: none;
+  background: color-mix(in srgb, var(--rc, var(--brand-blue)) 12%, transparent);
+  border-radius: var(--radius-sm);
+  padding: 3px var(--space-2);
+  font-size: 11px;
+  font-family: var(--font-ui);
+  font-weight: var(--weight-semibold);
+  color: var(--rc, var(--brand-blue));
+}
+.tt-keynote__badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--rc, var(--brand-blue));
+  flex: none;
+}
+.tt-keynote__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
 /* bande de service (pause, accueil, plénière) — pleine largeur */
 .tt-band {
   position: relative;

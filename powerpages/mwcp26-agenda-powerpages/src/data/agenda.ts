@@ -4,7 +4,7 @@
  * App.tsx et tous les composants restent inchangés — seule cette couture change.
  */
 
-import type { AgendaData, Day, Session } from '../types/agenda'
+import type { AgendaData, Day, Session, SessionType } from '../types/agenda'
 import { buildRooms } from './agenda-transform'
 
 export { defaultDayIndex, positionableSessions } from './agenda-transform'
@@ -34,6 +34,15 @@ interface DvSession {
   mwcp26_enddatetime: string
   _mwcp26_salleid_value: string | null
   _mwcp26_conferenceid_value: string
+  mwcp26_sessiontypecode: number | null
+}
+
+const SESSION_TYPE_MAP: Record<number, SessionType> = {
+  318610000: 'Session',
+  318610001: 'Keynote',
+  318610002: 'Pause',
+  318610003: 'Repas',
+  318610004: 'Evenement',
 }
 
 interface DvSessionSpeaker {
@@ -117,7 +126,7 @@ export async function getAgenda(): Promise<AgendaData> {
     odata<DvSalle>('mwcp26_salles', '$select=mwcp26_salleid,mwcp26_name'),
     odata<DvSession>(
       'mwcp26_sessions',
-      `$select=mwcp26_sessionid,mwcp26_name,mwcp26_description,mwcp26_startdatetime,mwcp26_enddatetime,_mwcp26_salleid_value,_mwcp26_conferenceid_value` +
+      `$select=mwcp26_sessionid,mwcp26_name,mwcp26_description,mwcp26_startdatetime,mwcp26_enddatetime,_mwcp26_salleid_value,_mwcp26_conferenceid_value,mwcp26_sessiontypecode` +
       `&$filter=_mwcp26_conferenceid_value eq ${confId}` +
       `&$orderby=mwcp26_startdatetime asc`,
     ),
@@ -169,6 +178,7 @@ export async function getAgenda(): Promise<AgendaData> {
     const room    = ds._mwcp26_salleid_value ? roomById.get(ds._mwcp26_salleid_value) : undefined
     const spkList = speakersBySession.get(ds.mwcp26_sessionid) ?? []
 
+    const sessionType: SessionType = SESSION_TYPE_MAP[ds.mwcp26_sessiontypecode ?? -1] ?? 'Session'
     const session: Session = {
       id:         ds.mwcp26_sessionid,
       title:      ds.mwcp26_name,
@@ -181,7 +191,8 @@ export async function getAgenda(): Promise<AgendaData> {
       roomShort:  room?.short ?? '',
       roomCap:    room?.cap ?? 0,
       roomColor:  room?.color ?? 'var(--brand-blue)',
-      isService:  spkList.length === 0 && !ds._mwcp26_salleid_value,
+      sessionType,
+      isService:  sessionType !== 'Session' && sessionType !== 'Keynote',
       speakers:   spkList.map(c => ({
         name:    [c.firstname, c.lastname].filter(Boolean).join(' '),
         tagLine: c.jobtitle ?? '',

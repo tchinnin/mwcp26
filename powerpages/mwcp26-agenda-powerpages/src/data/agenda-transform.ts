@@ -146,7 +146,11 @@ export function defaultDayIndex(days: Day[]): number {
  * Les autres restent visibles en vue Liste (102).
  */
 export function positionableSessions(day: Day): Session[] {
-  return day.sessions.filter((s) => !!s.room && !!s.startTime && !!s.endTime)
+  return day.sessions.filter((s) => {
+    if (!s.startTime || !s.endTime) return false
+    if (s.sessionType === 'Session') return !!s.room
+    return true
+  })
 }
 
 /** Groupe de sessions partageant la même heure de début (vue Liste, feature 102). */

@@ -360,7 +360,7 @@ adx_sitesetting:
   IsDeleted: false
 - RecordId: d7f22d0c-eb20-4c12-a47b-6f6ae194ed16
   DisplayName: d7f22d0c-eb20-4c12-a47b-6f6ae194ed16
-  CheckSum: c86c988df56a66ed8a4eece580b4eaf267d05505dc7a9dae19b46f84b3bc3223
+  CheckSum: 03a210a0de2135ca60113ce08cba6eb114ca65fb40a1626852821afd102da3b1
   IsDeleted: false
 - RecordId: d8ee1b6b-3d9b-4b28-bd2b-88ea9e79df67
   DisplayName: d8ee1b6b-3d9b-4b28-bd2b-88ea9e79df67
@@ -422,7 +422,7 @@ adx_webfile:
 - RecordId: 7afe4f79-fe29-4269-af90-3459fe46c9ee
   DisplayName: 7afe4f79-fe29-4269-af90-3459fe46c9ee
   CheckSum: 0eec7fa5c266faf9c3912d9b21011f250cde6ea4a71261932507c3338e8ae728
-  IsDeleted: false
+  IsDeleted: true
 - RecordId: a988d55b-3e28-4091-9e9c-87b5bd28f7c8
   DisplayName: a988d55b-3e28-4091-9e9c-87b5bd28f7c8
   CheckSum: 5a1d7ce12eb3287e1ebb8e347358face41042d2b8a6ba88c30d808867fad8cb8
@@ -433,7 +433,7 @@ adx_webfile:
   IsDeleted: false
 - RecordId: b4cad2f2-4334-4410-ab93-6587ab5176d2
   DisplayName: b4cad2f2-4334-4410-ab93-6587ab5176d2
-  CheckSum: e04ecaa4ac357e26b9138c7aac8d143e5180d2430f9cc324df78172387fe46b2
+  CheckSum: 9cb0f8d24d01fbb94e98a2d1925415ca26c43fda9d05463a992c1f47b80990fa
   IsDeleted: false
 - RecordId: bb3a06f0-5d4e-4017-8875-77aeda5e8d5b
   DisplayName: bb3a06f0-5d4e-4017-8875-77aeda5e8d5b
@@ -504,7 +504,7 @@ adx_webpage:
   IsDeleted: false
 - RecordId: 7d886054-86e2-4c02-af6e-279e173e3998
   DisplayName: 7d886054-86e2-4c02-af6e-279e173e3998
-  CheckSum: 6d555ecd22f69c5fc9051918bbfc81fae0c268bbdb2c78a037f8133542999f21
+  CheckSum: b1627ed726d1f970ae9f4ebfe1d5a6cb72ae09ae4c989bae7ca2667460fae8e7
   IsDeleted: false
 - RecordId: 80ae1ac7-c86e-40ed-881d-249fe53b3433
   DisplayName: 80ae1ac7-c86e-40ed-881d-249fe53b3433
@@ -674,7 +674,7 @@ annotation:
 - RecordId: 7afe4f79-fe29-4269-af90-3459fe46c9ee
   DisplayName: index-BZeiQkc2.css
   CheckSum: 323543d3fcd0f67a33ecf75def5933db105533e717ca69e485ff0acae467d48b
-  IsDeleted: false
+  IsDeleted: true
 - RecordId: a988d55b-3e28-4091-9e9c-87b5bd28f7c8
   DisplayName: mock-agenda.json
   CheckSum: fa7fd234a7dcf9c0ddff6d3875682d6a922cac101c02d2173e2f350d571cd6f4
@@ -685,7 +685,7 @@ annotation:
   IsDeleted: false
 - RecordId: b4cad2f2-4334-4410-ab93-6587ab5176d2
   DisplayName: index.html
-  CheckSum: 4e1a4c698c36f60b6a18c48480cc27666f4f7e1ab7dbde8766831b1eec5d7892
+  CheckSum: d7bb16cc8122677ee13ab5184018a28b06847a2fb77675e35593db664cb0eb25
   IsDeleted: false
 - RecordId: bb3a06f0-5d4e-4017-8875-77aeda5e8d5b
   DisplayName: theme.css
