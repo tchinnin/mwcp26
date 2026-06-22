@@ -77,11 +77,3 @@
 .lsk-w-1 { width: 70%; }
 .lsk-w-2 { width: 78%; }
 
-/* Icône favori factice. */
-.lsk-fav {
-  flex: none;
-  width: 24px;
-  height: 24px;
-  border-radius: var(--radius-pill);
-  margin-top: var(--space-1);
-}

@@ -157,24 +157,6 @@
   text-overflow: ellipsis;
 }
 
-/* Bouton favori (placeholder feature 106) : icône à droite. */
-.al-fav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: none;
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-pill);
-  color: var(--text-muted);
-  transition: color var(--duration-fast) var(--ease-standard),
-              background var(--duration-fast) var(--ease-standard);
-}
-
-.al-card:hover .al-fav {
-  color: var(--brand-yellow);
-}
-
 /* ---------------------------- Bande de service -------------------------- */
 /* Pause / Repas / Evenement : non interactive, icône + titre + durée. */
 .al-band {
