@@ -99,6 +99,14 @@ Screens:
         );
         Set(varSelectedRoomId, Blank());
         Set(varSearchText, "");
+        Set(varDetailSessionId, Blank());
+        Set(varDetailTitle, Blank());
+        Set(varDetailDescription, Blank());
+        Set(varDetailStart, Blank());
+        Set(varDetailEnd, Blank());
+        Set(varDetailDurationMinutes, Blank());
+        Set(varDetailRoomName, Blank());
+        Set(varDetailRoomColor, Blank());
         Set(varIsInitialLoad, false)
     Children:
       - conScrollRoot:
@@ -370,7 +378,7 @@ Screens:
                             Variant: Horizontal
                             Properties:
                               AccessibleLabel: ="Sélection du jour de l'agenda"
-                              TabIndex: =0
+                              TabIndex: =If(IsBlank(varDetailSessionId), 0, -1)
                               Items: =colDays
                               TemplateSize: =160
                               Selectable: =false
@@ -407,6 +415,7 @@ Screens:
                                           Layout: ='ButtonCanvas.Layout'.TextOnly
                                           FontColor: =If(ThisItem.DayDate = varSelectedDayDate, ColorValue("#0B0E14"), ColorValue("#5E6470"))
                                           OnSelect: =Set(varSelectedDayDate, ThisItem.DayDate)
+                                          AcceptsFocus: =IsBlank(varDetailSessionId)
                                           Width: =152
                                           Height: =52
                                           FillPortions: =0
@@ -454,6 +463,7 @@ Screens:
                               Fill: =RGBA(0, 0, 0, 0)
                               BorderRadius: =0
                               OnChange: =Set(varSearchText, NormalizeText(txtSearch.Value))
+                              DisplayMode: =If(IsBlank(varDetailSessionId), DisplayMode.Edit, DisplayMode.View)
                               FillPortions: =1
                               AlignInContainer: =AlignInContainer.Stretch
                         - icoClearSearch:
@@ -466,6 +476,7 @@ Screens:
                               Appearance: ='ButtonCanvas.Appearance'.Transparent
                               FontColor: =ColorValue("#8A909B")
                               Visible: =txtSearch.Value <> ""
+                              AcceptsFocus: =IsBlank(varDetailSessionId)
                               Width: =18
                               Height: =18
                               OnSelect: |-
@@ -523,6 +534,7 @@ Screens:
                                     Layout: ='ButtonCanvas.Layout'.TextOnly
                                     FontColor: =If(IsBlank(varSelectedRoomId), ColorValue("#FFFFFF"), ColorValue("#5E6470"))
                                     OnSelect: =Set(varSelectedRoomId, Blank())
+                                    AcceptsFocus: =IsBlank(varDetailSessionId)
                                     Width: =140
                                     Height: =36
                                     FillPortions: =0
@@ -532,7 +544,7 @@ Screens:
                             Variant: Horizontal
                             Properties:
                               AccessibleLabel: ="Filtrer par salle"
-                              TabIndex: =0
+                              TabIndex: =If(IsBlank(varDetailSessionId), 0, -1)
                               Items: =colRooms
                               TemplateSize: =130
                               Selectable: =false
@@ -588,6 +600,7 @@ Screens:
                                           Layout: ='ButtonCanvas.Layout'.TextOnly
                                           FontColor: =If(varSelectedRoomId = ThisItem.RoomId, ColorValue("#FFFFFF"), ColorValue("#5E6470"))
                                           OnSelect: =Set(varSelectedRoomId, ThisItem.RoomId)
+                                          AcceptsFocus: =IsBlank(varDetailSessionId)
                                           FillPortions: =1
                                           AlignInContainer: =AlignInContainer.Stretch
             - conListMeta:
@@ -923,7 +936,7 @@ Screens:
                 Variant: Vertical
                 Properties:
                   AccessibleLabel: ="Liste des sessions par créneau horaire"
-                  TabIndex: =0
+                  TabIndex: =If(IsBlank(varDetailSessionId), 0, -1)
                   Items: |-
                     =Sort(
                       AddColumns(
@@ -1140,169 +1153,219 @@ Screens:
                                                 PaddingBottom: =0
                                                 PaddingLeft: =0
                                                 PaddingRight: =0
-                                    - conSessionCard:
+                                    - conSessionCardTapArea:
                                         Control: GroupContainer
-                                        Variant: AutoLayout
+                                        Variant: ManualLayout
                                         Properties:
-                                          LayoutDirection: =LayoutDirection.Horizontal
-                                          LayoutGap: =0
-                                          LayoutAlignItems: =LayoutAlignItems.Stretch
-                                          Fill: =ColorValue("#FFFFFF")
-                                          RadiusTopLeft: =12
-                                          RadiusTopRight: =12
-                                          RadiusBottomLeft: =12
-                                          RadiusBottomRight: =12
+                                          Height: =160
                                           Visible: =ThisItem.HasRoom
                                           FillPortions: =0
-                                          Height: =160
                                           LayoutMinWidth: =0
                                           LayoutMinHeight: =0
                                           AlignInContainer: =AlignInContainer.Stretch
                                         Children:
-                                          - recCardLeftBar:
-                                              Control: GroupContainer
-                                              Variant: ManualLayout
-                                              Properties:
-                                                Fill: =ThisItem.RoomColor
-                                                RadiusTopLeft: =4
-                                                RadiusTopRight: =0
-                                                RadiusBottomLeft: =4
-                                                RadiusBottomRight: =0
-                                                Width: =4
-                                                FillPortions: =0
-                                                AlignInContainer: =AlignInContainer.Stretch
-                                          - conCardBody:
+                                          - conSessionCard:
                                               Control: GroupContainer
                                               Variant: AutoLayout
                                               Properties:
-                                                LayoutDirection: =LayoutDirection.Vertical
-                                                LayoutGap: =8
+                                                LayoutDirection: =LayoutDirection.Horizontal
+                                                LayoutGap: =0
                                                 LayoutAlignItems: =LayoutAlignItems.Stretch
-                                                PaddingTop: =14
-                                                PaddingBottom: =14
-                                                PaddingLeft: =14
-                                                PaddingRight: =14
-                                                FillPortions: =1
+                                                Fill: =ColorValue("#FFFFFF")
+                                                RadiusTopLeft: =12
+                                                RadiusTopRight: =12
+                                                RadiusBottomLeft: =12
+                                                RadiusBottomRight: =12
+                                                FillPortions: =0
+                                                X: =0
+                                                Y: =0
+                                                Width: =Parent.Width
+                                                Height: =160
                                                 LayoutMinWidth: =0
                                                 LayoutMinHeight: =0
                                                 AlignInContainer: =AlignInContainer.Stretch
                                               Children:
-                                                - conCardTopRow:
+                                                - recCardLeftBar:
+                                                    Control: GroupContainer
+                                                    Variant: ManualLayout
+                                                    Properties:
+                                                      Fill: =ThisItem.RoomColor
+                                                      RadiusTopLeft: =4
+                                                      RadiusTopRight: =0
+                                                      RadiusBottomLeft: =4
+                                                      RadiusBottomRight: =0
+                                                      Width: =4
+                                                      FillPortions: =0
+                                                      AlignInContainer: =AlignInContainer.Stretch
+                                                - conCardBody:
                                                     Control: GroupContainer
                                                     Variant: AutoLayout
                                                     Properties:
-                                                      LayoutDirection: =LayoutDirection.Horizontal
-                                                      LayoutAlignItems: =LayoutAlignItems.Center
-                                                      LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                                                      LayoutDirection: =LayoutDirection.Vertical
                                                       LayoutGap: =8
-                                                      FillPortions: =0
-                                                      Height: =26
+                                                      LayoutAlignItems: =LayoutAlignItems.Stretch
+                                                      PaddingTop: =14
+                                                      PaddingBottom: =14
+                                                      PaddingLeft: =14
+                                                      PaddingRight: =14
+                                                      FillPortions: =1
                                                       LayoutMinWidth: =0
                                                       LayoutMinHeight: =0
                                                       AlignInContainer: =AlignInContainer.Stretch
                                                     Children:
-                                                      - conRoomPill:
+                                                      - conCardTopRow:
                                                           Control: GroupContainer
                                                           Variant: AutoLayout
                                                           Properties:
                                                             LayoutDirection: =LayoutDirection.Horizontal
                                                             LayoutAlignItems: =LayoutAlignItems.Center
-                                                            LayoutJustifyContent: =LayoutJustifyContent.Center
-                                                            PaddingTop: =3
-                                                            PaddingBottom: =3
-                                                            PaddingLeft: =10
-                                                            PaddingRight: =10
-                                                            Fill: =ColorFade(ThisItem.RoomColor, 0.85)
-                                                            RadiusTopLeft: =10
-                                                            RadiusTopRight: =10
-                                                            RadiusBottomLeft: =10
-                                                            RadiusBottomRight: =10
+                                                            LayoutJustifyContent: =LayoutJustifyContent.SpaceBetween
+                                                            LayoutGap: =8
                                                             FillPortions: =0
-                                                            Height: =22
+                                                            Height: =26
                                                             LayoutMinWidth: =0
                                                             LayoutMinHeight: =0
-                                                            AlignInContainer: =AlignInContainer.Center
+                                                            AlignInContainer: =AlignInContainer.Stretch
                                                           Children:
-                                                            - lblRoomPillText:
+                                                            - conRoomPill:
+                                                                Control: GroupContainer
+                                                                Variant: AutoLayout
+                                                                Properties:
+                                                                  LayoutDirection: =LayoutDirection.Horizontal
+                                                                  LayoutAlignItems: =LayoutAlignItems.Center
+                                                                  LayoutJustifyContent: =LayoutJustifyContent.Center
+                                                                  PaddingTop: =3
+                                                                  PaddingBottom: =3
+                                                                  PaddingLeft: =10
+                                                                  PaddingRight: =10
+                                                                  Fill: =ColorFade(ThisItem.RoomColor, 0.85)
+                                                                  RadiusTopLeft: =10
+                                                                  RadiusTopRight: =10
+                                                                  RadiusBottomLeft: =10
+                                                                  RadiusBottomRight: =10
+                                                                  FillPortions: =0
+                                                                  Height: =22
+                                                                  LayoutMinWidth: =0
+                                                                  LayoutMinHeight: =0
+                                                                  AlignInContainer: =AlignInContainer.Center
+                                                                Children:
+                                                                  - lblRoomPillText:
+                                                                      Control: Text
+                                                                      Properties:
+                                                                        Text: =ThisItem.RoomName
+                                                                        Font: =Font.'Segoe UI'
+                                                                        Size: =11
+                                                                        Weight: =FontWeight.Semibold
+                                                                        FontColor: =ThisItem.RoomColor
+                                                                        Align: =Align.Center
+                                                                        Wrap: =false
+                                                                        AutoHeight: =true
+                                                                        FillPortions: =0
+                                                                        AlignInContainer: =AlignInContainer.Stretch
+                                                                        PaddingTop: =0
+                                                                        PaddingBottom: =0
+                                                                        PaddingLeft: =0
+                                                                        PaddingRight: =0
+                                                            - lblCardDuration:
                                                                 Control: Text
                                                                 Properties:
-                                                                  Text: =ThisItem.RoomName
-                                                                  Font: =Font.'Segoe UI'
-                                                                  Size: =11
-                                                                  Weight: =FontWeight.Semibold
-                                                                  FontColor: =ThisItem.RoomColor
-                                                                  Align: =Align.Center
+                                                                  Text: =If(IsBlank(ThisItem.DurationMinutes), "", ThisItem.DurationMinutes & " min")
+                                                                  Font: =Font.'Courier New'
+                                                                  Size: =12
+                                                                  Weight: =FontWeight.Normal
+                                                                  FontColor: =ColorValue("#8A909B")
+                                                                  Align: =Align.Right
                                                                   Wrap: =false
-                                                                  AutoHeight: =true
+                                                                  AutoHeight: =false
                                                                   FillPortions: =0
-                                                                  AlignInContainer: =AlignInContainer.Stretch
+                                                                  Width: =60
+                                                                  AlignInContainer: =AlignInContainer.Center
                                                                   PaddingTop: =0
                                                                   PaddingBottom: =0
                                                                   PaddingLeft: =0
                                                                   PaddingRight: =0
-                                                      - lblCardDuration:
+                                                      - lblCardTitle:
                                                           Control: Text
                                                           Properties:
-                                                            Text: =If(IsBlank(ThisItem.DurationMinutes), "", ThisItem.DurationMinutes & " min")
-                                                            Font: =Font.'Courier New'
-                                                            Size: =12
-                                                            Weight: =FontWeight.Normal
-                                                            FontColor: =ColorValue("#8A909B")
-                                                            Align: =Align.Right
-                                                            Wrap: =false
-                                                            AutoHeight: =false
+                                                            Text: =ThisItem.Title
+                                                            Font: =Font.'Open Sans'
+                                                            Size: =16
+                                                            Weight: =FontWeight.Semibold
+                                                            FontColor: =ColorValue("#0B0E14")
+                                                            Align: =Align.Left
+                                                            Wrap: =true
+                                                            AutoHeight: =true
                                                             FillPortions: =0
-                                                            Width: =60
-                                                            AlignInContainer: =AlignInContainer.Center
+                                                            AlignInContainer: =AlignInContainer.Stretch
                                                             PaddingTop: =0
                                                             PaddingBottom: =0
                                                             PaddingLeft: =0
                                                             PaddingRight: =0
-                                                - lblCardTitle:
-                                                    Control: Text
+                                                      - lblCardSpeakers:
+                                                          Control: Text
+                                                          Properties:
+                                                            Text: =ThisItem.SpeakerNames
+                                                            Font: =Font.'Segoe UI'
+                                                            Size: =13
+                                                            Weight: =FontWeight.Normal
+                                                            FontColor: =ColorValue("#5E6470")
+                                                            Align: =Align.Left
+                                                            Wrap: =true
+                                                            AutoHeight: =true
+                                                            Visible: =ThisItem.HasSpeakers
+                                                            FillPortions: =0
+                                                            AlignInContainer: =AlignInContainer.Stretch
+                                                            PaddingTop: =0
+                                                            PaddingBottom: =0
+                                                            PaddingLeft: =0
+                                                            PaddingRight: =0
+                                                - icoFavorite:
+                                                    Control: Icon
                                                     Properties:
-                                                      Text: =ThisItem.Title
-                                                      Font: =Font.'Open Sans'
-                                                      Size: =16
-                                                      Weight: =FontWeight.Semibold
-                                                      FontColor: =ColorValue("#0B0E14")
-                                                      Align: =Align.Left
-                                                      Wrap: =true
-                                                      AutoHeight: =true
+                                                      Icon: ="FavoriteStar"
+                                                      IconColor: =ColorValue("#CDD5E0")
+                                                      IconStyle: =IconStyle.Outline
+                                                      Width: =20
+                                                      Height: =20
                                                       FillPortions: =0
-                                                      AlignInContainer: =AlignInContainer.Stretch
-                                                      PaddingTop: =0
-                                                      PaddingBottom: =0
-                                                      PaddingLeft: =0
-                                                      PaddingRight: =0
-                                                - lblCardSpeakers:
-                                                    Control: Text
-                                                    Properties:
-                                                      Text: =ThisItem.SpeakerNames
-                                                      Font: =Font.'Segoe UI'
-                                                      Size: =13
-                                                      Weight: =FontWeight.Normal
-                                                      FontColor: =ColorValue("#5E6470")
-                                                      Align: =Align.Left
-                                                      Wrap: =true
-                                                      AutoHeight: =true
-                                                      Visible: =ThisItem.HasSpeakers
-                                                      FillPortions: =0
-                                                      AlignInContainer: =AlignInContainer.Stretch
-                                                      PaddingTop: =0
-                                                      PaddingBottom: =0
-                                                      PaddingLeft: =0
-                                                      PaddingRight: =0
-                                          - icoFavorite:
-                                              Control: Icon
+                                                      AlignInContainer: =AlignInContainer.Start
+                                          - btnOpenSessionDetail:
+                                              Control: Button
                                               Properties:
-                                                Icon: ="FavoriteStar"
-                                                IconColor: =ColorValue("#CDD5E0")
-                                                IconStyle: =IconStyle.Outline
-                                                Width: =20
-                                                Height: =20
+                                                AccessibleLabel: =ThisItem.Title & If(ThisItem.HasRoom, ", " & ThisItem.RoomName, "") & If(ThisItem.HasSpeakers, ", " & ThisItem.SpeakerNames, "")
+                                                Text: =""
+                                                Appearance: ='ButtonCanvas.Appearance'.Transparent
+                                                Layout: ='ButtonCanvas.Layout'.TextOnly
+                                                AcceptsFocus: =IsBlank(varDetailSessionId)
+                                                OnSelect: |-
+                                                  =Set(varDetailSessionId, ThisItem.SessionId);
+                                                  Set(varDetailTitle, ThisItem.Title);
+                                                  Set(varDetailDescription, ThisItem.Description);
+                                                  Set(varDetailStart, ThisItem.StartDateTime);
+                                                  Set(varDetailEnd, ThisItem.EndDateTime);
+                                                  Set(varDetailDurationMinutes, ThisItem.DurationMinutes);
+                                                  Set(varDetailRoomName, ThisItem.RoomName);
+                                                  Set(varDetailRoomColor, ThisItem.RoomColor);
+                                                  ClearCollect(
+                                                      colDetailSpeakers,
+                                                      AddColumns(
+                                                          Filter('Intervenants de Session', mwcp26_SessionId.mwcp26_sessionid = ThisItem.SessionId),
+                                                          SpeakerName, mwcp26_SpeakerId.fullname,
+                                                          SpeakerTitle, mwcp26_SpeakerId.jobtitle,
+                                                          SpeakerBio, mwcp26_SpeakerId.description,
+                                                          SpeakerInitials, With(
+                                                              {NameParts: Split(mwcp26_SpeakerId.fullname, " ")},
+                                                              Upper(Left(First(NameParts).Value, 1) & Left(Last(NameParts).Value, 1))
+                                                          )
+                                                      )
+                                                  );
+                                                  SetFocus(btnCloseDetail)
+                                                X: =0
+                                                Y: =0
+                                                Width: =Parent.Width
+                                                Height: =Parent.Height
                                                 FillPortions: =0
-                                                AlignInContainer: =AlignInContainer.Start
+                                                AlignInContainer: =AlignInContainer.Stretch
             - conEmptyState:
                 Control: GroupContainer
                 Variant: AutoLayout
@@ -1373,6 +1436,7 @@ Screens:
                         Layout: ='ButtonCanvas.Layout'.TextOnly
                         FontColor: =ColorValue("#00AEF0")
                         Visible: =varSearchText <> ""
+                        AcceptsFocus: =IsBlank(varDetailSessionId)
                         OnSelect: |-
                           =Reset(txtSearch);
                           Set(varSearchText, "")
@@ -1430,3 +1494,380 @@ Screens:
                         PaddingBottom: =0
                         PaddingLeft: =0
                         PaddingRight: =0
+      - conDetailOverlay:
+          Control: GroupContainer
+          Variant: AutoLayout
+          Properties:
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutAlignItems: =LayoutAlignItems.Stretch
+            Width: =Parent.Width
+            Height: =Parent.Height
+            Fill: =ColorValue("#FFFFFF")
+            Visible: =!IsBlank(varDetailSessionId)
+            LayoutOverflowY: =LayoutOverflow.Hide
+            LayoutGap: =0
+            FillPortions: =0
+            LayoutMinWidth: =0
+            LayoutMinHeight: =0
+          Children:
+            - conDetailAccentBar:
+                Control: GroupContainer
+                Variant: ManualLayout
+                Properties:
+                  Height: =4
+                  Fill: =varDetailRoomColor
+                  FillPortions: =0
+                  LayoutMinWidth: =0
+                  LayoutMinHeight: =0
+                  AlignInContainer: =AlignInContainer.Stretch
+            - conDetailHeader:
+                Control: GroupContainer
+                Variant: AutoLayout
+                Properties:
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =8
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  PaddingTop: =18
+                  PaddingBottom: =4
+                  PaddingLeft: =20
+                  PaddingRight: =20
+                  FillPortions: =0
+                  Height: =98
+                  LayoutMinWidth: =0
+                  LayoutMinHeight: =0
+                  AlignInContainer: =AlignInContainer.Stretch
+                Children:
+                  - conDetailMetaRow:
+                      Control: GroupContainer
+                      Variant: AutoLayout
+                      Properties:
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutGap: =10
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        FillPortions: =0
+                        Height: =24
+                        LayoutMinWidth: =0
+                        LayoutMinHeight: =0
+                        AlignInContainer: =AlignInContainer.Stretch
+                      Children:
+                        - conDetailRoomPill:
+                            Control: GroupContainer
+                            Variant: AutoLayout
+                            Properties:
+                              LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutAlignItems: =LayoutAlignItems.Center
+                              LayoutJustifyContent: =LayoutJustifyContent.Center
+                              PaddingTop: =3
+                              PaddingBottom: =3
+                              PaddingLeft: =10
+                              PaddingRight: =10
+                              Fill: =ColorFade(varDetailRoomColor, 0.85)
+                              RadiusTopLeft: =10
+                              RadiusTopRight: =10
+                              RadiusBottomLeft: =10
+                              RadiusBottomRight: =10
+                              Visible: =!IsBlank(varDetailRoomName)
+                              FillPortions: =0
+                              Height: =22
+                              LayoutMinWidth: =0
+                              LayoutMinHeight: =0
+                              AlignInContainer: =AlignInContainer.Center
+                            Children:
+                              - lblDetailRoomPillText:
+                                  Control: Text
+                                  Properties:
+                                    Text: =varDetailRoomName
+                                    Font: =Font.'Segoe UI'
+                                    Size: =11.5
+                                    Weight: =FontWeight.Semibold
+                                    FontColor: =varDetailRoomColor
+                                    Align: =Align.Center
+                                    Wrap: =false
+                                    AutoHeight: =true
+                                    FillPortions: =0
+                                    AlignInContainer: =AlignInContainer.Stretch
+                                    PaddingTop: =0
+                                    PaddingBottom: =0
+                                    PaddingLeft: =0
+                                    PaddingRight: =0
+                        - lblDetailTimeRange:
+                            Control: Text
+                            Properties:
+                              Visible: =!IsBlank(varDetailStart)
+                              Text: =Text(varDetailStart, "hh:mm") & "–" & Text(varDetailEnd, "hh:mm") & If(IsBlank(varDetailDurationMinutes), "", " · " & varDetailDurationMinutes & " min")
+                              Font: =Font.'Courier New'
+                              Size: =12.5
+                              Weight: =FontWeight.Normal
+                              FontColor: =ColorValue("#5E6470")
+                              Align: =Align.Left
+                              Wrap: =false
+                              AutoHeight: =true
+                              FillPortions: =0
+                              AlignInContainer: =AlignInContainer.Stretch
+                              PaddingTop: =0
+                              PaddingBottom: =0
+                              PaddingLeft: =0
+                              PaddingRight: =0
+                  - lblDetailTitle:
+                      Control: Text
+                      Properties:
+                        Text: =varDetailTitle
+                        Font: =Font.'Open Sans'
+                        Size: =20
+                        Weight: =FontWeight.Bold
+                        FontColor: =ColorValue("#0B0E14")
+                        Align: =Align.Left
+                        Wrap: =true
+                        AutoHeight: =true
+                        FillPortions: =0
+                        AlignInContainer: =AlignInContainer.Stretch
+                        PaddingTop: =0
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+            - conDetailScrollBody:
+                Control: GroupContainer
+                Variant: AutoLayout
+                Properties:
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutGap: =18
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  PaddingTop: =10
+                  PaddingBottom: =24
+                  PaddingLeft: =20
+                  PaddingRight: =20
+                  LayoutOverflowY: =LayoutOverflow.Scroll
+                  FillPortions: =1
+                  LayoutMinWidth: =0
+                  LayoutMinHeight: =0
+                  AlignInContainer: =AlignInContainer.Stretch
+                Children:
+                  - lblDetailDescription:
+                      Control: Text
+                      Properties:
+                        Visible: =!IsBlank(varDetailDescription)
+                        Text: =varDetailDescription
+                        Font: =Font.'Segoe UI'
+                        Size: =14
+                        Weight: =FontWeight.Normal
+                        FontColor: =ColorValue("#283446")
+                        Align: =Align.Left
+                        Wrap: =true
+                        AutoHeight: =true
+                        FillPortions: =0
+                        AlignInContainer: =AlignInContainer.Stretch
+                        PaddingTop: =0
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                  - conDetailSpeakersSection:
+                      Control: GroupContainer
+                      Variant: AutoLayout
+                      Properties:
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =4
+                        LayoutAlignItems: =LayoutAlignItems.Stretch
+                        Visible: =CountRows(colDetailSpeakers) > 0
+                        FillPortions: =0
+                        Height: =24 + 4 + galDetailSpeakers.Height
+                        LayoutMinWidth: =0
+                        LayoutMinHeight: =0
+                        AlignInContainer: =AlignInContainer.Stretch
+                      Children:
+                        - lblSpeakersSectionTitle:
+                            Control: Text
+                            Properties:
+                              Text: ="Intervenants"
+                              Font: =Font.'Segoe UI'
+                              Size: =11
+                              Weight: =FontWeight.Bold
+                              FontColor: =ColorValue("#8A909B")
+                              Align: =Align.Left
+                              Wrap: =false
+                              AutoHeight: =true
+                              FillPortions: =0
+                              AlignInContainer: =AlignInContainer.Stretch
+                              PaddingTop: =0
+                              PaddingBottom: =0
+                              PaddingLeft: =0
+                              PaddingRight: =0
+                        - galDetailSpeakers:
+                            Control: Gallery
+                            Variant: Vertical
+                            Properties:
+                              Items: =colDetailSpeakers
+                              AccessibleLabel: ="Liste des intervenants"
+                              Selectable: =false
+                              LoadingSpinner: =LoadingSpinner.None
+                              TemplateSize: =100
+                              Height: =galDetailSpeakers.AllItemsCount * galDetailSpeakers.TemplateHeight
+                              FillPortions: =0
+                              LayoutMinWidth: =0
+                              LayoutMinHeight: =0
+                              AlignInContainer: =AlignInContainer.Stretch
+                            Children:
+                              - conSpeakerItem:
+                                  Control: GroupContainer
+                                  Variant: AutoLayout
+                                  Properties:
+                                    LayoutDirection: =LayoutDirection.Horizontal
+                                    LayoutGap: =12
+                                    LayoutAlignItems: =LayoutAlignItems.Stretch
+                                    PaddingTop: =12
+                                    PaddingBottom: =12
+                                    FillPortions: =0
+                                    Height: =100
+                                    LayoutMinWidth: =0
+                                    LayoutMinHeight: =0
+                                  Children:
+                                    - conSpeakerAvatar:
+                                        Control: GroupContainer
+                                        Variant: AutoLayout
+                                        Properties:
+                                          LayoutDirection: =LayoutDirection.Horizontal
+                                          LayoutAlignItems: =LayoutAlignItems.Center
+                                          LayoutJustifyContent: =LayoutJustifyContent.Center
+                                          PaddingTop: =2
+                                          PaddingBottom: =2
+                                          PaddingLeft: =2
+                                          PaddingRight: =2
+                                          Fill: =varDetailRoomColor
+                                          RadiusTopLeft: =23
+                                          RadiusTopRight: =23
+                                          RadiusBottomLeft: =23
+                                          RadiusBottomRight: =23
+                                          Width: =46
+                                          Height: =46
+                                          FillPortions: =0
+                                          LayoutMinWidth: =0
+                                          LayoutMinHeight: =0
+                                          AlignInContainer: =AlignInContainer.Center
+                                        Children:
+                                          - lblSpeakerInitials:
+                                              Control: Text
+                                              Properties:
+                                                Text: =ThisItem.SpeakerInitials
+                                                Font: =Font.'Open Sans'
+                                                Weight: =FontWeight.Bold
+                                                Size: =15
+                                                FontColor: =ColorValue("#FFFFFF")
+                                                Align: =Align.Center
+                                                Wrap: =false
+                                                AutoHeight: =true
+                                                FillPortions: =0
+                                                AlignInContainer: =AlignInContainer.Stretch
+                                                PaddingTop: =0
+                                                PaddingBottom: =0
+                                                PaddingLeft: =0
+                                                PaddingRight: =0
+                                    - conSpeakerTextCol:
+                                        Control: GroupContainer
+                                        Variant: AutoLayout
+                                        Properties:
+                                          LayoutDirection: =LayoutDirection.Vertical
+                                          LayoutGap: =3
+                                          LayoutAlignItems: =LayoutAlignItems.Stretch
+                                          FillPortions: =1
+                                          LayoutMinWidth: =0
+                                          LayoutMinHeight: =0
+                                          AlignInContainer: =AlignInContainer.Stretch
+                                        Children:
+                                          - lblSpeakerName:
+                                              Control: Text
+                                              Properties:
+                                                Text: =ThisItem.SpeakerName
+                                                Font: =Font.'Open Sans'
+                                                Weight: =FontWeight.Semibold
+                                                Size: =14.5
+                                                FontColor: =ColorValue("#0B0E14")
+                                                Align: =Align.Left
+                                                Wrap: =false
+                                                AutoHeight: =true
+                                                FillPortions: =0
+                                                AlignInContainer: =AlignInContainer.Stretch
+                                                PaddingTop: =0
+                                                PaddingBottom: =0
+                                                PaddingLeft: =0
+                                                PaddingRight: =0
+                                          - lblSpeakerTitle:
+                                              Control: Text
+                                              Properties:
+                                                Visible: =!IsBlank(ThisItem.SpeakerTitle)
+                                                Text: =ThisItem.SpeakerTitle
+                                                Font: =Font.'Segoe UI'
+                                                Size: =12
+                                                Weight: =FontWeight.Normal
+                                                FontColor: =ColorValue("#2F74DE")
+                                                Align: =Align.Left
+                                                Wrap: =true
+                                                AutoHeight: =true
+                                                FillPortions: =0
+                                                AlignInContainer: =AlignInContainer.Stretch
+                                                PaddingTop: =0
+                                                PaddingBottom: =0
+                                                PaddingLeft: =0
+                                                PaddingRight: =0
+                                          - lblSpeakerBio:
+                                              Control: Text
+                                              Properties:
+                                                Visible: =!IsBlank(ThisItem.SpeakerBio)
+                                                Text: =ThisItem.SpeakerBio
+                                                Font: =Font.'Segoe UI'
+                                                Size: =12.5
+                                                Weight: =FontWeight.Normal
+                                                FontColor: =ColorValue("#5E6470")
+                                                Align: =Align.Left
+                                                Wrap: =true
+                                                AutoHeight: =true
+                                                FillPortions: =0
+                                                AlignInContainer: =AlignInContainer.Stretch
+                                                PaddingTop: =0
+                                                PaddingBottom: =0
+                                                PaddingLeft: =0
+                                                PaddingRight: =0
+            - conDetailFooter:
+                Control: GroupContainer
+                Variant: AutoLayout
+                Properties:
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutAlignItems: =LayoutAlignItems.Stretch
+                  PaddingTop: =12
+                  PaddingBottom: =12
+                  PaddingLeft: =16
+                  PaddingRight: =16
+                  BorderColor: =ColorValue("#E0E6EF")
+                  BorderStyle: =BorderStyle.Solid
+                  BorderThickness: =1
+                  Fill: =ColorValue("#FFFFFF")
+                  FillPortions: =0
+                  Height: =72
+                  LayoutMinWidth: =0
+                  LayoutMinHeight: =0
+                  AlignInContainer: =AlignInContainer.Stretch
+                Children:
+                  - btnCloseDetail:
+                      Control: Button
+                      Properties:
+                        Text: ="Fermer"
+                        Appearance: ='ButtonCanvas.Appearance'.Primary
+                        AccessibleLabel: ="Fermer le détail de la session"
+                        AcceptsFocus: =true
+                        OnSelect: |-
+                          =Set(varDetailSessionId, Blank());
+                          Clear(colDetailSpeakers);
+                          SetFocus(btnFocusAnchor)
+                        Height: =48
+                        FillPortions: =0
+                        AlignInContainer: =AlignInContainer.Stretch
+      - btnFocusAnchor:
+          Control: Button
+          Properties:
+            Text: =""
+            Appearance: ='ButtonCanvas.Appearance'.Transparent
+            Layout: ='ButtonCanvas.Layout'.TextOnly
+            AccessibleLabel: ="Ancrage de focus"
+            AcceptsFocus: =true
+            X: =0
+            Y: =0
+            Width: =1
+            Height: =1
