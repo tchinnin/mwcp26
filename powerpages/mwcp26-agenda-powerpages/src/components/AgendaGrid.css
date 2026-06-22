@@ -72,7 +72,7 @@
   pointer-events: none;
 }
 
-/* carte de session (statique — pas de hover ni de clic cette itération) */
+/* carte de session — cliquable (feature 105) */
 .tt-card {
   position: relative;
   z-index: 2;
@@ -87,6 +87,20 @@
   padding: 6px 9px;
   overflow: hidden;
   box-shadow: var(--shadow-xs);
+  /* button reset */
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: box-shadow var(--duration-fast) var(--ease-standard), transform var(--duration-fast) var(--ease-standard);
+}
+.tt-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+  z-index: 3;
+}
+.tt-card:focus-visible {
+  outline: var(--ring-width) solid var(--ring-color);
+  outline-offset: 2px;
 }
 .tt-ctime {
   font-family: var(--font-mono);

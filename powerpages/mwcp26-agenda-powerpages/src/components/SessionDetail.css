@@ -1,0 +1,248 @@
+/*
+ * Feature 105 — Détail de session.
+ * Mobile : bottom-sheet (vaul). Desktop : <dialog> natif.
+ * Tokens exclusivement. Exception : overlay rgba(11,14,20,0.42) — pas de token overlay
+ * dans le design system.
+ */
+
+/* ──── Overlay mobile (vaul Drawer.Overlay) ──── */
+.sd-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(11, 14, 20, 0.42);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* ──── Sheet mobile (vaul Drawer.Content) ──── */
+.sd-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 51;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--surface-card);
+  border-top-left-radius: var(--radius-xl);
+  border-top-right-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  max-height: 90dvh;
+  outline: none;
+}
+
+/* ──── Pill handle ──── */
+.sd-handle-wrap {
+  flex: none;
+  padding: 12px 0 0;
+  display: grid;
+  place-items: center;
+}
+.sd-handle {
+  width: 38px;
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--neutral-300);
+}
+
+/* ──── Zone scrollable ──── */
+.sd-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 14px 20px 4px;
+}
+
+/* ──── Métadonnées : salle + horaire ──── */
+.sd-meta-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-3);
+}
+
+.sd-room-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-ui);
+  font-weight: var(--weight-semibold);
+  font-size: 11.5px;
+  color: var(--rc, var(--brand-blue));
+  background: color-mix(in srgb, var(--rc, var(--brand-blue)) 10%, transparent);
+  padding: 3px 9px 3px 7px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+.sd-room-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--rc, var(--brand-blue));
+  flex: none;
+}
+.sd-room-cap {
+  opacity: 0.65;
+  font-weight: var(--weight-medium);
+}
+
+.sd-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+}
+
+/* ──── Titre ──── */
+.sd-title {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  font-size: 20px;
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-heading);
+  margin: 0 0 var(--space-2);
+  text-wrap: pretty;
+}
+
+/* ──── Description ──── */
+.sd-desc {
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--text-body);
+  margin: var(--space-2) 0 0;
+  white-space: pre-wrap;
+}
+
+/* ──── Intervenants ──── */
+.sd-speakers {
+  margin-top: var(--space-5);
+}
+.sd-speakers-label {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-overline);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-2);
+}
+.sd-speaker-row {
+  display: flex;
+  gap: var(--space-3);
+  padding: 14px 0;
+  border-top: 1px solid var(--border-subtle);
+}
+.sd-avatar-wrap {
+  flex: none;
+  padding: 2.5px;
+  border-radius: 50%;
+  background: var(--rc, var(--brand-blue));
+  height: fit-content;
+}
+.sd-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--neutral-100);
+  border: 2px solid var(--white);
+  display: grid;
+  place-content: center;
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  font-size: 16px;
+  color: var(--ink-500);
+}
+.sd-speaker-info {
+  flex: 1;
+  min-width: 0;
+}
+.sd-speaker-name {
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  font-size: 15px;
+  color: var(--text-heading);
+}
+.sd-speaker-tagline {
+  font-size: 12.5px;
+  color: var(--brand-blue-700);
+  font-weight: var(--weight-medium);
+  margin-top: 1px;
+}
+.sd-speaker-bio {
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-snug);
+  color: var(--text-secondary);
+  margin-top: var(--space-1);
+  white-space: pre-wrap;
+}
+
+/* ──── Footer (bouton Fermer) ──── */
+.sd-footer {
+  flex: none;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  gap: var(--space-2);
+  background: var(--surface-card);
+}
+.sd-close-btn {
+  flex: 1;
+  padding: 11px 18px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-ui);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-body-sm);
+  border: none;
+  background: var(--ink-900);
+  color: var(--white);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-standard);
+}
+.sd-close-btn:hover { background: var(--ink-700); }
+.sd-close-btn:focus-visible {
+  outline: var(--ring-width) solid var(--ring-color);
+  outline-offset: 2px;
+}
+
+/* ──── Desktop : <dialog> natif ──── */
+@media (min-width: 1024px) {
+  .sd-dialog {
+    border: none;
+    padding: 0;
+    background: var(--surface-card);
+    max-width: 580px;
+    width: 100%;
+    max-height: 84vh;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+    /* centrage explicite (showModal() centre par défaut, on le fixe aussi) */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sd-dialog::backdrop {
+    background: rgba(11, 14, 20, 0.42);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+
+  /* Scroll fill dans la dialog */
+  .sd-dialog .sd-scroll {
+    overflow-y: auto;
+    max-height: calc(84vh - 52px); /* footer */
+  }
+}

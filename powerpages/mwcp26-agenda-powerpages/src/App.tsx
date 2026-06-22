@@ -5,8 +5,9 @@ import AgendaList from './components/AgendaList'
 import DayTabs from './components/DayTabs'
 import GridSkeleton from './components/GridSkeleton'
 import ListSkeleton from './components/ListSkeleton'
+import SessionDetailPanel from './components/SessionDetailPanel'
 import { defaultDayIndex, getAgenda, positionableSessions } from './data/agenda'
-import type { AgendaData } from './types/agenda'
+import type { AgendaData, Session } from './types/agenda'
 
 /*
  * Assets importés comme URLs Vite standard (hash dans le bundle dist/).
@@ -23,6 +24,7 @@ function App() {
   const [error, setError] = useState<string | null>(null)
   const [day, setDay] = useState(0)
   const [view, setView] = useState<View>('grid')
+  const [selectedSession, setSelectedSession] = useState<Session | null>(null)
 
   useEffect(() => {
     let alive = true
@@ -102,14 +104,14 @@ function App() {
         <main className="app-main">
           <div className="agenda-grid-wrap">
             {view === 'grid' ? (
-              <AgendaGrid sessions={gridSessions} rooms={agenda.rooms} />
+              <AgendaGrid sessions={gridSessions} rooms={agenda.rooms} onSessionClick={setSelectedSession} />
             ) : (
-              <AgendaList sessions={allSessions} />
+              <AgendaList sessions={allSessions} onSessionClick={setSelectedSession} />
             )}
           </div>
 
           <div className="agenda-mobile-wrap">
-            <AgendaList sessions={allSessions} />
+            <AgendaList sessions={allSessions} onSessionClick={setSelectedSession} />
           </div>
         </main>
       </>
@@ -133,6 +135,11 @@ function App() {
         </header>
 
         {body}
+
+        <SessionDetailPanel
+          session={selectedSession}
+          onClose={() => setSelectedSession(null)}
+        />
       </div>
     </div>
   )

@@ -15,6 +15,8 @@ import type { Session } from '../types/agenda'
 
 interface AgendaListProps {
   sessions: Session[]
+  /** Callback feature 105 — ouvre le panneau de détail. */
+  onSessionClick?: (s: Session) => void
 }
 
 /* SVG calendrier : état vide de la liste. */
@@ -51,7 +53,7 @@ function BandIcon({ sessionType, title }: { sessionType: string; title: string }
   )
 }
 
-export default function AgendaList({ sessions }: AgendaListProps) {
+export default function AgendaList({ sessions, onSessionClick }: AgendaListProps) {
   const groups = groupByStartTime(sessions)
 
   if (groups.length === 0) {
@@ -96,9 +98,7 @@ export default function AgendaList({ sessions }: AgendaListProps) {
                 key={s.id}
                 className="al-card"
                 style={{ '--rc': s.roomColor || 'var(--ink-200)' } as React.CSSProperties}
-                onClick={() => {
-                  /* Feature 105 — détail session (à venir). */
-                }}
+                onClick={() => onSessionClick?.(s)}
               >
                 <div className="al-card-body">
                   {/* Ligne supérieure : pill de salle + plage horaire */}

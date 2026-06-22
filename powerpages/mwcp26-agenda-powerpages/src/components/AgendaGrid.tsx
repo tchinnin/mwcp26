@@ -71,9 +71,11 @@ export interface AgendaGridProps {
   sessions: Session[]
   /** Salles = colonnes de la grille. */
   rooms: Room[]
+  /** Callback feature 105 — ouvre le panneau de détail. */
+  onSessionClick?: (s: Session) => void
 }
 
-export default function AgendaGrid({ sessions, rooms }: AgendaGridProps) {
+export default function AgendaGrid({ sessions, rooms, onSessionClick }: AgendaGridProps) {
   if (!sessions.length) {
     return (
       <div className="tt-empty">
@@ -142,10 +144,12 @@ export default function AgendaGrid({ sessions, rooms }: AgendaGridProps) {
         if (s.sessionType === 'Keynote') {
           const line = speakerLine(s)
           return (
-            <div
+            <button
               key={s.id}
+              type="button"
               className="tt-card tt-keynote"
               style={{ gridColumn: `2 / ${rooms.length + 2}`, gridRow: `${r1} / ${r2}`, ['--rc' as string]: s.roomColor } as CSSProperties}
+              onClick={() => onSessionClick?.(s)}
             >
               {s.roomShort && (
                 <div className="tt-keynote__badge">
@@ -158,7 +162,7 @@ export default function AgendaGrid({ sessions, rooms }: AgendaGridProps) {
                 <div className="tt-ctitle">{s.title}</div>
                 {line ? <div className="tt-cspk">{line}</div> : null}
               </div>
-            </div>
+            </button>
           )
         }
 
@@ -166,15 +170,17 @@ export default function AgendaGrid({ sessions, rooms }: AgendaGridProps) {
         const col = (roomIndex[s.room ?? ''] ?? 0) + 2
         const line = speakerLine(s)
         return (
-          <div
+          <button
             key={s.id}
+            type="button"
             className="tt-card"
             style={{ gridColumn: col, gridRow: `${r1} / ${r2}`, ['--rc' as string]: s.roomColor } as CSSProperties}
+            onClick={() => onSessionClick?.(s)}
           >
             <div className="tt-ctime">{s.startTime}–{s.endTime}</div>
             <div className="tt-ctitle">{s.title}</div>
             {line ? <div className="tt-cspk">{line}</div> : null}
-          </div>
+          </button>
         )
       })}
     </div>
