@@ -20,8 +20,7 @@ jour à la suite, **afin de** suivre le déroulé chronologique.
   **chronologiquement**, sessions ordonnées par heure puis titre.
 - **Groupe horaire** : pastille d'heure (police mono) + filet ; cartes empilées.
 - **Infos affichées sur chaque carte** : **titre** (Poppins 600), **intervenant·e(s)**
-  en secondaire, **heure** (début–fin, mono), **salle**, et **bouton favori** (présent ;
-  comportement → feature 106).
+  en secondaire, **heure** (début–fin, mono) et **salle**.
 - La liste est filtrée par la **recherche (104)**.
 - Clic / activation clavier sur une carte → **détail (105)**.
 - **Défilement** (cf. header, 100) :

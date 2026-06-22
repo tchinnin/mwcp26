@@ -18,7 +18,6 @@ comportements d'affichage et de navigation sont portés par les features du bloc
 | **103** | Sélection du jour |
 | **104** | Recherche de session |
 | **105** | Détail de session (dialog) |
-| **106** | Favoris — *à venir* (Dataverse, par utilisateur) ; le bouton favori apparaît dans l'UI mais son comportement n'est pas spécifié ici. |
 
 Modèle de données : `data/model/conference-agenda.md`. Design system :
 `uxui/guidelines.md` + preview `uxui/mwcp26-agenda-codeapp/`.

@@ -1,11 +1,13 @@
 /*
  * Types domaine de l'agenda — vue-modèle consommée par les composants (grille 101,
- * sélection du jour 103). Indépendants de la source : aujourd'hui alimentés par un mock
- * (cf. data/agenda.ts) ; demain par Dataverse, sans changer ces types ni les composants.
+ * liste 102, sélection du jour 103). Indépendants de la source : alimentés par Dataverse
+ * (cf. data/agenda.ts) ; les composants ne dépendent que de ces types.
  *
  * `color` est une **référence de token** (`"var(--brand-blue)"`…), jamais un littéral hex
  * (cf. règle « tokens, never literals » du design system).
  */
+
+export type SessionType = 'Session' | 'Keynote' | 'Pause' | 'Repas' | 'Evenement'
 
 export interface Speaker {
   name: string;
@@ -14,7 +16,7 @@ export interface Speaker {
 }
 
 export interface Room {
-  /** Clé brute issue de la donnée (ex. "Room 1 (35p)") — sert d'identifiant de colonne. */
+  /** Clé brute issue de la donnée (GUID de salle) — sert d'identifiant de colonne. */
   key: string;
   /** Libellé affiché (ex. "Salle 1"). */
   name: string;
@@ -45,8 +47,8 @@ export interface Session {
   roomCap: number;
   /** Couleur de la salle — référence token. */
   roomColor: string;
-  /** Session de service (pause, accueil, plénière…) → rendue en bande pleine largeur. */
-  isService: boolean;
+  /** Type de session — pilote le rendu dans la grille et la liste. */
+  sessionType: SessionType;
   speakers: Speaker[];
 }
 

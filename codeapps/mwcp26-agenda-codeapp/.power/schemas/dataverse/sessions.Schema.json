@@ -207,6 +207,46 @@
           "required": true,
           "x-ms-keyType": "primary"
         },
+        "mwcp26_sessiontypecode": {
+          "type": "string",
+          "title": "Type",
+          "x-ms-dataverse-attribute": "mwcp26_sessiontypecode",
+          "x-ms-dataverse-type": "PicklistType",
+          "x-ms-schema-name": "mwcp26_SessionTypeCode",
+          "enum": [
+            "Session",
+            "Plénière",
+            "Pause",
+            "Repas",
+            "Événement"
+          ],
+          "x-ms-enum-values": [
+            318610000,
+            318610001,
+            318610002,
+            318610003,
+            318610004
+          ],
+          "Color": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "x-ms-optionsetmetadataid": "7a4c4dff-fa6b-f111-a826-7c1e525d42cd",
+          "x-ms-isGlobal": true,
+          "x-ms-optionsetdisplayname": "Type de session Choice",
+          "x-ms-optionSetType": "Picklist"
+        },
+        "mwcp26_sessiontypecodename": {
+          "type": "string",
+          "title": "mwcp26_sessiontypecodename",
+          "x-ms-dataverse-attribute": "mwcp26_sessiontypecodename",
+          "x-ms-dataverse-type": "VirtualType",
+          "x-ms-schema-name": "mwcp26_sessiontypecodeName",
+          "x-ms-read-only": true
+        },
         "mwcp26_startdatetime": {
           "type": "string",
           "title": "Début",

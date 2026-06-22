@@ -1,6 +1,5 @@
 /*
- * Feature 101 — styles de la vue grille. Port fidèle des règles `.tt-*` de la maquette,
- * réécrites en tokens (var(--…)), sans hover/curseur/favori (cartes statiques cette itération).
+ * Feature 101 — styles de la vue grille. Règles `.tt-*` réécrites en tokens (var(--…)).
  * Les sticky (.tt-roomhead top / .tt-time left) s'ancrent dans le conteneur scrollable
  * `main.app-main` (cf. App.css desktop). Aucun overflow:hidden parent ne doit les casser.
  */
@@ -72,7 +71,7 @@
   pointer-events: none;
 }
 
-/* carte de session (statique — pas de hover ni de clic cette itération) */
+/* carte de session */
 .tt-card {
   position: relative;
   z-index: 2;
@@ -116,7 +115,25 @@
   text-overflow: ellipsis;
 }
 
-/* bande de service (pause, accueil, plénière) — pleine largeur */
+/* Keynote — pleine largeur avec badge de salle hôte */
+.tt-keynote {
+  cursor: pointer;
+  transition: box-shadow var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast);
+}
+.tt-keynote:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); z-index: 3; }
+.tt-keynote__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  color: var(--text-secondary);
+  margin-bottom: 1px;
+}
+.tt-keynote__badge .tt-roomdot { width: 7px; height: 7px; }
+
+/* bande de service (Pause, Repas, Evenement) — pleine largeur */
 .tt-band {
   position: relative;
   z-index: 2;

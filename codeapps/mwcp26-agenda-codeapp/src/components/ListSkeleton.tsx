@@ -33,7 +33,6 @@ export default function ListSkeleton() {
                 <div className="lsk-bar lsk-bar--speakers sk-shimmer" />
                 <div className="lsk-bar lsk-bar--meta sk-shimmer" />
               </div>
-              <div className="lsk-fav sk-shimmer" />
             </div>
           ))}
         </div>

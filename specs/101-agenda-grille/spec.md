@@ -23,11 +23,18 @@ clic sur une session par la feature **105**.
 - **Défilement** : sous le **header sticky de l'app** (cf. 100), seule la **zone
   grille** défile verticalement ; ses en-têtes de salle restent visibles en haut de la
   grille et la colonne d'heures reste visible à gauche pendant le scroll.
-- Chaque session est **positionnée** dans la colonne de sa salle, sur son créneau
-  (début → fin).
-- **Infos affichées sur chaque session** : **titre**, **intervenant·e(s)**, **heure**
-  (début–fin), et le **bouton favori** (présent ; comportement → feature 106). La salle
-  est portée par l'en-tête de colonne.
+- Chaque session est **positionnée** selon son **type** (`mwcp26_sessiontype`) :
+  - **Session** (type par défaut) : carte dans la colonne de sa salle, sur son créneau.
+  - **Plénière (Keynote)** : carte **pleine largeur** (`gridColumn: 2 / nSalles+2`) avec
+    le **rail couleur de salle** et un **badge salle** (dot + libellé court) visibles pour
+    lever toute ambiguïté. Même structure qu'une carte normale (heure, titre, intervenant·e(s)).
+  - **Pause** : bande pleine largeur fond gris, **icône café** ☕ fixe.
+  - **Repas** : bande pleine largeur fond gris, **icône couverts** 🍽 fixe.
+  - **Événement** (accueil, lancement, clôture, session sponsor…) : bande pleine largeur fond
+    gris, **icône confettis** 🎉 fixe.
+- **Infos affichées sur chaque session (type Session/Plénière)** : **titre**,
+  **intervenant·e(s)** et **heure** (début–fin). La salle est portée par l'en-tête de
+  colonne (ou le badge pour les Plénières).
 - La grille est filtrée par la **recherche (104)**.
 - Clic / activation clavier sur une session → **détail (105)**.
 
@@ -35,16 +42,19 @@ clic sur une session par la feature **105**.
 
 - [ ] Salles en colonnes, heures en lignes ; en-têtes de salle et colonne d'heures sticky.
 - [ ] Au scroll, le header de l'app reste fixe (100) et seule la zone grille défile.
-- [ ] Chaque session occupe la colonne de sa salle sur son créneau.
-- [ ] Chaque session montre titre, intervenant·e(s) et heure.
+- [ ] Chaque session (type Session) occupe la colonne de sa salle sur son créneau ; elle montre titre, intervenant·e(s) et heure.
+- [ ] Une session de type **Plénière** s'affiche en pleine largeur avec le rail couleur et le badge de sa salle hôte.
+- [ ] Les bandes de type **Pause / Repas / Événement** s'affichent en pleine largeur fond gris avec l'icône fixe correspondante (☕ / 🍽 / 🎉).
 - [ ] La grille reflète le jour (103) et la recherche (104) en cours.
-- [ ] Une session est activable au clic **et** au clavier et ouvre le détail (105).
+- [ ] Une session (Session ou Plénière) est activable au clic **et** au clavier et ouvre le détail (105).
 
 ### Edge cases
 
 | Cas | Comportement attendu |
 |---|---|
-| Session sans salle **ou** sans horaire | **Non positionnable** → exclue de la grille (reste visible en vue Liste 102). |
+| Session (type Session) sans salle **ou** sans horaire | **Non positionnable** → exclue de la grille (reste visible en vue Liste 102). |
+| Session de type **Plénière** | Carte pleine largeur (`.tt-keynote`) avec rail + badge de salle hôte. |
+| Session de type **Pause / Repas / Événement** sans salle | Incluse dans la grille (bande pleine largeur, pas besoin de colonne). |
 | Sessions qui se chevauchent dans une même salle | Affichées côte à côte (ou empilées) dans la colonne, toutes lisibles/cliquables. |
 | Capacité de salle | Affichée près du nom **si** la donnée existe ; sinon nom seul (capacité = question ouverte du modèle). |
 | Aucune session positionnable (jour vide ou recherche sans résultat) | État vide centré dans la zone grille. |

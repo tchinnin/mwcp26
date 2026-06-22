@@ -26,7 +26,6 @@ _No spec yet — schema lives in [`data/model/`](../data/model/)._
     - [US-104-01 — Filtrer les sessions par mot-clé](./104-recherche-session/spec.md#us-104-01--filtrer-les-sessions-par-mot-clé)
   - [`105-detail-session`](./105-detail-session/spec.md)
     - [US-105-01 — Consulter le détail d'une session](./105-detail-session/spec.md#us-105-01--consulter-le-détail-dune-session)
-  - `106-favoris` — _à venir_ (Dataverse, par utilisateur)
 
 ## 200 — Agenda Canvas App (`mwcp26-agenda-canvas`)
 

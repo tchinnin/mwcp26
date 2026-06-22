@@ -3,9 +3,7 @@
 ## Overview
 
 Vue grille **salles × heures** (desktop-only), portée par le composant React
-`AgendaGrid` (`src/components/AgendaGrid.tsx` + `AgendaGrid.css`). Port fidèle du
-`Timetable` de la maquette de référence
-(`uxui/mwcp26-agenda-codeapp/mwcp26-agenda-codeapp-standalone.html`).
+`AgendaGrid` (`src/components/AgendaGrid.tsx` + `AgendaGrid.css`).
 
 La grille est une **CSS Grid** : colonne 1 = heures, colonnes 2..N+1 = salles ; lignes =
 créneaux de 5 minutes. Les sessions sont positionnées par `gridColumn`/`gridRow`.
@@ -16,107 +14,95 @@ gridTemplateRows:    42px repeat(rows, 13px)   // 42px = en-têtes ; 13px = PXPE
 ```
 
 Les constantes de gabarit (`PXPER5`, `HOUR_COL`, `HEADER_ROW`, `roomColumns(n)`) sont
-isolées dans `src/components/gridLayout.ts` et **partagées** entre `AgendaGrid` et le
-squelette de chargement `GridSkeleton` — une seule source pour la métrique, pas de drift.
+isolées dans `src/components/gridLayout.ts` et **partagées** entre `AgendaGrid` et
+`GridSkeleton`.
 
-## Périmètre de cette itération
+## Rendu par type de session
 
-- **Données Dataverse** (`src/data/agenda.ts` + `src/data/agenda-transform.ts`) : services
-  générés (`src/generated/services/*`), requêtes plates par table + **jointure client** par
-  GUID (le SDK n'expose pas `$expand`), datetime formatés à l'heure de Paris. La vue-modèle
-  (`types/agenda.ts`) est inchangée → le composant ne bouge pas.
-- **`isService = false` partout** : la colonne `isServiceSession` n'existe pas en Dataverse →
-  les pauses/accueils s'affichent comme des **cartes normales** (traitement « bande » reporté).
-- **Cartes statiques** : pas de bouton favori (→ 106), pas de clic/détail (→ 105), pas de
-  hover. Pas de filtrage recherche (→ 104) : la grille affiche toutes les sessions
-  positionnables du jour.
-- Vue **liste (102)** non construite.
+Le champ `mwcp26_sessiontypecode` (global Choice Dataverse) pilote le rendu via
+`s.sessionType: SessionType` dans la vue-modèle.
 
-## Math de positionnement (verbatim maquette)
+| `sessionType`          | Rendu grille |
+|------------------------|--------------|
+| `Session` (défaut)     | `.tt-card` dans la colonne de sa salle |
+| `Keynote`              | `.tt-card.tt-keynote` pleine largeur (`gridColumn: 2 / nRooms+2`) avec badge salle (dot + nom) |
+| `Pause`                | `.tt-band` pleine largeur, icône café fixe |
+| `Repas`                | `.tt-band` pleine largeur, icône couverts fixe |
+| `Evenement`            | `.tt-band` pleine largeur, icône variable (mot-clé titre) |
+
+**Mapping entier → SessionType** dans `agenda.ts` (`SESSION_TYPE_MAP`) :
+```
+318610000 → 'Session'  |  318610001 → 'Keynote'  |  318610002 → 'Pause'
+318610003 → 'Repas'    |  318610004 → 'Evenement'
+```
+Valeurs créées par `data/scripts/setup_datamodel.py`, stables par environnement.
+
+**`positionableSessions`** (`agenda-transform.ts`) : Session → salle + horaire requis ;
+Keynote/Pause/Repas/Evenement → horaire seul suffit (pas de colonne de salle requise).
+
+**`ServiceIcon`** (exporté depuis `AgendaGrid.tsx`, réutilisé par `AgendaList.tsx`) :
+SVG inline Lucide ; `bandIconKey(s)` utilise `s.sessionType` pour Pause/Repas (icône fixe)
+et les mots-clés du titre pour les sous-types d'Evenement.
+
+## Math de positionnement
 
 - `toMin("HH:MM") = h*60+m`.
-- `dayStart = min(startTime)`, `dayEnd = max(endTime)` (minutes), `rows = round((dayEnd-dayStart)/5)`.
-- `rowFor(m) = 2 + round((m-dayStart)/5)` (ligne 1 = en-têtes). Session → `gridRow: rowFor(start) / rowFor(end)`.
-- `marks` = `startTime` distincts triés → un label d'heure (`.tt-time`) + une ligne (`.tt-line`) chacun.
+- `dayStart = min(startTime)`, `dayEnd = max(endTime)`, `rows = round((dayEnd-dayStart)/5)`.
+- `rowFor(m) = 2 + round((m-dayStart)/5)`. Session → `gridRow: rowFor(start) / rowFor(end)`.
+- `marks` = `startTime` distincts triés → un `.tt-time` + un `.tt-line` par marque.
 - Salle → colonne `roomIndex[room] + 2`.
 
 ## Comportement
 
 - **Sticky** : `.tt-roomhead` (`top:0`) et `.tt-time` (`left:0`) s'ancrent dans
-  `main.app-main` (le conteneur `overflow-y:auto` desktop, cf. 100). `main` a `padding:0`
-  en desktop pour que les en-têtes collent au bord. Le header `.dhead` et la barre de
-  contrôles (jour, 103) restent figés au-dessus.
-- **Sessions de service** (`isService`) → bande pleine largeur `.tt-band`
-  (`gridColumn: 2 / nRooms+2`) avec icône SVG inline (mappée par mot-clé du titre) + titre.
-- **Talks** → `.tt-card` : rail couleur de salle (`border-left: 4px solid var(--rc)`),
-  heure (`start–end`), titre (clamp 3 lignes), premier intervenant (`+N`).
-- **Exclusion** : sessions sans salle **ou** sans horaire écartées en amont
-  (`positionableSessions`, `src/data/agenda-transform.ts`).
-- **État vide** : `.tt-empty` centré si aucune session positionnable (jour vide).
-- **Couleurs de salle** : 5 salles → tokens `--brand-blue/green/yellow/red` + `--sky-deep`
-  (mapping dans `ROOM_PALETTE`, `src/data/agenda-transform.ts`), assignées par ordre de salle.
-  Capacité parsée du nom (`"Room 1 (35p)"`), faute de colonne Dataverse. Aucune couleur
-  seule : dot + libellé.
+  `main.app-main` (`overflow-y:auto` desktop).
+- **Session** → `.tt-card` : rail `border-left: 4px solid var(--rc)`, heure, titre
+  (3 lignes clamp), speaker(s).
+- **Keynote** → `.tt-card.tt-keynote` : même structure + `.tt-keynote__badge` (dot + nom
+  de la salle hôte). `--rc` = couleur de la salle hôte.
+- **Pause/Repas/Evenement** → `.tt-band` : fond `surface-sunken`, border dashed, icône
+  SVG 14px + titre centré.
+- **Exclusion** : sessions `Session` sans salle **ou** sans horaire écartées par
+  `positionableSessions`. Keynote/Pause/Repas/Evenement inclus si horaire présent.
+- **État vide** : `.tt-empty` centré si aucune session positionnable.
+- **Couleurs de salle** : `ROOM_PALETTE` dans `agenda-transform.ts` (5 tokens).
+  Capacité dérivée du nom Dataverse (`"Room 1 (35p)"`).
 
 ## État de chargement (skeleton) — US-101-02
 
-Pendant le chargement (`agenda === null` dans `App.tsx`), la branche de chargement rend
-**la même charpente que l'état chargé** (barre de contrôles + `main` avec
-`.agenda-grid-wrap` et `.agenda-mobile-note`) et laisse le **gating responsive existant**
-trier l'affichage :
+Pendant le chargement (`agenda === null`), `<GridSkeleton />` remplace la grille.
+`GridSkeleton` réutilise les coquilles `.tt-corner / .tt-roomhead / .tt-time / .tt-line`
+d'`AgendaGrid.css` et les constantes de `gridLayout.ts`. Blocs session factices en
+shimmer déterministe. Animation `sk-shimmer` coupée avec `prefers-reduced-motion`.
 
-- **≥ 1024px** : `<GridSkeleton />` dans `.agenda-grid-wrap` → squelette de grille.
-- **< 1024px** : `.agenda-mobile-note` affiche `« Chargement de l'agenda… »` (la vue grille
-  n'a pas de sens en mobile ; skeleton réservé à la grille). Le chargement de la vue liste
-  relèvera de la feature 102.
-- La barre de contrôles porte un placeholder pill `.sk-daytabs` (dimensions du segmented
-  control 103) pour éviter le saut de layout.
-- La branche **erreur** (`.agenda-status--error`) est inchangée.
+## Responsive
 
-`GridSkeleton` (`src/components/GridSkeleton.tsx` + `GridSkeleton.css`) reproduit la
-structure de la grille avec un **gabarit fixe** (les salles réelles ne sont pas encore
-connues) : `SK_ROOMS = 5` colonnes, `SK_ROWS = 54` lignes, un label d'heure toutes les
-~12 lignes. Il **réutilise** les coquilles `.tt-corner` / `.tt-roomhead` / `.tt-time` /
-`.tt-line` (import d'`AgendaGrid.css`) et les constantes de `gridLayout.ts`, et n'ajoute
-que les formes shimmer `.sk-dot` / `.sk-bar` / `.sk-card`. Les blocs session factices
-(`SK_CARDS`) suivent un **motif statique déterministe** (pas de `Math.random`).
-
-- **Shimmer** : classe `.sk-shimmer` = dégradé `--skeleton-base → --skeleton-sheen →
-  --skeleton-base` (tokens, `tokens.css`) balayé via `background-position`, animation
-  `sk-shimmer` sur `--skeleton-duration` (1.4s).
-- **Accessibilité** : conteneur `role="status" aria-busy aria-label="Chargement de
-  l'agenda"` ; toutes les formes décoratives en `aria-hidden`.
-- **`prefers-reduced-motion: reduce`** : l'animation est coupée, le placeholder reste
-  affiché en aplat (`--skeleton-base`).
-
-## Responsive (cf. 100)
-
-- `< 1024px` : `.agenda-grid-wrap { display:none }` ; un message placeholder
-  (`.agenda-mobile-note`) s'affiche (la vue liste 102 viendra plus tard).
+- `< 1024px` : `.agenda-grid-wrap { display:none }` ; la liste (102) s'affiche à la place.
 - `≥ 1024px` : grille affichée, `main` scrollable, en-têtes sticky.
 
 ## Acceptance criteria — état
 
 - [x] Salles en colonnes, heures en lignes ; en-têtes de salle et colonne d'heures sticky.
 - [x] Au scroll, header + contrôles figés (100), seul `main` défile.
-- [x] Chaque session occupe la colonne de sa salle sur son créneau.
-- [x] Chaque session montre titre, intervenant·e(s) et heure.
+- [x] Session : carte dans la colonne de sa salle, titre + intervenant·e(s) + heure.
+- [x] Keynote : carte pleine largeur avec rail couleur et badge de la salle hôte.
+- [x] Pause/Repas/Evenement : bande pleine largeur fond gris avec icône fixe/variable.
 - [x] La grille reflète le jour (103). *(Recherche 104 : hors périmètre.)*
-- [ ] Activation au clic/clavier → détail (105). *(Hors périmètre : cartes statiques.)*
+- [ ] Activation au clic/clavier → détail (105). *(À venir.)*
 
 US-101-02 — Chargement (skeleton) :
 
-- [x] Skeleton mimant la structure (colonnes salles, lignes heures, blocs session) à la place du message, en vue grille.
-- [x] Placeholders animés (shimmer) ; header de l'app figé (100).
-- [x] Fin du chargement → grille réelle (US-101-01) ou état vide.
-- [x] Skeleton uniquement en vue grille (desktop) ; message court sous 1024px.
+- [x] Skeleton mimant la structure en vue grille lors du chargement.
+- [x] Placeholders animés (shimmer) ; header de l'app figé.
+- [x] Fin du chargement → grille réelle ou état vide.
+- [x] Skeleton uniquement en vue grille (desktop).
 
 ## Key files
 
-- `src/components/AgendaGrid.tsx` — composant grille + math + icônes de service (SVG inline).
-- `src/components/AgendaGrid.css` — styles `.tt-*` (tokens uniquement).
-- `src/data/agenda.ts` — `getAgenda` (Dataverse, async) + jointure client.
-- `src/data/agenda-transform.ts` — helpers purs : `buildRooms`/`ROOM_PALETTE`,
-  `positionableSessions`, formatage Paris (`parisParts`, `durationLabel`, `groupByDay`).
+- `src/components/AgendaGrid.tsx` — composant grille + math + `ServiceIcon` (exporté).
+- `src/components/AgendaGrid.css` — styles `.tt-*` + `.tt-keynote` / `.tt-keynote__badge`.
+- `src/data/agenda.ts` — `getAgenda` (Dataverse) + `SESSION_TYPE_MAP`.
+- `src/data/agenda-transform.ts` — `buildRooms`, `positionableSessions`, formatage Paris.
+- `src/types/agenda.ts` — `SessionType` union + interface `Session`.
 - `src/generated/services/*` — services Dataverse générés (ne pas éditer).
 - `src/App.tsx` / `src/App.css` — chargement async, gating responsive, ancrage sticky.

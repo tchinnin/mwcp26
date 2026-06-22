@@ -4,6 +4,28 @@ Solution : `mwcp26` | Préfixe : `mwcp26_` | Langue : Français
 
 ---
 
+## Global Choices
+
+### mwcp26_choice_SessionType
+
+| Propriété     | Valeur                                          |
+|---------------|-------------------------------------------------|
+| Schema Name   | mwcp26_choice_SessionType                       |
+| Display Name  | Type de session Choice                          |
+| Description   | Catégorie visuelle de la session dans l'agenda  |
+
+**Options**
+
+| Display Name (FR) | Description |
+|---|---|
+| Session   | Session de conférence dans une salle, en parallèle d'autres sessions |
+| Plénière  | Session sans autre session en parallèle |
+| Pause     | Pause café |
+| Repas     | Pause repas |
+| Événement | Moment structurant (accueil, lancement, clôture, session sponsor…) |
+
+---
+
 ## ERD
 
 ```mermaid
@@ -22,6 +44,7 @@ erDiagram
         lookup mwcp26_SalleId "FK → Salle"
         datetime mwcp26_startdatetime
         datetime mwcp26_enddatetime
+        choice mwcp26_sessiontypecode "→ mwcp26_choice_SessionType"
     }
     SessionSpeaker {
         string mwcp26_code "PK · Auto-number SPEAKER-{SEQNUM:5}"
@@ -103,6 +126,7 @@ erDiagram
 | Salle             | mwcp26_SalleId        | mwcp26_salleid        | Lookup → mwcp26_salle      | None                |
 | Début             | mwcp26_startdatetime  | mwcp26_startdatetime  | DateTime (DateAndTime / UserLocal) | None        |
 | Fin               | mwcp26_enddatetime    | mwcp26_enddatetime    | DateTime (DateAndTime / UserLocal) | None        |
+| Type              | mwcp26_SessionTypeCode | mwcp26_sessiontypecode | Choice → mwcp26_choice_SessionType | None        |
 
 ---
 
@@ -136,5 +160,5 @@ Table standard Dataverse. Aucune colonne custom dans cette version.
 ## Open questions
 
 - [ ] Faut-il un champ Capacité (entier) sur les Salles ?
-- [ ] Faut-il un statut (Brouillon / Confirmé / Annulé) sur les Sessions — global Choice ?
+- [x] ~~Faut-il un statut (Brouillon / Confirmé / Annulé) sur les Sessions — global Choice ?~~ → Hors scope v1 ; à distinguer du **type** (`mwcp26_SessionType`) qui pilote l'affichage.
 - [ ] La table Contact CDM est-elle suffisante ou faut-il une table Speaker dédiée avec bio, photo, réseaux ?

@@ -142,11 +142,16 @@ export function defaultDayIndex(days: Day[]): number {
 }
 
 /**
- * Sessions positionnables dans la grille (feature 101) : il faut une salle ET un horaire.
- * Les autres restent visibles en vue Liste (102).
+ * Sessions positionnables dans la grille (feature 101).
+ * - Session : salle + horaire obligatoires.
+ * - Keynote / Pause / Repas / Evenement : horaire suffit (pas de colonne de salle requise).
  */
 export function positionableSessions(day: Day): Session[] {
-  return day.sessions.filter((s) => !!s.room && !!s.startTime && !!s.endTime)
+  return day.sessions.filter((s) => {
+    if (!s.startTime || !s.endTime) return false
+    if (s.sessionType === 'Session') return !!s.room
+    return true
+  })
 }
 
 /** Groupe de sessions partageant la même heure de début (vue Liste, feature 102). */

@@ -3,18 +3,14 @@
  *
  * `getAgenda` interroge Dataverse via les services générés (src/generated/services/*),
  * puis joint et transforme les enregistrements en vue-modèle (cf. types/agenda.ts) — les
- * composants AgendaGrid (101) et DayTabs (103) restent inchangés.
+ * composants AgendaGrid (101), AgendaList (102) et DayTabs (103) restent inchangés.
  *
  * Le SDK généré n'expose pas `$expand` : on fait des requêtes plates par table et on joint
  * côté client par GUID (cf. ppbp-codeapps-connectors : services générés, pas de fetch/axios).
  * Les datetime Dataverse sont en UTC ; le formatage Paris est fait par agenda-transform.
- *
- * Note : `isServiceSession` n'existe pas en Dataverse → `isService = false` partout pour
- * l'instant (traitement « bande » reporté). La capacité de salle est dérivée du nom
- * ("Room 1 (35p)"), faute de colonne dédiée.
  */
 
-import type { AgendaData, Session, Speaker } from '../types/agenda'
+import type { AgendaData, Session, SessionType, Speaker } from '../types/agenda'
 import type { IOperationResult } from '@microsoft/power-apps/data'
 import { ContactsService } from '../generated/services/ContactsService'
 import { Mwcp26_conferencesService } from '../generated/services/Mwcp26_conferencesService'
@@ -27,6 +23,15 @@ export { defaultDayIndex, positionableSessions } from './agenda-transform'
 
 const CONFERENCE_NAME = 'MWCP 2026'
 const PAGE = 5000 // un seul page suffit (volumes faibles) ; garde-fou explicite
+
+/** Mapping valeur entière Dataverse → SessionType (valeurs créées par setup_datamodel.py). */
+const SESSION_TYPE_MAP: Record<number, SessionType> = {
+  318610000: 'Session',
+  318610001: 'Keynote',
+  318610002: 'Pause',
+  318610003: 'Repas',
+  318610004: 'Evenement',
+}
 
 /** Déballe un résultat d'opération : lève si échec, sinon renvoie les lignes. */
 function rows<T>(result: IOperationResult<T[]>, label: string): T[] {
@@ -54,6 +59,7 @@ export async function getAgenda(): Promise<AgendaData> {
       select: [
         'mwcp26_sessionid', 'mwcp26_name', 'mwcp26_description',
         'mwcp26_startdatetime', 'mwcp26_enddatetime', '_mwcp26_salleid_value',
+        'mwcp26_sessiontypecode',
       ],
       filter: confFilter,
       orderBy: ['mwcp26_startdatetime asc'],
@@ -119,7 +125,7 @@ export async function getAgenda(): Promise<AgendaData> {
         roomShort: room?.short ?? '',
         roomCap: room?.cap ?? 0,
         roomColor: room?.color ?? 'var(--brand-blue)',
-        isService: false,
+        sessionType: SESSION_TYPE_MAP[s.mwcp26_sessiontypecode as number] ?? 'Session',
         speakers: speakersBySession.get(s.mwcp26_sessionid) ?? [],
         isoStart: start,
       }

@@ -18,9 +18,8 @@ voir toutes ses informations.
 - **Présentation** (dialog modal accessible) :
   - **Desktop** : **dialog centré** (modale), overlay assombrissant le fond.
   - **Mobile** : **dialog plein écran** (prend tout l'écran).
-- **Contenu** : **titre**, **description** (memo), **horaire** (début–fin), **salle**,
-  **intervenant·e(s)**, et **bouton favori** *(comportement spécifié en feature 106 —
-  à venir ; ici le bouton est présent mais sans effet persistant)*.
+- **Contenu** : **titre**, **description** (memo), **horaire** (début–fin), **salle**
+  et **intervenant·e(s)**.
 - **Fermeture** : bouton de fermeture, clic sur l'overlay (desktop), touche `Esc`. Le
   focus revient à la session d'origine.
 
@@ -31,8 +30,6 @@ voir toutes ses informations.
 - [ ] Desktop = dialog centré ; mobile = dialog plein écran.
 - [ ] Dialog modal accessible : piège de focus, fermeture au bouton / overlay / `Esc`,
       focus rendu à l'élément d'origine.
-- [ ] Le bouton favori est présent ; son comportement est porté par la feature 106.
-
 ### Edge cases
 
 | Cas | Comportement attendu |

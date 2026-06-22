@@ -62,7 +62,7 @@
   /* Anneau de marque (4 couleurs) */
   --brand-blue: #00aef0; /* action primaire, actif, liens, focus */
   --brand-green: #80cd28; /* accent / succès */
-  --brand-yellow: #fabc09; /* accent / favoris / warning */
+  --brand-yellow: #fabc09; /* accent / warning */
   --brand-red: #f2521b; /* accent */
 
   /* Teintes / ombres de marque */
@@ -75,7 +75,7 @@
   --brand-yellow-700: #d99a00;
 
   /* Accent événement */
-  --accent-event: #e90b0b; /* badge « 10e Édition », compteur favoris */
+  --accent-event: #e90b0b; /* badge « 10e Édition » */
   --accent-event-700: #c20808;
 
   /* Encre (textes) — bleu-noir du bandeau MWCP */

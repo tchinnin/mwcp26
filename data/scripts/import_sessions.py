@@ -179,7 +179,42 @@ for s in SESSIONS:
     for sp in s["speakers"]:
         SPEAKERS.setdefault(sp["name"], {"tagLine": sp.get("tagLine"), "bio": sp.get("bio")})
 
-ROOMS = sorted({s["room"] for s in SESSIONS})
+ROOMS = sorted({s["room"] for s in SESSIONS if s.get("room")})
+
+# ── Type de session ──────────────────────────────────────────────────────────────
+
+def get_choice_values(choice_schema_name):
+    """Retourne {ExternalValue_ou_label: int_value} pour un global Choice.
+
+    Utilise GlobalOptionSetDefinitions(Name='...') avec le logical name (lowercase) —
+    $filter n'est pas supporté sur cet endpoint Dataverse.
+    """
+    _, data = _req("GET", f"GlobalOptionSetDefinitions(Name='{choice_schema_name.lower()}')")
+    if not data:
+        raise RuntimeError(f"Global Choice '{choice_schema_name}' introuvable — relancer setup_datamodel.py")
+    opts = data.get("Options", [])
+    return {(o.get("ExternalValue") or o["Label"]["UserLocalizedLabel"]["Label"]): o["Value"]
+            for o in opts}
+
+SESSION_TYPE = get_choice_values("mwcp26_choice_SessionType")
+
+# Créneau = (startTime, endTime, day). Sessions non-service seules sur leur créneau → Keynote.
+from collections import Counter as _Counter
+_slot_count = _Counter(
+    (s["startTime"], s["endTime"], s["day"])
+    for s in SESSIONS if not s.get("isServiceSession")
+)
+
+def session_type_value(s):
+    if not s.get("isServiceSession"):
+        slot = (s["startTime"], s["endTime"], s["day"])
+        return SESSION_TYPE["Keynote"] if _slot_count[slot] == 1 else SESSION_TYPE["Session"]
+    t = (s.get("title") or "").lower()
+    if any(w in t for w in ("café", "cafe", "pause")):
+        return SESSION_TYPE["Pause"]
+    if any(w in t for w in ("repas", "déjeuner", "dejeuner", "lunch")):
+        return SESSION_TYPE["Repas"]
+    return SESSION_TYPE["Evenement"]
 
 stats = {k: [0, 0, 0] for k in ("conference", "salle", "contact", "session", "link")}  # [créé, maj, inchangé]
 
@@ -263,7 +298,7 @@ print(f"\n[4/5] Sessions ({len(SESSIONS)})")
 existing_sessions = {}
 for r in get_all(
     f"{SESSION_SET}?$select=mwcp26_sessionid,mwcp26_name,mwcp26_startdatetime,"
-    f"mwcp26_enddatetime,mwcp26_description,_mwcp26_salleid_value"
+    f"mwcp26_enddatetime,mwcp26_description,_mwcp26_salleid_value,mwcp26_sessiontypecode"
     f"&$filter=_mwcp26_conferenceid_value eq {conf_id}"
 ):
     key = (r["mwcp26_name"], to_instant(r["mwcp26_startdatetime"]))
@@ -277,11 +312,13 @@ for s in SESSIONS:
     salle_id = salle_ids[s["room"]]
     key = (s["title"], start.astimezone(UTC))
 
+    stype = session_type_value(s)
     desired = {
         "mwcp26_name": s["title"],
         "mwcp26_description": desc,
         "mwcp26_startdatetime": start.isoformat(),
         "mwcp26_enddatetime": end.isoformat(),
+        "mwcp26_sessiontypecode": stype,
         f"{NAV_SESSION_CONF}@odata.bind": ref(CONF_SET, conf_id),
         f"{NAV_SESSION_SALLE}@odata.bind": ref(SALLE_SET, salle_id),
     }
@@ -296,6 +333,8 @@ for s in SESSIONS:
             changes["mwcp26_enddatetime"] = end.isoformat()
         if (existing.get("_mwcp26_salleid_value") or "").lower() != salle_id:
             changes[f"{NAV_SESSION_SALLE}@odata.bind"] = ref(SALLE_SET, salle_id)
+        if existing.get("mwcp26_sessiontypecode") != stype:
+            changes["mwcp26_sessiontypecode"] = stype
         if changes:
             update(SESSION_SET, sid, changes); tally("session", "update")
         else:

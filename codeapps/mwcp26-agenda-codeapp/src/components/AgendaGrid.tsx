@@ -1,16 +1,14 @@
 /*
  * Feature 101 — Vue grille de l'agenda (salles × heures), desktop-only.
  *
- * Port fidèle du « Timetable » de la maquette de référence
- * (uxui/mwcp26-agenda-codeapp/mwcp26-agenda-codeapp-standalone.html) :
- *   - colonnes = salles, lignes = créneaux de 5 min (PXPER5 px/ligne) ;
- *   - en-têtes de salle sticky (haut) + colonne d'heures sticky (gauche) ;
- *   - sessions positionnées sur leur créneau ; services (pauses, plénières) en bande
- *     pleine largeur.
+ * Rendu selon sessionType :
+ *   Session   → .tt-card dans la colonne de sa salle
+ *   Keynote   → .tt-card.tt-keynote pleine largeur + badge salle
+ *   Pause     → .tt-band pleine largeur, icône café
+ *   Repas     → .tt-band pleine largeur, icône couverts
+ *   Evenement → .tt-band pleine largeur, icône variable (mot-clé titre)
  *
- * Périmètre de cette itération : cartes STATIQUES — pas de bouton favori (106), pas de
- * clic/détail (105), pas de hover. Le filtrage (104) viendra plus tard ; ici la grille
- * affiche toutes les sessions positionnables du jour sélectionné (103).
+ * Périmètre : cartes STATIQUES — pas de clic/détail (105). Filtrage (104) à venir.
  */
 
 import type { CSSProperties } from 'react'
@@ -36,22 +34,23 @@ const ICONS: Record<string, string[]> = {
   default: ['M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5', 'M16 2v4', 'M8 2v4', 'M3 10h5', 'M17.5 17.5 16 16.3V14'],
 }
 
-function breakIconKey(title: string): keyof typeof ICONS {
-  const t = (title || '').toLowerCase()
-  if (t.includes('café') || t.includes('cafe') || t.includes('pause')) return 'coffee'
-  if (t.includes('déjeuner') || t.includes('dejeuner') || t.includes('repas') || t.includes('lunch') || t.includes('cocktail') || t.includes('apéro')) return 'utensils'
+function bandIconKey(s: Session): keyof typeof ICONS {
+  if (s.sessionType === 'Pause') return 'coffee'
+  if (s.sessionType === 'Repas') return 'utensils'
+  // Evenement : icône variable selon le mot-clé du titre
+  const t = (s.title || '').toLowerCase()
   if (t.includes('accueil')) return 'door-open'
   if (t.includes('lancement') || t.includes('ouverture')) return 'flag'
-  if (t.includes('clôture') || t.includes('cloture') || t.includes('fin')) return 'party'
+  if (t.includes('clôture') || t.includes('cloture') || t.includes('fin') || t.includes('cocktail') || t.includes('apéro')) return 'party'
   if (t.includes('networking') || t.includes('réseau') || t.includes('reseau')) return 'users'
   if (t.includes('remise') || t.includes('prix') || t.includes('award')) return 'trophy'
   return 'default'
 }
 
-function ServiceIcon({ title }: { title: string }) {
-  const paths = ICONS[breakIconKey(title)]
+export function ServiceIcon({ session, className = 'tt-band__icon' }: { session: Session; className?: string }) {
+  const paths = ICONS[bandIconKey(session)]
   return (
-    <svg className="tt-band__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       {paths.map((d, i) => <path key={i} d={d} />)}
     </svg>
   )
@@ -64,7 +63,7 @@ function speakerLine(s: Session): string {
 }
 
 export interface AgendaGridProps {
-  /** Sessions positionnables du jour sélectionné (salle + horaire). */
+  /** Sessions positionnables du jour sélectionné. */
   sessions: Session[]
   /** Salles = colonnes de la grille. */
   rooms: Room[]
@@ -124,14 +123,41 @@ export default function AgendaGrid({ sessions, rooms }: AgendaGridProps) {
       {sessions.map((s) => {
         const r1 = rowFor(toMin(s.startTime))
         const r2 = rowFor(toMin(s.endTime))
-        if (s.isService) {
+
+        // Pause / Repas / Evenement → bande pleine largeur
+        if (s.sessionType === 'Pause' || s.sessionType === 'Repas' || s.sessionType === 'Evenement') {
           return (
             <div key={s.id} className="tt-band" style={{ gridColumn: `2 / ${rooms.length + 2}`, gridRow: `${r1} / ${r2}` }}>
-              <ServiceIcon title={s.title} />
+              <ServiceIcon session={s} />
               <span>{s.title}</span>
             </div>
           )
         }
+
+        // Keynote → carte pleine largeur avec badge de salle hôte
+        if (s.sessionType === 'Keynote') {
+          const hostRoom = s.room ? rooms.find((r) => r.key === s.room) : undefined
+          const line = speakerLine(s)
+          return (
+            <div
+              key={s.id}
+              className="tt-card tt-keynote"
+              style={{ gridColumn: `2 / ${rooms.length + 2}`, gridRow: `${r1} / ${r2}`, ['--rc' as string]: hostRoom?.color ?? 'var(--brand-blue)' } as CSSProperties}
+            >
+              <div className="tt-ctime">{s.startTime}–{s.endTime}</div>
+              {hostRoom && (
+                <div className="tt-keynote__badge">
+                  <span className="tt-roomdot" style={{ background: hostRoom.color }} />
+                  {hostRoom.name}
+                </div>
+              )}
+              <div className="tt-ctitle">{s.title}</div>
+              {line ? <div className="tt-cspk">{line}</div> : null}
+            </div>
+          )
+        }
+
+        // Session → carte dans la colonne de sa salle
         const col = (roomIndex[s.room ?? ''] ?? 0) + 2
         const line = speakerLine(s)
         return (

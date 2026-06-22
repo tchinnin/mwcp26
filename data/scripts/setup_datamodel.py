@@ -48,7 +48,7 @@ def label(text, lang=LANG):
     }
 
 
-def _request(method, path, body=None, extra_headers=None):
+def _request(method, path, body=None, extra_headers=None, no_solution=False):
     headers = {
         "Authorization": f"Bearer {get_token()}",
         "OData-MaxVersion": "4.0",
@@ -57,7 +57,8 @@ def _request(method, path, body=None, extra_headers=None):
     }
     if body is not None:
         headers["Content-Type"] = "application/json"
-        headers["MSCRM.SolutionUniqueName"] = SOLUTION
+        if not no_solution:
+            headers["MSCRM.SolutionUniqueName"] = SOLUTION
     if extra_headers:
         headers.update(extra_headers)
     data = json.dumps(body).encode() if body is not None else None
@@ -220,6 +221,105 @@ def ensure_datetime_column(table, column, display):
         print(f"  ↩ colonne {column}")
 
 
+def ensure_global_choice(schema_name, display, options):
+    """Crée un global Choice + l'attache à la solution (ComponentType 9). Skip si existant.
+
+    `options` : liste de tuples (ExternalValue, display_label_fr).
+    Conforme à la procédure ppbp-dv-global-choices :
+      étape 1 — POST GlobalOptionSetDefinitions
+      étape 2 — POST AddSolutionComponent (ComponentType 9)
+    """
+    existing = get_json(f"GlobalOptionSetDefinitions(Name='{schema_name.lower()}')?$select=MetadataId")
+    if existing:
+        print(f"  ↩ global choice {schema_name}")
+        return
+    # POST sans MSCRM.SolutionUniqueName — la solution binding se fait via AddSolutionComponent.
+    # 0x80044363 = duplicate (déjà créé lors d'un run précédent) → on passe directement à la
+    # résolution du MetadataId et à l'AddSolutionComponent (idempotent).
+    already_exists = False
+    for attempt in range(4):
+        try:
+            _request("POST", "GlobalOptionSetDefinitions", {
+                "@odata.type": "Microsoft.Dynamics.CRM.OptionSetMetadata",
+                "Name": schema_name,
+                "DisplayName": label(display),
+                "IsGlobal": True,
+                "OptionSetType": "Picklist",
+                "Options": [
+                    {
+                        "@odata.type": "Microsoft.Dynamics.CRM.OptionMetadata",
+                        "Label": label(opt_label),
+                        "ExternalValue": ext_val,
+                    }
+                    for ext_val, opt_label in options
+                ],
+            }, no_solution=True)
+            break
+        except urllib.error.HTTPError as e:
+            code = _error_code(e)
+            if "0x80044363" in code:  # duplicate — déjà créé
+                already_exists = True
+                break
+            if any(c in code for c in TRANSIENT_CODES) and attempt < 3:
+                print(f"    ⏳ propagation (GlobalOptionSetDefinitions), retry {attempt + 1}/3...")
+                time.sleep(15)
+                continue
+            raise
+    # Résolution du MetadataId — retry car la propagation post-création peut prendre ~10s.
+    meta = None
+    for attempt in range(8):
+        meta = get_json(f"GlobalOptionSetDefinitions(Name='{schema_name.lower()}')?$select=MetadataId")
+        if meta:
+            break
+        print(f"    ⏳ propagation MetadataId ({attempt + 1}/8, 5s)...")
+        time.sleep(5)
+    if not meta:
+        raise RuntimeError(f"Global Choice '{schema_name}' introuvable après création")
+    metadata_id = meta["MetadataId"]
+    # Attache à la solution (ComponentType 9 = Global OptionSet)
+    post_metadata("AddSolutionComponent", {
+        "ComponentId": metadata_id,
+        "ComponentType": 9,
+        "SolutionUniqueName": SOLUTION,
+        "AddRequiredComponents": False,
+    }, f"AddSolutionComponent({schema_name})")
+    action = "existant" if already_exists else "créé"
+    print(f"  ✓ global choice {schema_name} {action} + rattaché à la solution ({len(options)} options)")
+
+
+def ensure_choice_column(table, column, choice_schema_name, display):
+    """Ajoute une colonne Choice (global) à une table, skip si elle existe déjà.
+
+    Conforme à la procédure ppbp-dv-global-choices Phase C :
+      résolution du MetadataId fresh, puis GlobalOptionSet@odata.bind avec le GUID.
+    """
+    cast = "Microsoft.Dynamics.CRM.PicklistAttributeMetadata"
+    logical = column.lower()
+    if get_attribute(table, logical, cast):
+        print(f"  ↩ colonne {column} (Choice)")
+        return
+    # Résolution du MetadataId fresh (obligatoire — le Name n'est pas accepté dans odata.bind)
+    meta = get_json(f"GlobalOptionSetDefinitions(Name='{choice_schema_name.lower()}')?$select=MetadataId")
+    if not meta:
+        raise RuntimeError(f"Global Choice '{choice_schema_name}' introuvable — relancer setup_datamodel.py")
+    metadata_id = meta["MetadataId"]
+    post_metadata(
+        f"EntityDefinitions(LogicalName='{table}')/Attributes",
+        {
+            "@odata.type": cast,
+            "SchemaName": column,
+            "DisplayName": label(display),
+            "RequiredLevel": {
+                "Value": "None",
+                "ManagedPropertyLogicalName": "canmodifyrequirementlevelsettings",
+            },
+            "GlobalOptionSet@odata.bind": f"/GlobalOptionSetDefinitions({metadata_id})",
+        },
+        column,
+    )
+    print(f"  ✓ colonne {column} (Choice → {choice_schema_name}) créée")
+
+
 def ensure_memo_column(table, column, display, max_length=2000):
     cast = "Microsoft.Dynamics.CRM.MemoAttributeMetadata"
     attr = get_attribute(table, column, cast)
@@ -276,14 +376,14 @@ def ensure_lookup(referencing_table, lookup_field, referenced_table, display):
 # ── Publication ──────────────────────────────────────────────────────────────────
 
 def publish_all():
-    print("\n[4/4] Publication des customisations...")
+    print("\n[5/5] Publication des customisations...")
     _request("POST", "PublishAllXml", body={})
     print("  ✓ publié")
 
 
 # ══ Exécution ════════════════════════════════════════════════════════════════════
 
-print("\n[1/4] Tables")
+print("\n[1/5] Tables")
 ensure_table("mwcp26_Conference", "Conférence")
 ensure_table("mwcp26_Salle", "Salle")
 ensure_table("mwcp26_Session", "Session")
@@ -292,7 +392,7 @@ ensure_session_speaker()
 print("\n  ⏳ propagation tables (15s)...")
 time.sleep(15)
 
-print("\n[2/4] Colonnes")
+print("\n[2/5] Colonnes")
 # Primary names alignés sur le modèle (Conference/Salle = Nom, Session = Titre)
 ensure_display_name("mwcp26_conference", "mwcp26_name", "Microsoft.Dynamics.CRM.StringAttributeMetadata", "Nom")
 ensure_display_name("mwcp26_salle", "mwcp26_name", "Microsoft.Dynamics.CRM.StringAttributeMetadata", "Nom")
@@ -302,7 +402,19 @@ ensure_datetime_column("mwcp26_session", "mwcp26_startdatetime", "Début")
 ensure_datetime_column("mwcp26_session", "mwcp26_enddatetime", "Fin")
 ensure_memo_column("mwcp26_session", "mwcp26_description", "Description")
 
-print("\n[3/4] Lookups")
+print("\n[3/5] Global Choices")
+ensure_global_choice("mwcp26_choice_SessionType", "Type de session Choice", [
+    ("Session",   "Session"),
+    ("Keynote",   "Plénière"),
+    ("Pause",     "Pause"),
+    ("Repas",     "Repas"),
+    ("Evenement", "Événement"),
+])
+print("\n  ⏳ propagation choice (10s)...")
+time.sleep(10)
+ensure_choice_column("mwcp26_session", "mwcp26_SessionTypeCode", "mwcp26_choice_SessionType", "Type")
+
+print("\n[4/5] Lookups")
 ensure_lookup("mwcp26_salle",          "mwcp26_ConferenceId", "mwcp26_conference", "Conférence")
 ensure_lookup("mwcp26_session",        "mwcp26_ConferenceId", "mwcp26_conference", "Conférence")
 ensure_lookup("mwcp26_session",        "mwcp26_SalleId",      "mwcp26_salle",      "Salle")
@@ -317,7 +429,8 @@ print("""
   mwcp26_conference     : mwcp26_name (Nom)
   mwcp26_salle          : mwcp26_name (Nom), mwcp26_conferenceid
   mwcp26_session        : mwcp26_name (Titre), mwcp26_description, mwcp26_startdatetime (Début),
-                          mwcp26_enddatetime (Fin), mwcp26_conferenceid, mwcp26_salleid
+                          mwcp26_enddatetime (Fin), mwcp26_conferenceid, mwcp26_salleid,
+                          mwcp26_sessiontypecode (Type → mwcp26_choice_SessionType)
   mwcp26_sessionspeaker : mwcp26_code (auto-number), mwcp26_sessionid, mwcp26_speakerid
 
 Étapes suivantes :
