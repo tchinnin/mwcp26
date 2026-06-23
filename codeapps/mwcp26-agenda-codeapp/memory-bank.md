@@ -10,7 +10,7 @@
   https://chinnin-tech-dev.crm4.dynamics.com/)
 - App ID: `eeb47756-a38f-4333-95d9-545780fba5e3`
 - App URL: https://apps.powerapps.com/play/e/d6b0b2cd-588d-4cb1-b657-6a8ad7951d40/app/eeb47756-a38f-4333-95d9-545780fba5e3
-- Version: **v1.3.0** (`src/version.ts`, affichée dans le footer) — dernière poussée : 2026-06-21
+- Version: **v1.4.0** (`src/version.ts`, affichée dans le footer) — dernière poussée : 2026-06-23
 
 ## Spec / design
 

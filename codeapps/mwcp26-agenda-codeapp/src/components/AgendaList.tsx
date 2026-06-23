@@ -4,7 +4,7 @@
  * Rendu selon sessionType :
  *   Session / Keynote   → .al-card (rail couleur, pill salle, titre, speakers)
  *   Pause / Repas / Evenement → .al-band (icône cercle + titre + durée)
- * Chaque carte Session/Keynote est activable au clic et au clavier (feature 105 à venir).
+ * Chaque carte Session/Keynote est activable au clic et au clavier (feature 105).
  */
 
 import './AgendaList.css'
@@ -14,6 +14,7 @@ import type { Session } from '../types/agenda'
 
 interface AgendaListProps {
   sessions: Session[]
+  onSessionClick: (s: Session) => void
 }
 
 /* SVG calendrier : état vide de la liste. */
@@ -38,7 +39,7 @@ function CalendarIcon() {
   )
 }
 
-function SessionCard({ s }: { s: Session }) {
+function SessionCard({ s, onClick }: { s: Session; onClick: () => void }) {
   const speakers = s.speakers.map((sp) => sp.name).filter(Boolean)
   const timeRange = s.startTime && s.endTime ? `${s.startTime}–${s.endTime}` : s.startTime ?? ''
 
@@ -46,9 +47,8 @@ function SessionCard({ s }: { s: Session }) {
     <button
       className="al-card"
       style={{ '--rc': s.roomColor || 'var(--ink-200)' } as React.CSSProperties}
-      onClick={() => {
-        /* Feature 105 — détail session (à venir). */
-      }}
+      onClick={onClick}
+      aria-label={s.title}
     >
       <div className="al-card-body">
         <div className="al-card-top">
@@ -81,7 +81,7 @@ function BandRow({ s }: { s: Session }) {
   )
 }
 
-export default function AgendaList({ sessions }: AgendaListProps) {
+export default function AgendaList({ sessions, onSessionClick }: AgendaListProps) {
   const groups = groupByStartTime(sessions)
 
   if (groups.length === 0) {
@@ -107,7 +107,7 @@ export default function AgendaList({ sessions }: AgendaListProps) {
           {group.sessions.map((s) =>
             s.sessionType === 'Pause' || s.sessionType === 'Repas' || s.sessionType === 'Evenement'
               ? <BandRow key={s.id} s={s} />
-              : <SessionCard key={s.id} s={s} />
+              : <SessionCard key={s.id} s={s} onClick={() => onSessionClick(s)} />
           )}
         </section>
       ))}

@@ -8,7 +8,7 @@
  *   Repas     → .tt-band pleine largeur, icône couverts
  *   Evenement → .tt-band pleine largeur, icône variable (mot-clé titre)
  *
- * Périmètre : cartes STATIQUES — pas de clic/détail (105). Filtrage (104) à venir.
+ * Clic sur carte Session/Keynote → onSessionClick (feature 105). Filtrage (104) à venir.
  */
 
 import type { CSSProperties } from 'react'
@@ -67,9 +67,11 @@ export interface AgendaGridProps {
   sessions: Session[]
   /** Salles = colonnes de la grille. */
   rooms: Room[]
+  /** Feature 105 — ouvre le panneau de détail pour la session cliquée. */
+  onSessionClick?: (s: Session) => void
 }
 
-export default function AgendaGrid({ sessions, rooms }: AgendaGridProps) {
+export default function AgendaGrid({ sessions, rooms, onSessionClick }: AgendaGridProps) {
   if (!sessions.length) {
     return (
       <div className="tt-empty">
@@ -139,10 +141,12 @@ export default function AgendaGrid({ sessions, rooms }: AgendaGridProps) {
           const hostRoom = s.room ? rooms.find((r) => r.key === s.room) : undefined
           const line = speakerLine(s)
           return (
-            <div
+            <button
               key={s.id}
               className="tt-card tt-keynote"
               style={{ gridColumn: `2 / ${rooms.length + 2}`, gridRow: `${r1} / ${r2}`, ['--rc' as string]: hostRoom?.color ?? 'var(--brand-blue)' } as CSSProperties}
+              onClick={() => onSessionClick?.(s)}
+              aria-label={s.title}
             >
               <div className="tt-ctime">{s.startTime}–{s.endTime}</div>
               {hostRoom && (
@@ -153,7 +157,7 @@ export default function AgendaGrid({ sessions, rooms }: AgendaGridProps) {
               )}
               <div className="tt-ctitle">{s.title}</div>
               {line ? <div className="tt-cspk">{line}</div> : null}
-            </div>
+            </button>
           )
         }
 
@@ -161,15 +165,17 @@ export default function AgendaGrid({ sessions, rooms }: AgendaGridProps) {
         const col = (roomIndex[s.room ?? ''] ?? 0) + 2
         const line = speakerLine(s)
         return (
-          <div
+          <button
             key={s.id}
             className="tt-card"
             style={{ gridColumn: col, gridRow: `${r1} / ${r2}`, ['--rc' as string]: s.roomColor } as CSSProperties}
+            onClick={() => onSessionClick?.(s)}
+            aria-label={s.title}
           >
             <div className="tt-ctime">{s.startTime}–{s.endTime}</div>
             <div className="tt-ctitle">{s.title}</div>
             {line ? <div className="tt-cspk">{line}</div> : null}
-          </div>
+          </button>
         )
       })}
     </div>

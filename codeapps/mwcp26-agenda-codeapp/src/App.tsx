@@ -5,8 +5,9 @@ import AgendaList from './components/AgendaList'
 import DayTabs from './components/DayTabs'
 import GridSkeleton from './components/GridSkeleton'
 import ListSkeleton from './components/ListSkeleton'
+import SessionDetail from './components/SessionDetail'
 import { defaultDayIndex, getAgenda, positionableSessions } from './data/agenda'
-import type { AgendaData } from './types/agenda'
+import type { AgendaData, Session } from './types/agenda'
 
 /*
  * Assets de marque inlinés en base64 (suffixe ?inline) : la donnée image est embarquée
@@ -27,6 +28,8 @@ function App() {
   const [day, setDay] = useState(0)
   // Feature 102 — bascule grille / liste (desktop uniquement ; mobile = toujours liste).
   const [view, setView] = useState<View>('grid')
+  // Feature 105 — session ouverte dans le panneau de détail (null = fermé).
+  const [selectedSession, setSelectedSession] = useState<Session | null>(null)
 
   // Chargement hors render (cf. ppbp-codeapps-connectors). Le SDK Power Apps ne joint
   // Dataverse que dans le player (URL Local Play) — pas en vite nu.
@@ -115,15 +118,15 @@ function App() {
           {/* Grille (101) — desktop-only, sauf si bascule sur "Liste". */}
           <div className="agenda-grid-wrap">
             {view === 'grid' ? (
-              <AgendaGrid sessions={gridSessions} rooms={agenda.rooms} />
+              <AgendaGrid sessions={gridSessions} rooms={agenda.rooms} onSessionClick={setSelectedSession} />
             ) : (
-              <AgendaList sessions={allSessions} />
+              <AgendaList sessions={allSessions} onSessionClick={setSelectedSession} />
             )}
           </div>
 
           {/* Liste (102) — mobile-only (CSS gate ≥1024px → display:none). */}
           <div className="agenda-mobile-wrap">
-            <AgendaList sessions={allSessions} />
+            <AgendaList sessions={allSessions} onSessionClick={setSelectedSession} />
           </div>
         </main>
       </>
@@ -148,6 +151,12 @@ function App() {
 
         {body}
       </div>
+
+      {/* Feature 105 — panneau de détail (dialog desktop / drawer mobile). */}
+      <SessionDetail
+        session={selectedSession}
+        onClose={() => setSelectedSession(null)}
+      />
     </div>
   )
 }

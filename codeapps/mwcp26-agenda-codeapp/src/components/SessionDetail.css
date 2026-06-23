@@ -1,0 +1,237 @@
+/* Feature 105 — Détail de session : Dialog (desktop) + Drawer Vaul (mobile) */
+
+/* ---- Overlay commun ---- */
+.sd-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(11, 14, 20, 0.42);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* ---- Desktop : Dialog centré ---- */
+.sd-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: 51;
+  background: var(--surface-card);
+  width: 100%;
+  max-width: 580px;
+  max-height: 84vh;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-xl);
+}
+
+/* ---- Mobile : Drawer Vaul ---- */
+.sd-drawer {
+  /* Vaul anime via transform — position:fixed doit être posé explicitement pour
+     que z-index s'applique et que left:0/right:0 assurent la pleine largeur. */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 51;
+  background: var(--surface-card);
+  width: 100%;
+  max-height: 90vh;
+  border-top-left-radius: var(--radius-xl);
+  border-top-right-radius: var(--radius-xl);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-xl);
+}
+
+/* ---- Poignée (mobile drawer uniquement) ---- */
+.sd-handle {
+  width: 38px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--neutral-300);
+  margin: 12px auto 0;
+  flex: none;
+}
+
+/* ---- Corps scrollable ---- */
+.sd-body {
+  overflow-y: auto;
+  flex: 1;
+  padding: 14px 20px 24px;
+}
+
+/* ---- Méta (salle + horaire) ---- */
+.sd-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.sd-room-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 11.5px;
+  color: var(--rc);
+  background: color-mix(in srgb, var(--rc) 10%, transparent);
+  padding: 3px 9px 3px 7px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.sd-room-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--rc);
+  flex: none;
+}
+
+.sd-room-cap {
+  opacity: 0.65;
+  font-weight: 500;
+}
+
+.sd-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* ---- Titre ---- */
+.sd-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--text-heading);
+  margin: 0 0 4px;
+  text-wrap: pretty;
+}
+
+/* ---- Description ---- */
+.sd-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-body);
+  margin: 10px 0 0;
+  white-space: pre-wrap;
+}
+
+/* ---- Section Intervenants ---- */
+.sd-speakers {
+  margin-top: 18px;
+}
+
+.sd-speakers-label {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.sd-speaker {
+  display: flex;
+  gap: 12px;
+  padding: 14px 0;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.sd-avatar-ring {
+  flex: none;
+  padding: 2.5px;
+  border-radius: 50%;
+  height: fit-content;
+}
+
+.sd-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--neutral-100);
+  border: 2px solid var(--white);
+  display: grid;
+  place-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--ink-500);
+}
+
+.sd-speaker-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.sd-speaker-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-heading);
+}
+
+.sd-speaker-role {
+  font-size: 12.5px;
+  color: var(--brand-blue-700);
+  font-weight: 500;
+  margin-top: 1px;
+}
+
+.sd-speaker-bio {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  white-space: pre-wrap;
+}
+
+/* ---- Pied de page (bouton Fermer) ---- */
+.sd-footer {
+  flex: none;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  gap: 10px;
+  background: var(--surface-card);
+}
+
+.sd-close-btn {
+  flex: 1;
+  padding: 11px 18px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  background: var(--ink-900);
+  color: #fff;
+  cursor: pointer;
+  transition: opacity var(--duration-fast);
+}
+
+.sd-close-btn:hover {
+  opacity: 0.88;
+}
+
+.sd-close-btn:focus-visible {
+  outline: var(--ring-width) solid var(--ring-color);
+  outline-offset: 2px;
+}
